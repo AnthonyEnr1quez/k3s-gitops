@@ -1,0 +1,33 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: calibre-ingress-route
+  namespace: media
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`calibre.192.168.86.2.nip.io`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: calibre
+          kind: Service
+          port: 8080
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: calibre-webserver-ingress-route
+  namespace: media
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`calibre-webserver.192.168.86.2.nip.io`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: calibre-webserver
+          kind: Service
+          port: 8081
