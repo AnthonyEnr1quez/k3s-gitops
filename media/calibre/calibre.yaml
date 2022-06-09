@@ -17,13 +17,20 @@ spec:
   values:
     nodeSelector:
       beta.kubernetes.io/arch: arm64
-    service:
-      webserver:
-        enabled: true
     image:
       repository: linuxserver/calibre
       tag: arm64v8-arch-version-b6d12fd5
+    env:
+      CALIBRE_OVERRIDE_DATABASE_PATH: /config/metadata.db
+    service:
+      webserver:
+        enabled: true
     persistence:
       config:
         enabled: true
         retain: true
+      books:
+        enabled: true
+        mountPath: /books
+        existingClaim: nfs-data-pvc
+        subPath: media/books
