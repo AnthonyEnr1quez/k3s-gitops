@@ -22,6 +22,7 @@ spec:
       tag: arm64v8-arch-version-b6d12fd5
     env:
       CALIBRE_OVERRIDE_DATABASE_PATH: /config/metadata.db
+      TZ: America/Chicago
     service:
       webserver:
         enabled: true
