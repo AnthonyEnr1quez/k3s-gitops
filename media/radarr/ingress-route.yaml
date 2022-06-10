@@ -1,0 +1,16 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: radarr-ingress-route
+  namespace: media
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`radarr.192.168.86.2.nip.io`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - kind: Service
+          name: radarr
+          port: 7878
