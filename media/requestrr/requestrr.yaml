@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: requestrr
+  namespace: media
+spec:
+  interval: 10m
+  dependsOn:
+    - name: namespaces
+      namespace: kube-system
+  sourceRef:
+    kind: GitRepository
+    name: kube-system
+  path: ./media/requestrr
+  prune: true

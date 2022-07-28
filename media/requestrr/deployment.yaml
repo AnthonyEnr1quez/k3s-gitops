@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: requestrr
+  namespace: media
+  labels:
+    app: requestrr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: requestrr
+  template:
+    metadata:
+      labels:
+        name: requestrr
+    spec:
+      containers:
+        - name: requestrr
+          image: docker.io/darkalfx/requestrr:v2.1.2
+          volumeMounts:
+            - name: requestrr-config 
+              mountPath: /root/config
+          env:
+            - name: TZ
+              value: "America/Chicago"
+          ports:
+            - containerPort: 4545
+      volumes:
+        - name: requestrr-config
+          persistentVolumeClaim:
+            claimName: requestrr-config
