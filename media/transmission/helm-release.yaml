@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: transmission
-      version: 8.3.2
+      version: 8.4.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -22,8 +22,10 @@ spec:
       tag: v3.00
     env:
       WAIT_FOR_VPN: true
-      TRANSMISSION_DOWNLOAD_DIR: /data/torrents
       TZ: America/Chicago
+      CURL_CA_BUNDLE: /etc/ssl/certs/ca-certificates.crt
+      TRANSMISSION_DOWNLOAD_DIR: /data/torrents
+      TRANSMISSION_RATIO_LIMIT_ENABLED: true
     persistence:
       config:
         enabled: true
@@ -46,9 +48,16 @@ spec:
         securityContext:
           runAsUser: 568
           runAsGroup: 568
-        envFrom:
-          - secretRef:
-              name: wireguard-env
+        env:
+          - name: KILLSWITCH
+            value: true
+          - name: IPTABLES_BACKEND
+            value: nft
+          - name: KILLSWITCH_EXCLUDEDNETWORKS_IPV4
+            valueFrom:
+              secretKeyRef:
+                name: wireguard-excluded
+                key: ipv4
         configFileSecret: wireguard-config
         scripts:
           up: |
