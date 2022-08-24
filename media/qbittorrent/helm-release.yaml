@@ -1,0 +1,71 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: qbittorrent
+  namespace: media
+spec:
+  chart:
+    spec:
+      chart: qbittorrent
+      version: 13.5.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+  interval: 5m
+  values:
+    nodeSelector:
+      beta.kubernetes.io/arch: amd64
+    image:
+      repository: ghcr.io/k8s-at-home/qbittorrent
+      tag: v4.4.3.1
+    env:
+      WAIT_FOR_VPN: true
+      QBT_BitTorrent__Session__DefaultSavePath: '/data/torrents'
+      QBT_BitTorrent__Session__DisableAutoTMMByDefault: 'false'
+      QBT_BitTorrent__Session__GlobalMaxRatio: '2'
+      TZ: America/Chicago
+    persistence:
+      config:
+        enabled: true
+        retain: true
+      data:
+        enabled: true
+        mountPath: /data/torrents
+        existingClaim: nfs-data-pvc
+        subPath: torrents
+      shared:
+        enabled: true
+    addons:
+      vpn:
+        enabled: true
+        type: wireguard
+        wireguard:
+          image:
+            repository: ghcr.io/k8s-at-home/wireguard
+            tag: v1.0.20210914
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          privileged: true
+          # capabilities:
+          #   add: ["NET_ADMIN", "SYS_MODULE", "CAP_AUDIT_WRITE"]
+        env:
+          - name: KILLSWITCH
+            value: true
+          - name: IPTABLES_BACKEND
+            value: nft
+          - name: KILLSWITCH_EXCLUDEDNETWORKS_IPV4
+            valueFrom:
+              secretKeyRef:
+                name: wireguard-excluded
+                key: ipv4
+        configFileSecret: wireguard-config
+        scripts:
+          up: |
+            #!/bin/bash
+            echo "connected" > /shared/vpnstatus
+          down: |
+            #!/bin/bash
+            echo "disconnected" > /shared/vpnstatus

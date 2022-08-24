@@ -1,68 +1,68 @@
----
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: transmission
-  namespace: media
-spec:
-  chart:
-    spec:
-      chart: transmission
-      version: 8.4.2
-      sourceRef:
-        kind: HelmRepository
-        name: k8s-at-home-charts
-        namespace: flux-system
-  interval: 5m
-  values:
-    nodeSelector:
-      beta.kubernetes.io/arch: amd64
-    image:
-      repository: ghcr.io/k8s-at-home/transmission
-      tag: v3.00
-    env:
-      WAIT_FOR_VPN: true
-      TZ: America/Chicago
-      CURL_CA_BUNDLE: /etc/ssl/certs/ca-certificates.crt
-      TRANSMISSION_DOWNLOAD_DIR: /data/torrents
-      TRANSMISSION_RATIO_LIMIT_ENABLED: true
-    persistence:
-      config:
-        enabled: true
-        retain: true
-      data:
-        enabled: true
-        mountPath: /data/torrents
-        existingClaim: nfs-data-pvc
-        subPath: torrents
-      shared:
-        enabled: true
-    addons:
-      vpn:
-        enabled: true
-        type: wireguard
-        wireguard:
-          image:
-            repository: ghcr.io/k8s-at-home/wireguard
-            tag: v1.0.20210914
-        securityContext:
-          runAsUser: 568
-          runAsGroup: 568
-        env:
-          - name: KILLSWITCH
-            value: true
-          - name: IPTABLES_BACKEND
-            value: nft
-          - name: KILLSWITCH_EXCLUDEDNETWORKS_IPV4
-            valueFrom:
-              secretKeyRef:
-                name: wireguard-excluded
-                key: ipv4
-        configFileSecret: wireguard-config
-        scripts:
-          up: |
-            #!/bin/bash
-            echo "connected" > /shared/vpnstatus
-          down: |
-            #!/bin/bash
-            echo "disconnected" > /shared/vpnstatus
+# ---
+# apiVersion: helm.toolkit.fluxcd.io/v2beta1
+# kind: HelmRelease
+# metadata:
+#   name: transmission
+#   namespace: media
+# spec:
+#   chart:
+#     spec:
+#       chart: transmission
+#       version: 8.4.2
+#       sourceRef:
+#         kind: HelmRepository
+#         name: k8s-at-home-charts
+#         namespace: flux-system
+#   interval: 5m
+#   values:
+#     nodeSelector:
+#       beta.kubernetes.io/arch: amd64
+#     image:
+#       repository: ghcr.io/k8s-at-home/transmission
+#       tag: v3.00
+#     env:
+#       WAIT_FOR_VPN: true
+#       TZ: America/Chicago
+#       #CURL_CA_BUNDLE: /etc/ssl/certs/ca-certificates.crt
+#       TRANSMISSION_DOWNLOAD_DIR: /data/torrents
+#       TRANSMISSION_RATIO_LIMIT_ENABLED: true
+#     persistence:
+#       config:
+#         enabled: true
+#         retain: true
+#       data:
+#         enabled: true
+#         mountPath: /data/torrents
+#         existingClaim: nfs-data-pvc
+#         subPath: torrents
+#       shared:
+#         enabled: true
+#     addons:
+#       vpn:
+#         enabled: true
+#         type: wireguard
+#         wireguard:
+#           image:
+#             repository: ghcr.io/k8s-at-home/wireguard
+#             tag: v1.0.20210914
+#         securityContext:
+#           runAsUser: 568
+#           runAsGroup: 568
+#         env:
+#           - name: KILLSWITCH
+#             value: true
+#           - name: IPTABLES_BACKEND
+#             value: nft
+#           - name: KILLSWITCH_EXCLUDEDNETWORKS_IPV4
+#             valueFrom:
+#               secretKeyRef:
+#                 name: wireguard-excluded
+#                 key: ipv4
+#         configFileSecret: wireguard-config
+#         scripts:
+#           up: |
+#             #!/bin/bash
+#             echo "connected" > /shared/vpnstatus
+#           down: |
+#             #!/bin/bash
+#             echo "disconnected" > /shared/vpnstatus
