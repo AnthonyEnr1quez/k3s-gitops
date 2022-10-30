@@ -26,6 +26,8 @@ spec:
       config:
         enabled: true
         retain: true
+        annotations:
+          volumeType: local
       data:
         enabled: true
         existingClaim: nfs-data-pvc
