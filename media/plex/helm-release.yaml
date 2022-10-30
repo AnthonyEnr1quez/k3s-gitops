@@ -25,6 +25,8 @@ spec:
         enabled: true
         retain: true
         size: 10Gi
+        annotations:
+          volumeType: local
       data:
         enabled: true
         mountPath: /data/media
