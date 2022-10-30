@@ -26,3 +26,5 @@ spec:
       config:
         enabled: true
         retain: true
+        annotations:
+          volumeType: local
