@@ -7,11 +7,11 @@ metadata:
 spec:
   chart:
     spec:
-      chart: calibre
-      version: 5.3.2
+      chart: app-template
+      version: 0.2.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
   interval: 5m
   values:
@@ -26,8 +26,19 @@ spec:
       CALIBRE_OVERRIDE_DATABASE_PATH: /config/metadata.db
       TZ: America/Chicago
     service:
+      main:
+        ports:
+          http:
+            port: 8080
       webserver:
         enabled: true
+        type: ClusterIP
+        ports:
+          webserver:
+            enabled: true
+            port: 8081
+            protocol: TCP
+            targetPort: 8081
     persistence:
       config:
         enabled: true
