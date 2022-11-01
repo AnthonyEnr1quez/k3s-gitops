@@ -21,7 +21,7 @@ spec:
       beta.kubernetes.io/arch: arm64
     image:
       repository: ghcr.io/onedr0p/radarr-develop
-      tag: 4.3.0.6671@sha256:63a004e95cdbe5268324b9ccc28ae447ec26b8804f441b38eb7bbf1cdab7f49b
+      tag: 4.3.0.6671@sha256:3e189433f3a9d669a9a0473e335b86f62b9795f7d3603f6c1b37b65ad0471710
     env:
       TZ: America/Chicago
     service:
