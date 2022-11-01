@@ -1,0 +1,71 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: velero
+  namespace: velero
+spec:
+  chart:
+    spec:
+      chart: velero
+      version: 2.32.1
+      sourceRef:
+        kind: HelmRepository
+        name: vmware-tanzu-charts
+        namespace: flux-system
+  interval: 5m
+  values:
+    image:
+      repository: velero/velero
+      tag: v1.9.2
+    nodeSelector:
+      beta.kubernetes.io/arch: amd64
+    tolerations:
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
+
+    backupsEnabled: true
+    snapshotsEnabled: false
+    upgradeCRDs: true
+    cleanUpCRDs: true
+    deployRestic: true
+
+    credentials:
+      existingSecret: s3-provider-credentials
+    configuration:
+      extraEnvVars:
+        TZ: America/Chicago
+      provider: aws
+      backupStorageLocation:
+        name: default
+
+    initContainers:
+      - name: velero-plugin-for-aws
+        image: velero/velero-plugin-for-aws:v1.5.1
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: /target
+            name: plugins
+
+    schedules:
+      daily-backup:
+        enabled: true
+        schedule:  0 4 * * *
+        template:
+          includedNamespaces:
+            - media
+          ttl: 360h
+  valuesFrom:
+    - targetPath: configuration.backupStorageLocation.bucket
+      kind: Secret
+      name: s3-provider-location
+      valuesKey: BUCKET_NAME
+    - targetPath: configuration.backupStorageLocation.config.s3Url
+      kind: Secret
+      name: s3-provider-location
+      valuesKey: S3_URL
+    - targetPath: configuration.backupStorageLocation.config.region
+      kind: Secret
+      name: s3-provider-location
+      valuesKey: S3_REGION
