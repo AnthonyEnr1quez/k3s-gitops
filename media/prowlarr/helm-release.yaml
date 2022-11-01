@@ -20,8 +20,8 @@ spec:
     nodeSelector:
       beta.kubernetes.io/arch: arm64
     image:
-      repository: ghcr.io/onedr0p/prowlarr-nightly
-      tag: 0.4.7.2048@sha256:f289c20b6b515c495c04e3ab9aa9a881be50ef681b621990ce09cd336d153f8c
+      repository: ghcr.io/onedr0p/prowlarr-develop
+      tag: 0.4.7.2016@sha256:6b79347d89968679d152cb5a4cc7591af13eeef95881199c346ae3b765e33c43
     env:
       TZ: America/Chicago
     service:
