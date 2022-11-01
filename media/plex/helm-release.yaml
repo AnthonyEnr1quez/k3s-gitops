@@ -42,3 +42,9 @@ spec:
         mountPath: /data/media
         existingClaim: nfs-data-pvc
         subPath: media
+    resources:
+      requests:
+        cpu: 100m
+        memory: 1Gi
+      limits:
+        memory: 2Gi
