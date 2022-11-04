@@ -21,7 +21,7 @@ spec:
       beta.kubernetes.io/arch: arm64
     image:
       repository: ghcr.io/onedr0p/prowlarr-develop
-      tag: 0.4.7.2016@sha256:6b79347d89968679d152cb5a4cc7591af13eeef95881199c346ae3b765e33c43
+      tag: 0.4.7.2016@sha256:c5dcee30550348d48d1190202f1db1eaae460d637a57c5844df8e556ecd59210
     env:
       TZ: America/Chicago
     service:
