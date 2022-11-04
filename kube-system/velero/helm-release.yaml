@@ -32,7 +32,7 @@ spec:
     deployRestic: true
 
     credentials:
-      existingSecret: s3-provider-credentials
+      existingSecret: s3-provider
     configuration:
       extraEnvVars:
         TZ: America/Chicago
@@ -59,13 +59,13 @@ spec:
   valuesFrom:
     - targetPath: configuration.backupStorageLocation.bucket
       kind: Secret
-      name: s3-provider-location
+      name: s3-provider
       valuesKey: BUCKET_NAME
     - targetPath: configuration.backupStorageLocation.config.s3Url
       kind: Secret
-      name: s3-provider-location
+      name: s3-provider
       valuesKey: S3_URL
     - targetPath: configuration.backupStorageLocation.config.region
       kind: Secret
-      name: s3-provider-location
+      name: s3-provider
       valuesKey: S3_REGION
