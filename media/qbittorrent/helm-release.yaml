@@ -63,7 +63,7 @@ spec:
           - name: KILLSWITCH_EXCLUDEDNETWORKS_IPV4
             valueFrom:
               secretKeyRef:
-                name: wireguard-excluded
+                name: wireguard-config
                 key: ipv4
         configFileSecret: wireguard-config
         scripts:
