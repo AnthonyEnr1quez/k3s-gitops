@@ -4,7 +4,8 @@
     "config:base",
     ":disableRateLimiting",
     ":semanticCommits",
-    "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/commitMessage.json5"
+    "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/commitMessage.json5",
+    "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/semanticCommits.json5"
   ],
   "flux": {
     "fileMatch": ["\\.yaml$"]
