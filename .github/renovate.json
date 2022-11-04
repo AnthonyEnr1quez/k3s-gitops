@@ -1,6 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
-  ]
+    "config:base",
+    ":disableRateLimiting"
+  ],
+  "flux": {
+    "fileMatch": ["\\.yaml$"]
+  },
+  "helm-values": {
+    "fileMatch": ["\\.yaml$"]
+  }
 }
