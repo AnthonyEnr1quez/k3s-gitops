@@ -28,12 +28,28 @@
       "semanticCommitType": "feat",
       "semanticCommitScope": "helm"
     },
-
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["patch"],
       "semanticCommitType": "fix",
       "semanticCommitScope": "helm"
+    },
+    {
+      "matchDatasources": ["github-releases", "github-tags"],
+      "matchUpdateTypes": ["major"],
+      "commitMessagePrefix": "feat(github-release)!: "
+    },
+    {
+      "matchDatasources": ["github-releases", "github-tags"],
+      "matchUpdateTypes": ["minor"],
+      "semanticCommitType": "feat",
+      "semanticCommitScope": "github-release"
+    },
+    {
+      "matchDatasources": ["github-releases", "github-tags"],
+      "matchUpdateTypes": ["patch"],
+      "semanticCommitType": "fix",
+      "semanticCommitScope": "github-release"
     }
   ]
 }
