@@ -10,7 +10,7 @@ spec:
       chart: sops-secrets-operator
       sourceRef:
         kind: HelmRepository
-        name: sops-secrets-operator-charts
+        name: sops-secrets-operator
         namespace: flux-system
       version: 0.12.3
   interval: 5m

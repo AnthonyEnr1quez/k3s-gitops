@@ -2,9 +2,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: metallb-charts
+  name: k8s-at-home
   namespace: flux-system
 spec:
   interval: 10m
-  url: https://metallb.github.io/metallb
+  url: https://k8s-at-home.com/charts/
   timeout: 3m

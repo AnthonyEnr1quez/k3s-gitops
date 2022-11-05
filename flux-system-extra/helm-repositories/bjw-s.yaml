@@ -2,9 +2,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: sops-secrets-operator-charts
+  name: bjw-s
   namespace: flux-system
 spec:
   interval: 10m
-  url: https://isindir.github.io/sops-secrets-operator/
+  url: https://bjw-s.github.io/helm-charts
   timeout: 3m

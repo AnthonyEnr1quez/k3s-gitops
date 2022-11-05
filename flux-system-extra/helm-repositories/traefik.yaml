@@ -2,9 +2,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: vmware-tanzu-charts
+  name: traefik
   namespace: flux-system
 spec:
   interval: 10m
-  url: https://vmware-tanzu.github.io/helm-charts
+  url: https://helm.traefik.io/traefik
   timeout: 3m
