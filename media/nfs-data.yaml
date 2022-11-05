@@ -14,9 +14,9 @@ spec:
   nfs:
     server: 10.43.23.156
     path: /data
-  claimRef:
-    name: nfs-data
-    namespace: media
+  # claimRef:
+  #   name: nfs-data
+  #   namespace: media
   mountOptions:
   - nfsvers=4.2
   - tcp
