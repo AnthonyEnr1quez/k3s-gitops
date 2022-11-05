@@ -2,7 +2,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: calibre-ingress-route
+  name: calibre
   namespace: media
 spec:
   entryPoints:
@@ -19,7 +19,7 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: calibre-webserver-ingress-route
+  name: calibre-webserver
   namespace: media
 spec:
   entryPoints:

@@ -2,7 +2,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: plex-ingress-route
+  name: plex
   namespace: media
 spec:
   entryPoints:
