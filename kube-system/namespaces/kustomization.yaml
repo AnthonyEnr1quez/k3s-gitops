@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - media.yaml
   - velero.yaml
+  - storage.yaml

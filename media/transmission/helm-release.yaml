@@ -33,7 +33,7 @@
 #       data:
 #         enabled: true
 #         mountPath: /data/torrents
-#         existingClaim: nfs-data-pvc
+#         existingClaim: nfs-data
 #         subPath: torrents
 #       shared:
 #         enabled: true

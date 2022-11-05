@@ -40,7 +40,7 @@ spec:
       data:
         enabled: true
         mountPath: /data/media
-        existingClaim: nfs-data-pvc
+        existingClaim: nfs-data
         subPath: media
     resources:
       requests:

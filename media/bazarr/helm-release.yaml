@@ -37,4 +37,4 @@ spec:
           volumeType: local
       data:
         enabled: true
-        existingClaim: nfs-data-pvc
+        existingClaim: nfs-data

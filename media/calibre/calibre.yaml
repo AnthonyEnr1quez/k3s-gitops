@@ -48,5 +48,5 @@ spec:
       books:
         enabled: true
         mountPath: /books
-        existingClaim: nfs-data-pvc
+        existingClaim: nfs-data
         subPath: media/books
