@@ -14,7 +14,6 @@
   "gitAuthor": "renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
   "onboarding": false,
   "requireConfig": "optional",
-  "rebaseWhen": "conflicted",
   "commitBodyTable": true,
   "flux": {
     "fileMatch": ["\\.yaml$"]
