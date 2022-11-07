@@ -3,6 +3,7 @@
   "extends": [
     "config:base",
     ":disableRateLimiting",
+    "docker:enableMajor",
     ":semanticCommits",
     "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/commitMessage.json5",
     "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/semanticCommits.json5"
@@ -13,6 +14,8 @@
   "gitAuthor": "renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
   "onboarding": false,
   "requireConfig": "optional",
+  "rebaseWhen": "conflicted",
+  "commitBodyTable": true,
   "flux": {
     "fileMatch": ["\\.yaml$"]
   },
