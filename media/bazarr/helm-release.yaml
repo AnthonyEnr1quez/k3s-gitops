@@ -21,7 +21,7 @@ spec:
       beta.kubernetes.io/arch: arm64
     image:
       repository: ghcr.io/onedr0p/bazarr
-      tag: 1.1.2@sha256:9b65bed2cbc037b6aaf5f614f5ba5b14d3df459e9eade8e6af34c2fffa214561
+      tag: 1.1.2@sha256:adf7efe81859796dea9fbccf4dcd9fa6adc8921104b29a7c4b3f3a09da417bc0
     env:
       TZ: America/Chicago
     service:
