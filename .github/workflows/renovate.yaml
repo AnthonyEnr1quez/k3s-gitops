@@ -11,8 +11,8 @@ on:
         description: "Log-Level"
         default: "debug"
         required: false
-  #schedule:
-   # - cron: "0 * * * *"
+  schedule:
+   - cron: "22 9 * * 0"
   push:
     branches:
       - main
