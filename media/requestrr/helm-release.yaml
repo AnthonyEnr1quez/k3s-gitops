@@ -18,7 +18,8 @@ spec:
     podAnnotations:
       backup.velero.io/backup-volumes: config
     nodeSelector:
-      beta.kubernetes.io/arch: arm64
+      # beta.kubernetes.io/arch: arm64
+      kubernetes.io/hostname: beluga
     image:
       repository: docker.io/darkalfx/requestrr
       tag: v2.1.2
