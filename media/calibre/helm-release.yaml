@@ -19,7 +19,7 @@ spec:
       backup.velero.io/backup-volumes: config
     nodeSelector:
       # beta.kubernetes.io/arch: arm64
-      kubernetes.io/hostname: beluga
+      kubernetes.io/hostname: diana
     image:
       repository: linuxserver/calibre
       tag: arm64v8-arch-version-b6d12fd5
