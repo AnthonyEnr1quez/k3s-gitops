@@ -34,5 +34,6 @@ spec:
       config:
         enabled: true
         retain: true
+        mountPath: /root/config
         annotations:
           volumeType: local
