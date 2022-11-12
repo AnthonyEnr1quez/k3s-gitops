@@ -16,7 +16,7 @@ spec:
   interval: 5m
   values:
     nodeSelector:
-      kubernetes.io/hostname: humpback
+      kubernetes.io/hostname: mina
     image:
       repository: docker.io/itsthenetwork/nfs-server-alpine
       tag: latest
@@ -35,7 +35,7 @@ spec:
         enabled: true
         mountPath: /nfsshare
         type: hostPath
-        hostPath: /media/nas1
+        hostPath: /home/ant/nas1
     securityContext:
       capabilities:
         add: ["SYS_ADMIN", "SETPCAP"]

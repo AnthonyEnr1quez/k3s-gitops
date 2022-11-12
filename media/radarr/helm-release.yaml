@@ -19,7 +19,7 @@ spec:
       backup.velero.io/backup-volumes: config
     nodeSelector:
       # beta.kubernetes.io/arch: arm64
-      kubernetes.io/hostname: diana
+      kubernetes.io/hostname: barzan
     image:
       repository: ghcr.io/onedr0p/radarr-develop
       tag: 4.3.0.6671@sha256:21245a90d692a1d2892bef9babae45cda0ce23a7e70c251e9184f1e6da6665ef

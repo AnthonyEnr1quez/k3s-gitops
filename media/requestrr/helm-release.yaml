@@ -19,7 +19,7 @@ spec:
       backup.velero.io/backup-volumes: config
     nodeSelector:
       # beta.kubernetes.io/arch: arm64
-      kubernetes.io/hostname: diana
+      kubernetes.io/hostname: barzan
     image:
       repository: docker.io/darkalfx/requestrr
       tag: v2.1.2
