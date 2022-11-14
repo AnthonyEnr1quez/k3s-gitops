@@ -15,6 +15,3 @@ spec:
         name: metallb
         namespace: flux-system
       interval: 5m
-  values:
-    crds:
-       enabled: false

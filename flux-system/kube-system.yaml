@@ -2,6 +2,36 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
+  name: metallb
+  namespace: flux-system
+spec:
+  interval: 30m
+  dependsOn:
+    - name: repositories
+  path: ./kube-system/metallb
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: metallb-pools
+  namespace: flux-system
+spec:
+  interval: 30m
+  dependsOn:
+    - name: metallb
+  path: ./kube-system/metallb/pools
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
   name: kube-system
   namespace: flux-system
 spec:
