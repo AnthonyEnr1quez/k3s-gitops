@@ -6,6 +6,9 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
+  dependsOn:
+    - name: flux-installation
+    - name: flux-cluster
   path: ./flux-system/repositories
   prune: true
   sourceRef:

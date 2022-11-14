@@ -7,6 +7,8 @@ metadata:
 spec:
   # interval: 30m TODO
   interval: 10m0s
+  dependsOn:
+    - name: flux-installation
   path: ./flux-system
   prune: true
   wait: false
