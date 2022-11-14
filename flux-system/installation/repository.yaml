@@ -1,0 +1,18 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: flux-installation
+  namespace: flux-system
+spec:
+  interval: 30m
+  url: https://github.com/fluxcd/flux2
+  ref:
+    # todo is this needed?
+    # renovate: datasource=github-releases depName=fluxcd/flux2
+    tag: "v0.36.0"
+  ignore: |
+    # exclude all
+    /*
+    # path to manifests
+    !/manifests

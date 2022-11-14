@@ -1,0 +1,11 @@
+# https://toolkit.fluxcd.io/components/source/gitrepositories/#excluding-files
+
+# exclude all
+/*
+# include 
+!/flux-system
+!/flux-system-extra
+!/kube-system
+!/media
+!/storage
+!/velero

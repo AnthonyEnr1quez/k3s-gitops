@@ -1,0 +1,12 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: flux-cluster
+  namespace: flux-system
+spec:
+  # interval: 30m TODO, setup webhook to auto update
+  interval: 1m0s
+  url: https://github.com/AnthonyEnr1quez/k3s-gitops.git
+  ref:
+    branch: main
