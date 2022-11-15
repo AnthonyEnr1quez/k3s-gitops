@@ -6,4 +6,5 @@ resources:
   - nfs-data.yaml
   - prowlarr
   - sonarr
+  - radarr
   # - flemmarr
