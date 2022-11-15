@@ -1,34 +1,34 @@
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: metallb
-  namespace: flux-system
-spec:
-  interval: 30m
-  dependsOn:
-    - name: repositories
-  path: ./kube-system/metallb
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: metallb-pools
-  namespace: flux-system
-spec:
-  interval: 30m
-  dependsOn:
-    - name: metallb
-  path: ./kube-system/metallb/pools
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-cluster
----
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: metallb
+#   namespace: flux-system
+# spec:
+#   interval: 30m
+#   dependsOn:
+#     - name: repositories
+#   path: ./kube-system/metallb
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-cluster
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: metallb-pools
+#   namespace: flux-system
+# spec:
+#   interval: 30m
+#   dependsOn:
+#     - name: metallb
+#   path: ./kube-system/metallb/pools
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-cluster
+# ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -43,33 +43,33 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: traefik
-  namespace: flux-system
-spec:
-  interval: 30m
-  dependsOn:
-    - name: repositories
-  path: ./kube-system/traefik
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: traefik-dashboard
-  namespace: flux-system
-spec:
-  interval: 30m
-  dependsOn:
-    - name: traefik
-  path: ./kube-system/traefik/dashboard
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-cluster
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: traefik
+#   namespace: flux-system
+# spec:
+#   interval: 30m
+#   dependsOn:
+#     - name: repositories
+#   path: ./kube-system/traefik
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-cluster
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: traefik-dashboard
+#   namespace: flux-system
+# spec:
+#   interval: 30m
+#   dependsOn:
+#     - name: traefik
+#   path: ./kube-system/traefik/dashboard
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-cluster
