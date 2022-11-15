@@ -9,6 +9,13 @@ spec:
     spec:
       restartPolicy: Never
       containers:
-      - name: flemmarr
-        image: pierremesure/flemmarr:latest
+        - name: flemmarr
+          image: pierremesure/flemmarr:latest
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: config
+          configMap:
+            name: flemmarr
   backoffLimit: 0

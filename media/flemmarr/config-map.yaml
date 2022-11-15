@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: flemmarr
+  namespace: media
+data:
+  config.yml: |
+    prowlarr:
+      server:
+        address: prowlarr
+        port: 9696
+      config:
+        host:
+          analyticsEnabled: false
+        ui:
+          theme: light
