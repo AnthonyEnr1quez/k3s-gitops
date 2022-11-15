@@ -24,9 +24,9 @@ spec:
       repository: ghcr.io/onedr0p/radarr-develop
       tag: 4.3.0.6671@sha256:21245a90d692a1d2892bef9babae45cda0ce23a7e70c251e9184f1e6da6665ef
     podSecurityContext:
-      runAsUser: 710
-      runAsGroup: 710
-      fsGroup: 710
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 100
