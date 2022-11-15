@@ -13,4 +13,4 @@ data:
         host:
           analyticsEnabled: false
         ui:
-          theme: light
+          theme: dark
