@@ -8,7 +8,6 @@ spec:
   template:
     spec:
       restartPolicy: Never
-      ttlSecondsAfterFinished: 100
       containers:
         - name: flemmarr
           image: pierremesure/flemmarr:latest
@@ -20,3 +19,4 @@ spec:
           configMap:
             name: flemmarr
   backoffLimit: 0
+  ttlSecondsAfterFinished: 100
