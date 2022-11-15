@@ -11,3 +11,4 @@ spec:
       containers:
       - name: flemmarr
         image: pierremesure/flemmarr:latest
+  backoffLimit: 0
