@@ -1,15 +1,16 @@
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: storage
-#   namespace: flux-system
-# spec:
-#   interval: 30m
-#   dependsOn:
-#     - name: repositories
-#   path: ./storage
-#   prune: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: flux-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: storage
+  namespace: flux-system
+spec:
+  interval: 30m
+  dependsOn:
+    - name: repositories
+    - name: kube-system
+  path: ./storage
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
