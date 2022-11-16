@@ -9,4 +9,5 @@ resources:
   - sonarr
   - radarr
   - bazarr
+  - requestrr
   # - flemmarr
