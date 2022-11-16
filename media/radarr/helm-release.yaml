@@ -41,6 +41,7 @@ spec:
       config:
         enabled: true
         retain: true
+        size: 10Gi
         annotations:
           volumeType: local
       data:
