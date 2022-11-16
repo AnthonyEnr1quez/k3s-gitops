@@ -1,0 +1,68 @@
+radarr:
+  server:
+    address: radarr
+    port: 7878
+  config:
+    host:
+      analyticsEnabled: false
+    naming:
+      renameMovies: true
+      replaceIllegalCharacters: true
+      colonReplacementFormat: spaceDashSpace
+      # https://trash-guides.info/Radarr/Radarr-recommended-naming-scheme/
+      standardMovieFormat: "{Movie CleanTitle} {(Release Year)} {imdb-{ImdbId}} {edition-{Edition Tags}} {[Custom Formats]}{[Quality Full]}{[MediaInfo 3D]}{[MediaInfo VideoDynamicRangeType]}{[Mediainfo AudioCodec}{ Mediainfo AudioChannels}][{Mediainfo VideoCodec}]{-Release Group}"
+      movieFolderFormat: "{Movie CleanTitle} ({Release Year})"
+      includeQuality: false
+      replaceSpaces: false
+    mediamanagement:
+      autoUnmonitorPreviouslyDownloadedMovies: true
+      recycleBin: ''
+      recycleBinCleanupDays: 7
+      downloadPropersAndRepacks: doNotUpgrade
+      createEmptyMovieFolders: false
+      deleteEmptyFolders: false
+      fileDate: none
+      rescanAfterRefresh: always
+      autoRenameFolders: false
+      pathsDefaultStatic: false
+      setPermissionsLinux: false
+      chmodFolder: '755'
+      chownGroup: ''
+      skipFreeSpaceCheckWhenImporting: true
+      minimumFreeSpaceWhenImporting: 100
+      copyUsingHardlinks: true
+      importExtraFiles: true
+      extraFileExtensions: srt
+      enableMediaInfo: true
+  rootfolder:
+    - path: /data/media/movies/
+  downloadclient:
+    - name: qBittorrent
+      enable: true
+      protocol: torrent
+      priority: 1
+      removeCompletedDownloads: true
+      removeFailedDownloads: true
+      fields:
+      - name: host
+        value: qbittorrent.192.168.86.2.nip.io # TODO why cant i use cluster dns
+      - name: port
+        value: 80
+      - name: username
+        value: ${USERNAME}
+      - name: password
+        value: ${PASSWORD}
+      - name: movieCategory
+        value: movies
+      - name: recentMoviePriority
+        value: 0
+      - name: olderMoviePriority
+        value: 0
+      - name: initialState
+        value: 0
+      - name: sequentialOrder
+        value: false
+      - name: firstAndLast
+        value: false
+      implementation: QBittorrent
+      configContract: QBittorrentSettings

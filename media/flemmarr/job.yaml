@@ -7,16 +7,50 @@ metadata:
 spec:
   template:
     spec:
-      restartPolicy: Never
+      automountServiceAccountToken: false
+      restartPolicy: OnFailure
+      initContainers:
+        - name: generate-config
+          image: mikefarah/yq:4.30.4
+          command:
+            - "/bin/sh"
+            - -c
+          args:
+            - "yq eval-all '. as $item ireduce ({}; . * $item )' /config/*.yaml > /shared/unrendered-config.yaml"
+          volumeMounts:
+            - name: config
+              mountPath: /config
+              readOnly: true
+            - name: shared
+              mountPath: /shared
+        - name: render-config
+          image: bytesco/envsubst:latest
+          envFrom:
+            - secretRef:
+                name: arr-api-keys
+            - secretRef:
+                name: qbittorrent-creds
+          command:
+            - "/bin/sh"
+            - -c
+          args:
+            - "envsubst < /shared/unrendered-config.yaml > /shared/rendered-config.yaml"
+          volumeMounts:
+            - name: shared
+              mountPath: /shared
       containers:
         - name: flemmarr
           image: pierremesure/flemmarr:latest
           volumeMounts:
-            - name: config
-              mountPath: /config
+            - name: shared
+              mountPath: /config/config.yml
+              subPath: rendered-config.yaml
+              readOnly: true
       volumes:
         - name: config
           configMap:
             name: flemmarr
-  backoffLimit: 0
+        - name: shared
+          emptyDir: {}
+  backoffLimit: 3
   ttlSecondsAfterFinished: 100

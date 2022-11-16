@@ -1,6 +1,17 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+configMapGenerator:
+- name: flemmarr
+  namespace: media
+  files:
+    - config/prowlarr.yaml
+    - config/sonarr.yaml
+    - config/radarr.yaml
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
 resources:
-  - config-map.yaml
+  - sops-secret.enc.yaml
   - job.yaml
