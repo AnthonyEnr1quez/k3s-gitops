@@ -80,6 +80,7 @@ prowlarr:
         - name: rankedOnly
           value: false
       tags: []
+  # this will only create, not edit, limitation of flemmarr :(
   applications:
     - name: Sonarr
       syncLevel: fullSync
