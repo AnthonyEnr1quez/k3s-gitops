@@ -10,4 +10,4 @@ resources:
   - radarr
   - bazarr
   - requestrr
-  - flemmarr
+  # - flemmarr
