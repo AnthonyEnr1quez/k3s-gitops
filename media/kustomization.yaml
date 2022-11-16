@@ -4,8 +4,9 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - nfs-data.yaml
-  - prowlarr
   - qbittorrent
+  - prowlarr
   - sonarr
   - radarr
+  - bazarr
   # - flemmarr

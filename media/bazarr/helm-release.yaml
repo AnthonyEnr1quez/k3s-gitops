@@ -23,6 +23,13 @@ spec:
     image:
       repository: ghcr.io/onedr0p/bazarr
       tag: 1.1.2@sha256:adf7efe81859796dea9fbccf4dcd9fa6adc8921104b29a7c4b3f3a09da417bc0
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 100
     env:
       TZ: America/Chicago
     service:
