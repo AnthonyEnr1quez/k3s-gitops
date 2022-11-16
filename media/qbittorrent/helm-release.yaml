@@ -22,6 +22,13 @@ spec:
     image:
       repository: ghcr.io/k8s-at-home/qbittorrent
       tag: v4.4.3.1
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 100
     env:
       WAIT_FOR_VPN: true
       QBT_BitTorrent__Session__DefaultSavePath: '/data/torrents'
