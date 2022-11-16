@@ -52,11 +52,11 @@ radarr:
         value: ${USERNAME}
       - name: password
         value: ${PASSWORD}
-      - name: tvCategory
-        value: tv
-      - name: recentTvPriority
+      - name: movieCategory
+        value: movies
+      - name: recentMoviePriority
         value: 0
-      - name: olderTvPriority
+      - name: olderMoviePriority
         value: 0
       - name: initialState
         value: 0

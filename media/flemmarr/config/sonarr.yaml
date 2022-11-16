@@ -68,11 +68,11 @@ sonarr:
         value: ${USERNAME}
       - name: password
         value: ${PASSWORD}
-      - name: movieCategory
-        value: movies
-      - name: recentMoviePriority
+      - name: tvCategory
+        value: tv
+      - name: recentTvPriority
         value: 0
-      - name: olderMoviePriority
+      - name: olderTvPriority
         value: 0
       - name: initialState
         value: 0
