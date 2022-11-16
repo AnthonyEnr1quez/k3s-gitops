@@ -5,7 +5,7 @@ resources:
   - namespace.yaml
   - nfs-data.yaml
   - plex
-  - calibre
+  # - calibre
   - qbittorrent
   - prowlarr
   - sonarr
