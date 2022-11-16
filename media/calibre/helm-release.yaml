@@ -21,19 +21,12 @@ spec:
       kubernetes.io/hostname: diana
     image:
       repository: linuxserver/calibre
-      tag: arm64v8-arch-version-b6d12fd5
-    podSecurityContext:
-      runAsUser: &user 568
-      runAsGroup: *user
-      fsGroup: *user
-      fsGroupChangePolicy: "OnRootMismatch"
-      supplementalGroups:
-        - 100
+      tag: arm64v8-6.8.0
     env:
       CALIBRE_OVERRIDE_DATABASE_PATH: /config/metadata.db
       TZ: America/Chicago
-      PUID: *user
-      PGID: *user
+      PUID: 568
+      PGID: 568
     service:
       main:
         ports:
