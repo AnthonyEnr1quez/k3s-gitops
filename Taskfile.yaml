@@ -20,3 +20,15 @@ tasks:
     cmds:
       - flux reconcile -n flux-system source git flux-cluster
       - flux reconcile -n flux-system kustomization flux-cluster
+
+  label-agents:
+    desc: Add agent node role to agent nodes
+    cmds:
+      - kubectl label nodes barzan node-role.kubernetes.io/agent=true
+      - kubectl label nodes diana node-role.kubernetes.io/agent=true
+
+  label-pis:
+    desc: Add pi type label to pi nodes
+    cmds:
+      - kubectl label nodes barzan pi=4
+      - kubectl label nodes diana pi=3b
