@@ -22,7 +22,7 @@ spec:
       kubernetes.io/hostname: barzan
     image:
       repository: ghcr.io/onedr0p/bazarr
-      tag: 1.1.2@sha256:adf7efe81859796dea9fbccf4dcd9fa6adc8921104b29a7c4b3f3a09da417bc0
+      tag: 1.1.2@sha256:f1e0405ded181da60cac008a2d8c8875ba178fb3f99a8a7e0f96fa36c1d4b6d8
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
