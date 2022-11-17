@@ -12,9 +12,10 @@
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             age
-            sops
-            kubectl
             fluxcd
+            go-task
+            kubectl
+            sops
             velero
           ];
         };

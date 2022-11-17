@@ -1,0 +1,22 @@
+---
+version: '3'
+
+vars:
+  PROJECT_DIR:
+    sh: "git rev-parse --show-toplevel"
+
+tasks:
+  install:
+    desc: Install Flux into cluster
+    cmds:
+      - kubectl apply --kustomize {{.PROJECT_DIR}}/bootstrap/
+      - sops -d age.enc.agekey | kubectl -n kube-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
+      - kubectl apply --kustomize {{.PROJECT_DIR}}/flux-system/installation/
+      - kubectl apply --kustomize {{.PROJECT_DIR}}/flux-system/cluster/
+      - task: reconcile
+
+  reconcile:
+    desc: Force update Flux to pull in changes from Git repository
+    cmds:
+      - flux reconcile -n flux-system source git flux-cluster
+      - flux reconcile -n flux-system kustomization flux-cluster
