@@ -34,3 +34,4 @@ _... managed by Flux and Renovate_ :robot:
 ### :notebook:&nbsp; Resources
 - [k8s-at-home-search](https://nanne.dev/k8s-at-home-search/)
 - [kairos](https://kairos.io/)
+- [flux-cluster-template](https://github.com/onedr0p/flux-cluster-template)
