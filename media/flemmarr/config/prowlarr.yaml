@@ -9,7 +9,7 @@ prowlarr:
       theme: dark
   # check in pod /config/Definitions, check definiton settings for req fields
   # this will only create, not edit, limitation of flemmarr :(
-  # have to set minimum seeders for each indexer in the cosuming client
+  # have to set minimum seeders for each indexer in the consuming client
   indexer:
     - name: Internet Archive
       enable: true
