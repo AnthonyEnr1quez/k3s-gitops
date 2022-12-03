@@ -5,7 +5,7 @@ metadata:
   name: nfs-data
   namespace: media
   labels:
-    velero.io/exclude-from-backup: true
+    velero.io/exclude-from-backup: 'true'
 spec:
   storageClassName: ""
   capacity:
@@ -33,7 +33,7 @@ metadata:
   name: nfs-data
   namespace: media
   labels:
-    velero.io/exclude-from-backup: true
+    velero.io/exclude-from-backup: 'true'
 spec:
   accessModes:
     - ReadWriteMany
