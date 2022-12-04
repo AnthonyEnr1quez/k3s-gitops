@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: velero/velero
-      tag: v1.9.4
+      tag: v1.10.0
     nodeSelector:
       kubernetes.io/hostname: mina
     tolerations:
