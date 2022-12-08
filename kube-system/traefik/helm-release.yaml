@@ -18,6 +18,9 @@ spec:
     image:
       name: public.ecr.aws/docker/library/traefik
       tag: v2.9.6
+    experimental:
+      kubernetesGateway:
+        enabled: false
     ingressRoute:
       dashboard:
         enabled: false
