@@ -18,7 +18,7 @@ spec:
     nodeSelector:
       kubernetes.io/hostname: mina
     image:
-      repository: docker.io/itsthenetwork/nfs-server-alpine
+      repository: quay.io/aminvakil/alpine-nfs-server
       tag: latest
     env:
       TZ: America/Chicago
