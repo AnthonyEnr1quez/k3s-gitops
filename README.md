@@ -21,7 +21,7 @@ _... managed by Flux and Renovate_ :robot:
 |-------------------|----------|--------------|----------------|-----|------------------------|-------------------|
 | HP 600G2 i5-6600T | mina     | 160GB SSD    | 11TB HD (nfs)  | 8GB | Kairos - openSUSE Leap | Kubernetes Master |
 | Raspberry Pi 4    | barzan   | 512GB SSD    | -              | 2GB | Kairos - openSUSE Leap | Kubernetes Worker |
-| Raspberry Pi 3b+  | diana    | 512GB SSD    | -              | 1GB | Kairos - openSUSE Leap | Kubernetes Worker |
+| Raspberry Pi 3b+  | diana    | 64GB SD Card | -              | 1GB | Kairos - openSUSE Leap | Kubernetes Worker |
 
 ---
 ## :raised_hands:&nbsp; Thanks
