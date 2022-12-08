@@ -19,6 +19,7 @@ spec:
       kubernetes.io/hostname: mina
     image:
       repository: docker.io/itsthenetwork/nfs-server-alpine
+      # TODO https://github.com/aminvakil/docker-alpine-nfs-server
       # repository: quay.io/aminvakil/alpine-nfs-server
       tag: latest
     env:
