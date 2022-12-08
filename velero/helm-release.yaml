@@ -16,7 +16,7 @@ spec:
   interval: 5m
   values:
     image:
-      repository: velero/velero
+      repository: gcr.io/velero-gcp/velero
       tag: v1.9.4
     nodeSelector:
       kubernetes.io/hostname: mina
