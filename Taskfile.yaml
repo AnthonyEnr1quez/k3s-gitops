@@ -32,3 +32,23 @@ tasks:
     cmds:
       - kubectl label nodes barzan pi=4
       - kubectl label nodes diana pi=3b
+  
+  // TODO make this cleaner, look into velero backing up other items?, also why does it try to restore nfs-data
+  # velero:
+  #   desc: Example restore
+  #   cmds:
+  #     - |
+  #     kubectl delete --kustomize calibre
+      
+  #     // wait till pvc and pv are deleted
+  #     kubectl delete pvc calibre-config
+
+  #     velero restore create \
+  #     --from-backup velero-daily-backup-20221130040003 \
+  #     --restore-volumes=true \
+  #     --include-namespaces media \
+  #     --selector app.kubernetes.io/name=calibre \
+  #     --show-labels
+
+  #     // restore other stuff
+  #     kubectl apply --kustomize calibre
