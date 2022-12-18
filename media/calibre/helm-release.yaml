@@ -21,7 +21,7 @@ spec:
       kubernetes.io/hostname: diana
     image:
       repository: lscr.io/linuxserver/calibre
-      tag: 6.9.0
+      tag: 6.10.0
     env:
       CALIBRE_OVERRIDE_DATABASE_PATH: /config/metadata.db
       TZ: America/Chicago
