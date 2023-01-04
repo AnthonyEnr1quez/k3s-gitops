@@ -5,6 +5,7 @@
 # include 
 !/flux-system
 !/kube-system
+!/networking
 !/media
 !/storage
 !/velero
