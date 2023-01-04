@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - metrics-server
   - metallb
-  - traefik
   - sops-secrets-operator
