@@ -25,8 +25,8 @@ spec:
           namespace: networking
         spec:
           addresses:
-            # - 192.168.86.2-192.168.86.19
-            - 192.168.86.240-192.168.86.250
+            - 192.168.86.2-192.168.86.19
+            # - 192.168.86.240-192.168.86.250
       - apiVersion: metallb.io/v1beta1
         kind: L2Advertisement
         metadata:
