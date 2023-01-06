@@ -33,7 +33,7 @@ tasks:
       - kubectl label nodes barzan pi=4
       - kubectl label nodes diana pi=3b
   
-  // TODO make this cleaner, look into velero backing up other items?, also why does it try to restore nfs-data
+  ## TODO make this cleaner, look into velero backing up other items?, also why does it try to restore nfs-data
   # velero:
   #   desc: Example restore
   #   cmds:
