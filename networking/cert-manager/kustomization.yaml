@@ -1,0 +1,9 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - helm-release.yaml
+  - sops-secret.enc.yaml
+  ## todo delay issuers, or split up somehow 
+  ## https://github.com/onedr0p/home-ops/blob/0072445beb5f112ff9ef469adaa8a419e186bff6/kubernetes/apps/cert-manager/cert-manager/ks.yaml
+  - issuers
