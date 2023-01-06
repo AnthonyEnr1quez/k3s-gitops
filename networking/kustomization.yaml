@@ -5,5 +5,5 @@ resources:
   - namespace.yaml
   - metallb
   - gateway-api
-  # - cert-manager
+  - cert-manager
   - traefik
