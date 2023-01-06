@@ -4,4 +4,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - metallb
+  - gateway-api
+  # - cert-manager
   - traefik

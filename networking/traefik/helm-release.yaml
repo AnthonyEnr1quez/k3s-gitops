@@ -21,6 +21,10 @@ spec:
     experimental:
       kubernetesGateway:
         enabled: true
+        gateway:
+          enabled: false
+    # additionalArguments:
+    #   - "--serverstransport.insecureskipverify"
     ingressRoute:
       dashboard:
         enabled: false
