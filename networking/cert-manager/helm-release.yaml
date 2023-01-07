@@ -15,11 +15,10 @@ spec:
         namespace: flux-system
   interval: 5m
   values:
-    # TODO
-    # image:
-    #   repository: quay.io/jetstack/cert-manager-controller
+    image:
+      repository: quay.io/jetstack/cert-manager-controller
+      tag: v1.10.1
     installCRDs: true
     featureGates: "ExperimentalGatewayAPISupport=true"
     prometheus:
       enabled: false
-    
