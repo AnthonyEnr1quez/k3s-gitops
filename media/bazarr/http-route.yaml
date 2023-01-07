@@ -5,10 +5,11 @@ metadata:
   name: bazarr
   namespace: media
 spec:
-  parentRefs:
-    - name: media
   hostnames:
-    - bazarr.192.168.86.2.nip.io
+    - bazarr.ant-podz.xyz
+  parentRefs:
+    - name: traefik-production
+      namespace: networking
   rules:
     - matches:
       backendRefs:

@@ -5,10 +5,11 @@ metadata:
   name: sonarr
   namespace: media
 spec:
-  parentRefs:
-    - name: media
   hostnames:
-    - sonarr.192.168.86.2.nip.io
+    - sonarr.ant-podz.xyz
+  parentRefs:
+    - name: traefik-production
+      namespace: networking
   rules:
     - matches:
       backendRefs:

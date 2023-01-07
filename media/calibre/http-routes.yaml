@@ -5,10 +5,11 @@ metadata:
   name: calibre
   namespace: media
 spec:
-  parentRefs:
-    - name: media
   hostnames:
-    - calibre.192.168.86.2.nip.io
+    - calibre.ant-podz.xyz
+  parentRefs:
+    - name: traefik-production
+      namespace: networking
   rules:
     - matches:
       backendRefs:
@@ -21,10 +22,11 @@ metadata:
   name: calibre-webserver
   namespace: media
 spec:
-  parentRefs:
-    - name: media
   hostnames:
-    - calibre-webserver.192.168.86.2.nip.io
+    - calibre-webserver.ant-podz.xyz
+  parentRefs:
+    - name: traefik-production
+      namespace: networking
   rules:
     - matches:
       backendRefs:

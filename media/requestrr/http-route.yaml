@@ -5,10 +5,11 @@ metadata:
   name: requestrr
   namespace: media
 spec:
-  parentRefs:
-    - name: media
   hostnames:
-    - requestrr.192.168.86.2.nip.io
+    - requestrr.ant-podz.xyz
+  parentRefs:
+    - name: traefik-production
+      namespace: networking
   rules:
     - matches:
       backendRefs:

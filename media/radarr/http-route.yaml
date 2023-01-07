@@ -5,10 +5,11 @@ metadata:
   name: radarr
   namespace: media
 spec:
-  parentRefs:
-    - name: media
   hostnames:
-    - radarr.192.168.86.2.nip.io
+    - radarr.ant-podz.xyz
+  parentRefs:
+    - name: traefik-production
+      namespace: networking
   rules:
     - matches:
       backendRefs:
