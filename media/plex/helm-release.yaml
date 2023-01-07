@@ -28,6 +28,7 @@ spec:
       main:
         annotations: 
           metallb.universe.tf/loadBalancerIPs: 192.168.0.232
+        type: LoadBalancer
         ports:
           http:
             port: 32400
