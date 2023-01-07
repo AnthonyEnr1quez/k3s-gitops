@@ -5,3 +5,4 @@ resources:
   - sops-secret.enc.yaml
   - helm-release.yaml
   - http-route.yaml
+  - temp-http.yaml
