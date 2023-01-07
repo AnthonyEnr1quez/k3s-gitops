@@ -17,6 +17,7 @@ spec:
   values:
     podAnnotations:
       backup.velero.io/backup-volumes: config
+    hostNetwork: true # temp to remote connect 
     nodeSelector:
       kubernetes.io/hostname: mina
     image:
