@@ -61,7 +61,7 @@ sonarr:
       removeFailedDownloads: true
       fields:
       - name: host
-        value: qbittorrent.192.168.86.2.nip.io # TODO why cant i use cluster dns
+        value: qbittorrent.192.168.0.230.nip.io # TODO why cant i use cluster dns
       - name: port
         value: 80
       - name: username
