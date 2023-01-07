@@ -9,7 +9,6 @@ spec:
   dependsOn:
     - name: repositories
     - name: kube-system
-    # - name: storage
   path: ./networking
   prune: true
   sourceRef:
@@ -31,7 +30,6 @@ spec:
     - name: repositories
     - name: kube-system
     - name: networking
-    # - name: storage
   path: ./networking/cert-manager/issuers
   prune: true
   sourceRef:

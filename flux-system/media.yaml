@@ -10,6 +10,7 @@ spec:
     - name: repositories
     - name: kube-system
     - name: storage
+    - name: networking
   path: ./media
   prune: true
   sourceRef:
