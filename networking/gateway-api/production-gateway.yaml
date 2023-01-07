@@ -1,0 +1,24 @@
+---
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: Gateway
+metadata:
+  name: traefik-production
+  namespace: networking
+  annotations:
+    cert-manager.io/cluster-issuer: lets-encrypt-production
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: websecure
+      hostname: '*.ant-podz.xyz'
+      port: 8443
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: traefik-production-tls
+            kind: Secret
+            group: core
