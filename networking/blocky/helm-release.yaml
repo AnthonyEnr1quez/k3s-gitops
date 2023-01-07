@@ -1,6 +1,7 @@
 ---
 ## REF: https://github.com/billimek/k8s-gitops/blob/2d48e3ba92d984e21e5c2267d10d48e867898e0b/default/blocky/blocky.yaml
 ## TODO clean up the config, create config map to sort the ip madness in this ns
+## TODO run HA
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
