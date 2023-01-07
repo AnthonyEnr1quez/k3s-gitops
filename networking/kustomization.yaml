@@ -6,4 +6,5 @@ resources:
   - metallb
   - gateway-api
   - cert-manager
+  - blocky
   - traefik
