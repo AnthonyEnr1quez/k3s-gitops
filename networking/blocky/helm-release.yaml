@@ -1,7 +1,7 @@
 ---
 ## REF: https://github.com/billimek/k8s-gitops/blob/2d48e3ba92d984e21e5c2267d10d48e867898e0b/default/blocky/blocky.yaml
-## TODO clean up the config, create config map to sort the ip madness in this ns
-## TODO run HA
+## REF: https://github.com/jr0dd/home-ops/blob/main/cluster/apps/networking/blocky/helm-release.yaml
+## TODO create config map to sort the ip madness in this ns
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -18,11 +18,12 @@ spec:
         namespace: flux-system
   interval: 5m
   values:
-    nodeSelector:
-      kubernetes.io/hostname: diana
     image:
       repository: ghcr.io/0xerr0r/blocky
       tag: v0.20
+    controller:
+      replicas: 3
+      strategy: RollingUpdate
     env:
       TZ: America/Chicago
     service:
@@ -80,12 +81,13 @@ spec:
               default:
                 - tcp-tls:one.one.one.one:853
                 - tcp-tls:dns.quad9.net:853
-            # conditional:
-            #   mapping:
-            #     ${SECRET_DOMAIN}: ${LB_K8S_GATEWAY}
-            # clientLookup:
-            #   upstream: ${GATEWAY_IP}
             bootstrapDns: tcp+udp:1.1.1.1
+            redis:
+              address: blocky-redis:6379
+              # password: ${REDIS_PASSWORD}
+              required: true
+              connectionAttempts: 10
+              connectionCooldown: 3s
             customDNS:
               customTTL: 1h
               filterUnmappedTypes: true
@@ -98,15 +100,12 @@ spec:
                   - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
                   - http://sysctl.org/cameleon/hosts
                   - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
-                  - https://raw.githubusercontent.com/kboghdady/youTube_ads_4_pi-hole/master/youtubelist.txt
                   - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt
                 fakenews:
                   - https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews/hosts
               whiteLists:
                 ads:
                   - https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt
-                  - |
-                    investing.com
               clientGroupsBlock:
                 default:
                   - ads
