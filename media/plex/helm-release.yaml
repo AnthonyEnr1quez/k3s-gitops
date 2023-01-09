@@ -17,7 +17,6 @@ spec:
   values:
     podAnnotations:
       backup.velero.io/backup-volumes: config
-    hostNetwork: true # temp to remote connect 
     nodeSelector:
       kubernetes.io/hostname: mina
     image:
@@ -29,7 +28,6 @@ spec:
       main:
         annotations: 
           metallb.universe.tf/loadBalancerIPs: 192.168.0.232
-          metallb.universe.tf/allow-shared-ip: plex
         type: LoadBalancer
         ports:
           http:
