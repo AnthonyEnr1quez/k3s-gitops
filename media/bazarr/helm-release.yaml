@@ -18,7 +18,6 @@ spec:
     podAnnotations:
       backup.velero.io/backup-volumes: config
     nodeSelector:
-      # beta.kubernetes.io/arch: arm64
       kubernetes.io/hostname: barzan
     image:
       repository: ghcr.io/onedr0p/bazarr
