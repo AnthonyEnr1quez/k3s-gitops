@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: isindir/sops-secrets-operator
-      tag: 0.7.0
+      tag: 0.7.0@sha256:f607ef776093b506ac9843112ba11c3bbef59c5040ce19cb08840824781f9d8c
     secretsAsFiles:
       - name: age
         mountPath: /etc/age
