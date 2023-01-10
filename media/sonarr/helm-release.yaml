@@ -21,8 +21,8 @@ spec:
       # beta.kubernetes.io/arch: arm64
       kubernetes.io/hostname: barzan
     image:
-      repository: ghcr.io/k8s-at-home/sonarr
-      tag: v3.0.9.1549
+      repository: ghcr.io/onedr0p/sonarr-develop
+      tag: 4.0.0.344@sha256:4526203586c606530ec90e24b845c02b031b1b9807e91347c30ea28483f7458a
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
