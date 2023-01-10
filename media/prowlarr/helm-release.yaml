@@ -17,6 +17,7 @@ spec:
   values:
     podAnnotations:
       backup.velero.io/backup-volumes: config
+      setGateway: "true"
     nodeSelector:
       # beta.kubernetes.io/arch: arm64
       kubernetes.io/hostname: barzan
