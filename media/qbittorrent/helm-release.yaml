@@ -7,34 +7,39 @@ metadata:
 spec:
   chart:
     spec:
-      chart: qbittorrent
-      version: 13.5.2
+      chart: app-template
+      version: 1.2.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: bjw-s
         namespace: flux-system
   interval: 5m
   values:
     podAnnotations:
       backup.velero.io/backup-volumes: config
+      setGateway: "true"
     nodeSelector:
       kubernetes.io/hostname: mina
     image:
-      repository: ghcr.io/k8s-at-home/qbittorrent
-      tag: v4.4.3.1
+      repository: ghcr.io/onedr0p/qbittorrent
+      tag: 4.5.0@sha256:26fa8645757f9d7e5ab72620d75fd8752c968c6b8810b8935ce770d7d1303fe9
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
-      supplementalGroups:
-        - 100
+      supplementalGroups: [100]
     env:
-      WAIT_FOR_VPN: true
+      QBITTORRENT__PORT: &port 8080
       QBT_BitTorrent__Session__DefaultSavePath: '/data/torrents'
       QBT_BitTorrent__Session__DisableAutoTMMByDefault: 'false'
       QBT_BitTorrent__Session__GlobalMaxRatio: '2'
       TZ: America/Chicago
+    service:
+      main:
+        ports:
+          http:
+            port: *port
     persistence:
       config:
         enabled: true
@@ -46,37 +51,3 @@ spec:
         mountPath: /data/torrents
         existingClaim: nfs-data
         subPath: torrents
-      shared:
-        enabled: true
-    addons:
-      vpn:
-        enabled: true
-        type: wireguard
-        wireguard:
-          image:
-            repository: ghcr.io/k8s-at-home/wireguard
-            tag: v1.0.20210914
-        securityContext:
-          runAsUser: 568
-          runAsGroup: 568
-          privileged: true
-          # capabilities:
-          #   add: ["NET_ADMIN", "SYS_MODULE", "CAP_AUDIT_WRITE"]
-        env:
-          - name: KILLSWITCH
-            value: true
-          - name: IPTABLES_BACKEND
-            value: nft
-          - name: KILLSWITCH_EXCLUDEDNETWORKS_IPV4
-            valueFrom:
-              secretKeyRef:
-                name: wireguard-config
-                key: ipv4
-        configFileSecret: wireguard-config
-        scripts:
-          up: |
-            #!/bin/bash
-            echo "connected" > /shared/vpnstatus
-          down: |
-            #!/bin/bash
-            echo "disconnected" > /shared/vpnstatus

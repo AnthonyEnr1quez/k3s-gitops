@@ -1,0 +1,71 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pod-gateway
+  namespace: networking
+spec:
+  chart:
+    spec:
+      chart: pod-gateway
+      version: 6.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: angelnu
+        namespace: flux-system
+  interval: 5m
+  values:
+    image:
+      repository: ghcr.io/angelnu/pod-gateway
+      tag: v1.8.1
+    addons:
+      netshoot:
+        enabled: true
+      vpn:
+        enabled: true
+        type: gluetun
+        image:
+          # TODO: Replace with ghcr.io/qdm12/gluetun when a versioned tag is available
+          repository: docker.io/qmcgaw/gluetun
+          tag: v3.32.0
+        env:
+          - name: VPN_TYPE
+            value: wireguard
+          - name: VPN_INTERFACE
+            value: &if wg0
+          - name: FIREWALL
+            value: "off"
+          - name: DOT
+            value: "off"
+        envFrom:
+          - secretRef:
+              name: wireguard-config
+        securityContext:
+          capabilities:
+            add: ["NET_ADMIN"]
+        networkPolicy:
+          enabled: true
+          egress:
+            - to:
+                - ipBlock:
+                    cidr: 0.0.0.0/0
+              ports:
+                - port: &port 51820
+                  protocol: UDP
+            - to:
+                - ipBlock:
+                    cidr: 10.42.0.0/16
+    routed_namespaces: [media]
+    settings:
+      VPN_INTERFACE: *if
+      VPN_TRAFFIC_PORT: *port
+      VPN_BLOCK_OTHER_TRAFFIC: "true"
+      VPN_LOCAL_CIDRS: "10.42.0.0/16 10.43.0.0/16"
+      NOT_ROUTED_TO_GATEWAY_CIDRS: "10.42.0.0/16 10.43.0.0/16"
+      DNS_LOCAL_CIDRS: "local"
+      IPTABLES_NFT: "yes"
+    webhook:
+      image:
+        repository: ghcr.io/angelnu/gateway-admision-controller
+        tag: v3.7.0
+      gatewayDefault: false
