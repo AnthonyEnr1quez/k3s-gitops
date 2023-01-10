@@ -23,7 +23,7 @@ spec:
       kubernetes.io/hostname: barzan
     image:
       repository: ghcr.io/onedr0p/prowlarr-develop
-      tag: 1.0.1.2220@sha256:65e2c136d062dec2289f7edc816d796fd54b33fd0e8fbc9dbed5e9e4130f8d13
+      tag: 1.0.1.2220@sha256:24ce7d264c3cf4fdf0cbc193e92e8a833bcc2d68397411dc01c79d1461bd3ea9
     env:
       TZ: America/Chicago
     service:
