@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: gcr.io/velero-gcp/velero
-      tag: v1.9.4
+      tag: v1.9.4@sha256:83b108ad9425401c4b199a18f67da39731f54fa3048da18eb507fbaebe4caaae
     nodeSelector:
       kubernetes.io/hostname: mina
     tolerations:
@@ -43,6 +43,8 @@ spec:
     initContainers:
       - name: velero-plugin-for-aws
         image: velero/velero-plugin-for-aws:v1.6.0
+        # TODO wait for 1.6.0 to be uploaded
+        # image: gcr.io/velero-gcp/velero-plugin-for-aws:v1.6.0
         imagePullPolicy: IfNotPresent
         volumeMounts:
           - mountPath: /target

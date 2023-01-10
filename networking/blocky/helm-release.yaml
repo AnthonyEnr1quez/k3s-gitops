@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: ghcr.io/0xerr0r/blocky
-      tag: v0.20
+      tag: v0.20@sha256:afd8f8b7b90e17cd97a652b8dc3542bd6d11c1aace06f39c228923fc40b02f6b
     controller:
       replicas: 3
       strategy: RollingUpdate

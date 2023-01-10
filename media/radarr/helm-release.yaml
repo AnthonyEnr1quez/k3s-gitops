@@ -21,7 +21,7 @@ spec:
       kubernetes.io/hostname: barzan
     image:
       repository: ghcr.io/onedr0p/radarr-develop
-      tag: 4.3.2.6857@sha256:6278da6c3300a8001d6449510062a943abcbb64b6386ce3bc0ebb133f861b3be
+      tag: 4.3.2.6857@sha256:722b5c7a3809841caa711a2339dbe58e6d437c79ef147bdefb2275b422a9b106
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
