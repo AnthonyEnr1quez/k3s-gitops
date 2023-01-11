@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: gcr.io/velero-gcp/velero
-      tag: v1.9.4@sha256:83b108ad9425401c4b199a18f67da39731f54fa3048da18eb507fbaebe4caaae
+      tag: v1.10.0@sha256:0b3cb6ead1c58deeadbfe677120f4b77de78c5b9c527dfa1f7d3e479f36e5cf4
     nodeSelector:
       kubernetes.io/hostname: mina
     tolerations:
