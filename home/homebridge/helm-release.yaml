@@ -19,7 +19,7 @@ spec:
       kubernetes.io/hostname: mina
     image:
       repository: ghcr.io/oznu/homebridge
-      tag: 2023-01-08
+      tag: '2023-01-08'
     env:
       TZ: America/Chicago
       ENABLE_AVAHI: 1
