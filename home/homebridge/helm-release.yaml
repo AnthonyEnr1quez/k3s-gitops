@@ -1,0 +1,74 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app homebridge
+  namespace: home
+spec:
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  interval: 5m
+  values:
+    nodeSelector:
+      kubernetes.io/hostname: mina
+    image:
+      repository: ghcr.io/oznu/homebridge
+      tag: 2023-01-08
+    env:
+      TZ: America/Chicago
+      ENABLE_AVAHI: 1
+    service:
+      main:
+        # annotations: 
+        #   metallb.universe.tf/loadBalancerIPs: 192.168.0.233
+        # type: LoadBalancer
+        ports:
+          http:
+            port: &port 8581
+    hostNetwork: true
+    dnsPolicy: ClusterFirstWithHostNet
+    persistence:
+      homebridge:
+        enabled: true
+        retain: true
+        size: 250Mi
+        accessMode: ReadWriteOnce
+        annotations:
+          volumeType: local
+      startup-sh:
+        enabled: true
+        type: configMap
+        name: &config homebridge-startup-sh
+        mountPath: /homebridge/startup.sh
+        subPath: startup.sh
+        defaultMode: 493
+    configMaps:
+      config:
+        enabled: true
+        nameOverride: startup-sh
+        data:
+          startup.sh: |-
+            #!/bin/sh
+            npm install --save homebridge-govee@7.8.0
+            npm install --save @0x5e/homebridge-tuya-platform@1.6.0
+    probes:
+      liveness:
+        enabled: true
+        custom: true
+        spec:
+          httpGet:
+            path: /login
+            port: *port
+          initialDelaySeconds: 30
+    resources:
+      requests:
+        cpu: 10m
+        memory: 100Mi
+      limits:
+        memory: 750Mi

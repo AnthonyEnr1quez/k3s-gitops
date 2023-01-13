@@ -4,6 +4,7 @@
 /*
 # include 
 !/flux-system
+!/home
 !/kube-system
 !/networking
 !/media
