@@ -11,7 +11,7 @@ spec:
       restartPolicy: OnFailure
       initContainers:
         - name: generate-config
-          image: mikefarah/yq:4.30.6
+          image: mikefarah/yq:4.30.8
           command:
             - "/bin/sh"
             - -c
