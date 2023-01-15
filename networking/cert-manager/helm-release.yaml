@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: quay.io/jetstack/cert-manager-controller
-      tag: v1.10.2@sha256:f1b8dad1af13e625ae4581fa3dd47b51d021d6ae2b8cec19e89326f9e89dc6ce
+      tag: v1.11.0@sha256:d429b6d696e0ef47cff1d15241c6ffaac351e38ac22664b82fafa771d615b89a
     installCRDs: true
     featureGates: "ExperimentalGatewayAPISupport=true"
     prometheus:
