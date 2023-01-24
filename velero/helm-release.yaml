@@ -29,7 +29,7 @@ spec:
     snapshotsEnabled: false
     upgradeCRDs: true
     cleanUpCRDs: true
-    deployRestic: true
+    deployNodeAgent: true
 
     credentials:
       existingSecret: s3-provider
