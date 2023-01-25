@@ -42,11 +42,9 @@ spec:
             protocol: TCP
             targetPort: 8081
     persistence:
-      config-temp:
+      config:
         enabled: true
         retain: true
-        accessMode: ReadWriteOnce
-        size: 1Gi
         annotations:
           volumeType: local
       books:
