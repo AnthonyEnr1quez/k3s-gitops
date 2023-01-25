@@ -45,6 +45,7 @@ spec:
       config-temp:
         enabled: true
         retain: true
+        accessMode: ReadWriteOnce
         annotations:
           volumeType: local
       books:
