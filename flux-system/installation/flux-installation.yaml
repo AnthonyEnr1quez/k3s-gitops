@@ -23,3 +23,11 @@ spec:
         kind: NetworkPolicy
         metadata:
           name: ignored
+    - target:
+        labelSelector: app.kubernetes.io/component in (image-reflector-controller, image-automation-controller)
+      patch: |
+        $patch: delete
+        kind: ignored
+        apiVersion: ignored
+        metadata:
+          name: ignored
