@@ -46,6 +46,7 @@ spec:
         enabled: true
         retain: true
         accessMode: ReadWriteOnce
+        size: 1Gi
         annotations:
           volumeType: local
       books:
