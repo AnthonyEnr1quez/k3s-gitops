@@ -18,7 +18,7 @@ spec:
     podAnnotations:
       backup.velero.io/backup-volumes: config
     nodeSelector:
-      kubernetes.io/hostname: diana
+      kubernetes.io/hostname: mina
     image:
       repository: lscr.io/linuxserver/calibre
       tag: 6.11.0
@@ -42,7 +42,7 @@ spec:
             protocol: TCP
             targetPort: 8081
     persistence:
-      config:
+      config-temp:
         enabled: true
         retain: true
         annotations:
