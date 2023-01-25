@@ -17,6 +17,7 @@
             kubectl
             sops
             velero
+            watch
           ];
         };
       });
