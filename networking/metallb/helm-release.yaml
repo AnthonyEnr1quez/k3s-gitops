@@ -15,3 +15,12 @@ spec:
         name: metallb
         namespace: flux-system
       interval: 5m
+  values:
+    speaker:
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 15
+        periodSeconds: 30
+        successThreshold: 1
+        timeoutSeconds: 10
