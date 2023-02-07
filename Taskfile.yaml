@@ -24,6 +24,7 @@ tasks:
   label-agents:
     desc: Add agent node role to agent nodes
     cmds:
+      - kubectl label nodes mina node-role.kubernetes.io/agent=true
       - kubectl label nodes barzan node-role.kubernetes.io/agent=true
       - kubectl label nodes diana node-role.kubernetes.io/agent=true
 
