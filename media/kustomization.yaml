@@ -4,12 +4,12 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - nfs-data.yaml
-  - plex
-  - calibre
-  - qbittorrent
-  - prowlarr
-  - sonarr
-  - radarr
-  - bazarr
-  - requestrr
-  - flemmarr
+  # - plex
+  # - calibre
+  # - qbittorrent
+  # - prowlarr
+  # - sonarr
+  # - radarr
+  # - bazarr
+  # - requestrr
+  # - flemmarr
