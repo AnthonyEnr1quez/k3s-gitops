@@ -45,7 +45,6 @@ radarr:
       removeFailedDownloads: true
       fields:
       - name: host
-        # value: qbittorrent.192.168.0.230.nip.io # TODO why cant i use cluster dns
         value: qbittorrent
       - name: port
         value: 8080
