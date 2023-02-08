@@ -55,7 +55,8 @@ spec:
             - to:
                 - ipBlock:
                     cidr: 10.42.0.0/16
-    routed_namespaces: [media]
+    routed_namespaces: 
+      - download
     settings:
       VPN_INTERFACE: *if
       VPN_TRAFFIC_PORT: *port
