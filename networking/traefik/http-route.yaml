@@ -18,17 +18,24 @@ spec:
     - name: traefik
   values:
     resources:
-      - apiVersion: traefik.containo.us/v1alpha1
-        kind: IngressRoute
+      - apiVersion: gateway.networking.k8s.io/v1alpha2 
+        kind: HTTPRoute
         metadata:
           name: traefik-dashboard
           namespace: networking
         spec:
-          entryPoints:
-            - web
-          routes:
-            - match: Host(`traefik.192.168.0.230.nip.io`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
-              kind: Rule
-              services:
+          parentRefs:
+            - name: traefik-production
+              namespace: networking
+          hostnames:
+            - traefik.ant-podz.xyz
+          rules:
+            - matches:
+                - path:
+                    value: /dashboard
+                - path:
+                    value: /api
+              backendRefs:
                 - name: api@internal
                   kind: TraefikService
+                  group: traefik.containo.us
