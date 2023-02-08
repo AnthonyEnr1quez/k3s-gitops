@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: qbittorrent
-  namespace: media
+  namespace: download
 spec:
   chart:
     spec:
@@ -19,7 +19,9 @@ spec:
       backup.velero.io/backup-volumes: config
       setGateway: "true"
     nodeSelector:
-      kubernetes.io/hostname: mina
+      kubernetes.io/hostname: gulsun
+    controller:
+      type: statefulset
     image:
       repository: ghcr.io/onedr0p/qbittorrent
       tag: 4.5.0@sha256:5ff2064d788100f54770dc5e477f32d41be7e71ee36923a22236053576e39d5d

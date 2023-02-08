@@ -6,7 +6,6 @@ resources:
   - nfs-data.yaml
   - plex
   # - calibre
-  # - qbittorrent
   # - prowlarr
   # - radarr
   # - bazarr
