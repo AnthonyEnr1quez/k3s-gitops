@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: prowlarr
-  namespace: media
+  namespace: download
 spec:
   chart:
     spec:
@@ -20,6 +20,8 @@ spec:
       setGateway: "true"
     nodeSelector:
       kubernetes.io/hostname: barzan
+    controller:
+      type: statefulset
     image:
       repository: ghcr.io/onedr0p/prowlarr-develop
       tag: 1.1.1.2377@sha256:7a7555f9a9630b63bbda3e01cdb9915ae2cffcdad51ab0026c461a25be727627
