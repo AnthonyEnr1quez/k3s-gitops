@@ -19,6 +19,12 @@ spec:
       backup.velero.io/backup-volumes: config
     nodeSelector:
       kubernetes.io/hostname: mina
+    tolerations:
+      - key: plex
+        operator: Exists
+        effect: NoSchedule
+    controller:
+      type: statefulset
     image:
       repository: ghcr.io/onedr0p/plex
       tag: 1.30.2.6563-3d4dc0cce@sha256:a48f8cd0680791c4102492619c6ac30451bafde9746083e07b65c2cbfc1446ff
@@ -36,7 +42,7 @@ spec:
       config:
         enabled: true
         retain: true
-        size: 20Gi
+        size: 50Gi
         annotations:
           volumeType: local
       data:
@@ -48,5 +54,5 @@ spec:
       requests:
         cpu: 100m
         memory: 1Gi
-      limits:
-        memory: 2Gi
+      # limits:
+      #   memory: 2Gi
