@@ -3,6 +3,7 @@
 # exclude all
 /*
 # include 
+!/download
 !/flux-system
 !/home
 !/kube-system
