@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - http-routes.yaml
+  - ingress-route.yaml
