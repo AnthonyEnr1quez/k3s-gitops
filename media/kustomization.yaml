@@ -6,5 +6,4 @@ resources:
   - nfs-data.yaml
   - plex
   # - calibre
-  # - requestrr
   # - flemmarr
