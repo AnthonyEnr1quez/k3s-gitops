@@ -18,7 +18,9 @@ spec:
     podAnnotations:
       backup.velero.io/backup-volumes: config
     nodeSelector:
-      kubernetes.io/hostname: mina
+      kubernetes.io/hostname: gulsun
+    controller:
+      type: statefulset
     image:
       repository: lscr.io/linuxserver/calibre
       tag: 6.11.0
