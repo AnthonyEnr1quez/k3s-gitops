@@ -3,7 +3,7 @@ apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: HTTPRoute
 metadata:
   name: radarr
-  namespace: media
+  namespace: download
 spec:
   hostnames:
     - radarr.ant-podz.xyz
