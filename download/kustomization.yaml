@@ -8,6 +8,6 @@ resources:
   - prowlarr
   - sonarr
   - radarr
-  # - bazarr
+  - bazarr
   # - requestrr
   # - flemmarr

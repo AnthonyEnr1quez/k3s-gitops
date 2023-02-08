@@ -3,7 +3,7 @@ apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: HTTPRoute
 metadata:
   name: bazarr
-  namespace: media
+  namespace: download
 spec:
   hostnames:
     - bazarr.ant-podz.xyz

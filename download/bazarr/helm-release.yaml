@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: bazarr
-  namespace: media
+  namespace: download
 spec:
   chart:
     spec:
@@ -19,6 +19,8 @@ spec:
       backup.velero.io/backup-volumes: config
     nodeSelector:
       kubernetes.io/hostname: barzan
+    controller:
+      type: statefulset
     image:
       repository: ghcr.io/onedr0p/bazarr
       tag: 1.1.4@sha256:73de30b5f8143f7e41a76ef0645a1d12808d57b4933c86623937017024119e46
