@@ -57,6 +57,7 @@ spec:
         template:
           includedNamespaces:
             - media
+            - download
           ttl: 360h
   valuesFrom:
     - targetPath: configuration.backupStorageLocation.bucket
