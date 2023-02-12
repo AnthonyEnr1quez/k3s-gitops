@@ -17,6 +17,10 @@ spec:
       interval: 5m
   values:
     speaker:
+      tolerations:
+        - key: plex
+          operator: Exists
+          effect: NoSchedule
       livenessProbe:
         enabled: true
         failureThreshold: 3
