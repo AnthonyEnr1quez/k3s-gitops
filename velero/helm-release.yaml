@@ -48,9 +48,7 @@ spec:
 
     initContainers:
       - name: velero-plugin-for-aws
-        image: velero/velero-plugin-for-aws:v1.6.1
-        # TODO wait for 1.6.0 to be uploaded
-        # image: gcr.io/velero-gcp/velero-plugin-for-aws:v1.6.1
+        image: gcr.io/velero-gcp/velero-plugin-for-aws:v1.6.1@sha256:c5b6a16d3ab84bcd55fe779c4b6f8c91f0d926c387ea690c5fa5803b4cd3d5e7
         imagePullPolicy: IfNotPresent
         volumeMounts:
           - mountPath: /target
@@ -62,8 +60,9 @@ spec:
         schedule:  0 4 * * *
         template:
           includedNamespaces:
-            - media
             - download
+            - home
+            - media
           ttl: 360h
   valuesFrom:
     - targetPath: configuration.backupStorageLocation.bucket
