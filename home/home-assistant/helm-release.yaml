@@ -1,0 +1,59 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: home-assistant
+  namespace: home
+spec:
+  chart:
+    spec:
+      chart: app-template
+      version: 1.3.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  interval: 5m
+  values:
+    nodeSelector:
+      kubernetes.io/hostname: gulsun
+    controller:
+      type: statefulset
+    image:
+      repository: ghcr.io/home-assistant/home-assistant
+      tag: 2023.2.3@sha256:b890ca4162ae35a28d7eb77d0f8892d740d4df8546c9bb258f97288bcaf6ccec
+    env:
+      TZ: America/Chicago
+    service:
+      main:
+        ports:
+          http:
+            port: 8123
+    hostNetwork: true
+    dnsPolicy: ClusterFirstWithHostNet
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
+    podSecurityContext:
+      runAsUser: 612
+      runAsGroup: 612
+      fsGroup: 612
+      fsGroupChangePolicy: "OnRootMismatch"
+      allowPrivilegeEscalation: false 
+    persistence:
+      config:
+        enabled: true
+        retain: true
+        size: 5Gi
+        annotations:
+          volumeType: local
+    resources:
+      requests:
+        cpu: 10m
+        memory: 100Mi
+      limits:
+        memory: 750Mi
