@@ -10,3 +10,15 @@ spec:
   url: https://github.com/AnthonyEnr1quez/k3s-gitops.git
   ref:
     branch: main
+    ignore: |
+      # exclude all
+      /*
+      # include 
+      !/download
+      !/flux-system
+      !/home
+      !/kube-system
+      !/networking
+      !/media
+      !/storage
+      !/velero
