@@ -12,7 +12,7 @@ spec:
         kind: GitRepository
         name: local-path-provisioner
         namespace: flux-system
-  interval: 5m
+  interval: 1h
   values:
     # https://github.com/k3s-io/k3s/blob/master/manifests/local-storage.yaml
     storageClass:

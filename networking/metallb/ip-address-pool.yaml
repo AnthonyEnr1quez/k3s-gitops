@@ -5,7 +5,7 @@ metadata:
   name: metallb-pool
   namespace: networking
 spec:
-  interval: 15m
+  interval: 1h
   chart:
     spec:
       chart: raw

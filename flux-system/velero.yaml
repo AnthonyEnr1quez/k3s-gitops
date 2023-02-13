@@ -5,7 +5,7 @@ metadata:
   name: velero
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 1h
   dependsOn:
     - name: media
     - name: download

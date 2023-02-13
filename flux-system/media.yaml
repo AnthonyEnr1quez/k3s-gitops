@@ -5,7 +5,7 @@ metadata:
   name: media
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 1h
   dependsOn:
     - name: storage
     - name: networking-issuers

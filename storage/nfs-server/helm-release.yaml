@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  interval: 5m
+  interval: 1h
   values:
     nodeSelector:
       kubernetes.io/hostname: mina

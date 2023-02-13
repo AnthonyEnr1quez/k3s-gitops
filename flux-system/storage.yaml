@@ -5,7 +5,7 @@ metadata:
   name: storage
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 1h
   dependsOn:
     - name: repositories
   path: ./storage

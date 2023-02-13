@@ -5,7 +5,7 @@ metadata:
   name: networking
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 1h
   dependsOn:
     - name: kube-system
   path: ./networking
@@ -24,7 +24,7 @@ metadata:
   name: networking-issuers
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 1h
   dependsOn:
     - name: networking
   path: ./networking/cert-manager/issuers
