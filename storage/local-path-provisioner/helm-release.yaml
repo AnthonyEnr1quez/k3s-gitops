@@ -13,6 +13,16 @@ spec:
         name: local-path-provisioner
         namespace: flux-system
   interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
     # https://github.com/k3s-io/k3s/blob/master/manifests/local-storage.yaml
     storageClass:
