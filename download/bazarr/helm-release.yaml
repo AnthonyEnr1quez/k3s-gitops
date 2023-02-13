@@ -15,22 +15,21 @@ spec:
         namespace: flux-system
   interval: 1h
   values:
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
+    image:
+      repository: ghcr.io/onedr0p/bazarr
+      tag: 1.1.4@sha256:73de30b5f8143f7e41a76ef0645a1d12808d57b4933c86623937017024119e46
     nodeSelector:
       kubernetes.io/hostname: barzan
     controller:
       type: statefulset
-    image:
-      repository: ghcr.io/onedr0p/bazarr
-      tag: 1.1.4@sha256:73de30b5f8143f7e41a76ef0645a1d12808d57b4933c86623937017024119e46
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
-      supplementalGroups:
-        - 100
+      fsGroupChangePolicy: OnRootMismatch
+      supplementalGroups: [100]
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
     env:
       TZ: America/Chicago
     service:

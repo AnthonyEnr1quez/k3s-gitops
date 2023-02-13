@@ -4,15 +4,14 @@ metadata:
   name: sops-secrets-operator
   namespace: kube-system
 spec:
-  releaseName: sops-secrets-operator
   chart:
     spec:
       chart: sops-secrets-operator
+      version: 0.13.1
       sourceRef:
         kind: HelmRepository
         name: sops-secrets-operator
         namespace: flux-system
-      version: 0.13.1
   interval: 1h
   values:
     image:

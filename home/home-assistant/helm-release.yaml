@@ -15,15 +15,21 @@ spec:
         namespace: flux-system
   interval: 1h
   values:
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
+    image:
+      repository: ghcr.io/home-assistant/home-assistant
+      tag: 2023.2.3@sha256:b890ca4162ae35a28d7eb77d0f8892d740d4df8546c9bb258f97288bcaf6ccec
     nodeSelector:
       kubernetes.io/hostname: gulsun
     controller:
       type: statefulset
-    image:
-      repository: ghcr.io/home-assistant/home-assistant
-      tag: 2023.2.3@sha256:b890ca4162ae35a28d7eb77d0f8892d740d4df8546c9bb258f97288bcaf6ccec
+    podSecurityContext:
+      runAsUser: 612
+      runAsGroup: 612
+      fsGroup: 612
+      fsGroupChangePolicy: OnRootMismatch
+      allowPrivilegeEscalation: false 
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
     env:
       TZ: America/Chicago
     service:
@@ -40,12 +46,6 @@ spec:
         enabled: false
       startup:
         enabled: false
-    podSecurityContext:
-      runAsUser: 612
-      runAsGroup: 612
-      fsGroup: 612
-      fsGroupChangePolicy: "OnRootMismatch"
-      allowPrivilegeEscalation: false 
     persistence:
       config:
         enabled: true

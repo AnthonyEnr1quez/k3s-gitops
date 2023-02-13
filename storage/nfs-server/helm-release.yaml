@@ -15,13 +15,13 @@ spec:
         namespace: flux-system
   interval: 1h
   values:
-    nodeSelector:
-      kubernetes.io/hostname: mina
     image:
       repository: docker.io/itsthenetwork/nfs-server-alpine
       # TODO https://github.com/aminvakil/docker-alpine-nfs-server
       # repository: quay.io/aminvakil/alpine-nfs-server
       tag: latest
+    nodeSelector:
+      kubernetes.io/hostname: mina
     env:
       TZ: America/Chicago
       SHARED_DIRECTORY: /nfsshare

@@ -15,22 +15,22 @@ spec:
         namespace: flux-system
   interval: 1h
   values:
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
-      setGateway: "true"
+    image:
+      repository: ghcr.io/onedr0p/qbittorrent
+      tag: 4.5.0@sha256:d24fec03738509fc17b0de5d48690f7b59c6590788868cf4e367a1253d52dd8b
     nodeSelector:
       kubernetes.io/hostname: gulsun
     controller:
       type: statefulset
-    image:
-      repository: ghcr.io/onedr0p/qbittorrent
-      tag: 4.5.0@sha256:d24fec03738509fc17b0de5d48690f7b59c6590788868cf4e367a1253d52dd8b
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
+      fsGroupChangePolicy: OnRootMismatch
       supplementalGroups: [100]
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
+      setGateway: "true" #todo
     env:
       QBITTORRENT__PORT: &port 8080
       QBT_BitTorrent__Session__DefaultSavePath: '/data/torrents'

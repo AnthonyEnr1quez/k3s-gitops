@@ -15,15 +15,15 @@ spec:
         namespace: flux-system
   interval: 1h
   values:
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
+    image:
+      repository: lscr.io/linuxserver/calibre
+      tag: 6.12.0
     nodeSelector:
       kubernetes.io/hostname: gulsun
     controller:
       type: statefulset
-    image:
-      repository: lscr.io/linuxserver/calibre
-      tag: 6.12.0
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
     env:
       CALIBRE_OVERRIDE_DATABASE_PATH: /config/metadata.db
       TZ: America/Chicago
