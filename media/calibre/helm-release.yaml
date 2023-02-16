@@ -32,6 +32,12 @@ spec:
       kubernetes.io/hostname: gulsun
     controller:
       type: statefulset
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: OnRootMismatch
+      supplementalGroups: [100]
     podAnnotations:
       backup.velero.io/backup-volumes: config
     env:
