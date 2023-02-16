@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - http-route.yaml
-  # - temp-http.yaml # TODO remove once confirmed this is working consistently
