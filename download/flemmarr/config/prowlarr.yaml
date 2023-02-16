@@ -72,7 +72,7 @@ prowlarr:
           value: 1 # desc
       tags: []
     - name: Rarbg
-      enable: false # TODO
+      enable: true
       appProfileId: 1
       definitionName: Rarbg
       implementation: Rarbg
