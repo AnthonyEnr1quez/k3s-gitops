@@ -5,5 +5,4 @@ resources:
   - sops-secret.enc.yaml
   - receiver.yaml
   - http-route.yaml
-  - sops-secret-test.enc.yaml
-  
+g
