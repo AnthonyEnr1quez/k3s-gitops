@@ -26,7 +26,7 @@ spec:
   values:
     image:
       repository: isindir/sops-secrets-operator
-      tag: 0.7.1
+      tag: 0.8.0
     secretsAsFiles:
       - name: age
         mountPath: /etc/age
