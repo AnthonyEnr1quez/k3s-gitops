@@ -5,7 +5,7 @@ metadata:
   name: arm
   namespace: system-upgrade
 spec:
-  # renovate: datasource=docker depName=quay.io/kairos/kairos-debian
+  # renovate: datasource=docker depName=quay.io/kairos/kairos-opensuse-leap-arm-rpi versioning=semver-coerced
   version: v1.5.1-k3sv1.26.1-k3s1
   serviceAccountName: system-upgrade
   concurrency: 1
