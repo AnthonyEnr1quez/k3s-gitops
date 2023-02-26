@@ -17,6 +17,6 @@ spec:
     matchLabels:
       kubernetes.io/arch: arm64
   upgrade:
-    image: quay.io/kairos/kairos-opensuse-leap-arm-rpi:v1.5.1-k3sv1.26.1-k3s1
+    image: quay.io/kairos/kairos-opensuse-leap-arm-rpi:v1.6.0-k3sv1.26.1-k3s1
     command:
       - /usr/sbin/suc-upgrade
