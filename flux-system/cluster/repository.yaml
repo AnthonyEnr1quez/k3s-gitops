@@ -20,4 +20,5 @@ spec:
     !/networking
     !/media
     !/storage
+    !/system-upgrade
     !/velero
