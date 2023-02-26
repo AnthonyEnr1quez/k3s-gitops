@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/qbittorrent
-      tag: 4.5.0@sha256:a68f52f17f0686775b252f8306defb2e731259d945d8205e481ef1751497056d
+      tag: 4.5.1@sha256:e6c264e6afe298a95b97aaf827b7f8b4f6d3e2706a55d0dd88fc9b5161a70074
     nodeSelector:
       kubernetes.io/hostname: gulsun
     controller:
