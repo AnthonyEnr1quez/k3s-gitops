@@ -15,6 +15,10 @@ spec:
   nodeSelector:
     matchLabels:
       kubernetes.io/arch: amd64
+  tolerations:
+    - key: plex
+      operator: Exists
+      effect: NoSchedule
   upgrade:
     image: quay.io/kairos/kairos-opensuse-leap
     command:
