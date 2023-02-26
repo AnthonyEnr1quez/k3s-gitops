@@ -1,0 +1,21 @@
+---
+apiVersion: upgrade.cattle.io/v1
+kind: Plan
+metadata:
+  name: amd
+  namespace: system-upgrade
+spec:
+  version: v1.5.1-k3sv1.26.1-k3s1
+  serviceAccountName: system-upgrade
+  concurrency: 1
+  cordon: false
+  drain:
+    force: false
+    disableEviction: true
+  nodeSelector:
+    matchLabels:
+      kubernetes.io/arch: amd64
+  upgrade:
+    image: quay.io/kairos/kairos-opensuse-leap
+    command:
+      - /usr/sbin/suc-upgrade
