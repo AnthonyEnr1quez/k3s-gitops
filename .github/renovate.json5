@@ -6,6 +6,7 @@
     "docker:enableMajor",
     ":semanticCommits",
     "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/commitMessage.json5",
+    "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/groups.json5",
     "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/semanticCommits.json5"
   ],
   "platform": "github",
@@ -21,7 +22,7 @@
   "helm-values": {
     "fileMatch": ["\\.yaml$"]
   },
-    "packageRules": [
+  "packageRules": [
     {
       "description": "Use loose versioning for certain dependencies",
       "matchDatasources": ["docker", "github-releases"],
@@ -30,6 +31,24 @@
         "ghcr.io/onedr0p/plex",
         "ghcr.io/onedr0p/qbittorrent"
       ]
+    },
+    {
+      "description": "Ignore the .img tags for kairos arm builds",
+      "matchDatasources": ["docker"],
+      "matchManagers": ["regex"],
+      "matchPackageNames": ["quay.io/kairos/kairos-opensuse-leap-arm-rpi"],
+      "allowedVersions": "!/(.*?).img/",
+    }
+  ],
+  "regexManagers": [
+    {
+      "description": "Process various dependencies",
+      "fileMatch": ["\\.yaml$"],
+      "matchStrings": [
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
+      ],
+      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     }
   ]
 }

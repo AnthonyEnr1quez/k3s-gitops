@@ -1,0 +1,11 @@
+{
+  "packageRules": [
+    {
+      "groupName": "kairos-opensuse-leap",
+      "matchPackagePatterns": ["kairos"],
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "separateMinorPatch": false
+    }
+  ]
+}
