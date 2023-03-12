@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: ghcr.io/home-assistant/home-assistant
-      tag: 2023.2.5@sha256:a07c691751c666741b98ec1ab7bd4ffdddd68dc01299b83e47244e555f2c9785
+      tag: 2023.3.3@sha256:a7285b69682336df2426362ab6c6f3c58616519b19266a436e48bb5e3c24daaa
     nodeSelector:
       kubernetes.io/hostname: gulsun
     controller:
