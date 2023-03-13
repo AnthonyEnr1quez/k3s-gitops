@@ -26,6 +26,7 @@ spec:
     keepHistory: false
   values:
     image:
+      # renovate: datasource=docker depName=public.ecr.aws/docker/library/traefik
       name: public.ecr.aws/docker/library/traefik
       tag: 2.9.6
     experimental:
