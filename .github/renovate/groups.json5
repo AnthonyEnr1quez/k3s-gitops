@@ -11,6 +11,18 @@
       "matchPackagePatterns": ["cert-manager"],
       "matchDatasources": ["docker", "helm"],
       "separateMinorPatch": false
+    },
+    {
+      "groupName": "sops-secrets-operator",
+      "matchPackagePatterns": ["sops-secrets-operator"],
+      "matchDatasources": ["docker", "helm"],
+      "separateMinorPatch": false
+    },
+    {
+      "groupName": "traefik",
+      "matchPackagePatterns": ["traefik"],
+      "matchDatasources": ["docker", "helm"],
+      "separateMinorPatch": false
     }
   ]
 }
