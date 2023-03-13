@@ -25,10 +25,10 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    # TODO not getting picked up by renovate  
     image:
-      # renovate: datasource=docker depName=public.ecr.aws/docker/library/traefik
       name: public.ecr.aws/docker/library/traefik
-      tag: "2.9.6"
+      tag: 2.9.8
     experimental:
       kubernetesGateway:
         enabled: true
