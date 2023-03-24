@@ -5,6 +5,7 @@ sonarr:
   config:
     host:
       analyticsEnabled: false
+      authenticationRequired: disabledForLocalAddresses
     naming:
       renameEpisodes: true
       replaceIllegalCharacters: true
@@ -82,3 +83,102 @@ sonarr:
         value: false
       implementation: QBittorrent
       configContract: QBittorrentSettings
+  qualityDefinition:
+    7:
+      title: HDTV-720p
+      weight: 6
+      minSize: 0
+      maxSize: 52
+      preferredSize: 38
+      id: 7
+    8:
+      title: HDTV-1080p
+      weight: 7
+      minSize: 0
+      maxSize: 69
+      preferredSize: 52
+      id: 8
+    10:
+      title: WEBRip-720p
+      weight: 9
+      minSize: 0
+      maxSize: 52
+      preferredSize: 38
+      id: 10
+    11:
+      title: WEBDL-720p
+      weight: 9
+      minSize: 0
+      maxSize: 52
+      preferredSize: 38
+      id: 11
+    12:
+      title: Bluray-720p
+      weight: 10
+      minSize: 0
+      maxSize: 52
+      preferredSize: 38
+      id: 12
+    13:
+      title: WEBRip-1080p
+      weight: 11
+      minSize: 0
+      maxSize: 69
+      preferredSize: 52
+      id: 13
+    14:
+      title: WEBDL-1080p
+      weight: 11
+      minSize: 0
+      maxSize: 69
+      preferredSize: 52
+      id: 14
+    15:
+      title: Bluray-1080p
+      weight: 12
+      minSize: 0
+      maxSize: 69
+      preferredSize: 52
+      id: 15
+    16:
+      title: Bluray-1080p Remux
+      weight: 13
+      minSize: 0
+      maxSize: 69
+      preferredSize: 52
+      id: 16
+    17:
+      title: HDTV-2160p
+      weight: 14
+      minSize: 50.4
+      maxSize: 350
+      preferredSize: 349
+      id: 17
+    18:
+      title: WEBRip-2160p
+      weight: 15
+      minSize: 50.4
+      maxSize: 350
+      preferredSize: 349
+      id: 18
+    19:
+      title: WEBDL-2160p
+      weight: 15
+      minSize: 50.4
+      maxSize: 350
+      preferredSize: 349
+      id: 19
+    20:
+      title: Bluray-2160p
+      weight: 16
+      minSize: 94.6
+      maxSize: 400
+      preferredSize: 399
+      id: 20
+    21:
+      title: Bluray-2160p Remux
+      weight: 17
+      minSize: 204.4
+      maxSize: 400
+      preferredSize: 399
+      id: 21

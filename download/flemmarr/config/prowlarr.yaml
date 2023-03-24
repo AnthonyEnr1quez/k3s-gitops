@@ -5,6 +5,7 @@ prowlarr:
   config:
     host:
       analyticsEnabled: false
+      authenticationRequired: disabledForLocalAddresses
     ui:
       theme: dark
   # check in pod /config/Definitions, check definiton settings for req fields
