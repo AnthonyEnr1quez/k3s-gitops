@@ -26,7 +26,7 @@
     },
     {
       "groupName": "flux",
-      "matchPackagePatterns": ["flux"],
+      "matchPackagePatterns": ["fluxcd"],
       "matchDatasources": ["docker", "github-releases"],
       "separateMinorPatch": false
     }
