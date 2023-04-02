@@ -25,11 +25,10 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    # TODO not getting picked up by renovate  
     image:
       registry: public.ecr.aws
       repository: docker/library/traefik
-      tag: "2.9.8"
+      tag: 2.9.8
     experimental:
       kubernetesGateway:
         enabled: true
