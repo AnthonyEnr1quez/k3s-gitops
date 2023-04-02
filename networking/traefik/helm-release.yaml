@@ -27,8 +27,9 @@ spec:
   values:
     # TODO not getting picked up by renovate  
     image:
-      name: public.ecr.aws/docker/library/traefik
-      tag: 2.9.8
+      registry: public.ecr.aws
+      repository: docker/library/traefik
+      tag: "2.9.8"
     experimental:
       kubernetesGateway:
         enabled: true
