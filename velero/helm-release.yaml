@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: gcr.io/velero-gcp/velero
-      tag: v1.10.2@sha256:7f61697d4ddc6500c8235da8b61fe7264edfb82bdf6acffa15cc18c77c2ff479
+      tag: v1.11.0@sha256:962935c3a39fa30a524e20a4a57ef389119571e987433714d60a745983085df2
     nodeSelector:
       kubernetes.io/hostname: gulsun
     tolerations:
