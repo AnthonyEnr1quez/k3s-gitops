@@ -6,7 +6,7 @@ metadata:
   namespace: system-upgrade
 spec:
   # renovate: datasource=docker depName=quay.io/kairos/kairos-opensuse-leap-arm-rpi versioning=loose
-  version: "v1.6.1-k3sv1.26.1-k3s1"
+  version: "v2.0.3-k3sv1.26.4-k3s1"
   serviceAccountName: system-upgrade
   concurrency: 1
   cordon: false
