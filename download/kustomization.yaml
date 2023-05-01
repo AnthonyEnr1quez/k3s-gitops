@@ -5,9 +5,9 @@ resources:
   - namespace.yaml
   - nfs-data.yaml
   - qbittorrent
-  - prowlarr
-  - sonarr
-  - radarr
-  - bazarr
-  - requestrr
+  # - prowlarr
+  # - sonarr
+  # - radarr
+  # - bazarr
+  # - requestrr
   # - flemmarr
