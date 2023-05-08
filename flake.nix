@@ -15,6 +15,7 @@
             fluxcd
             go-task
             kubectl
+            kubernetes-helm
             sops
             velero
             watch

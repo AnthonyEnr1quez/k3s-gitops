@@ -49,12 +49,6 @@ spec:
 
     credentials:
       existingSecret: s3-provider
-    configuration:
-      extraEnvVars:
-        TZ: America/Chicago
-      provider: aws
-      backupStorageLocation:
-        name: default
 
     initContainers:
       - name: velero-plugin-for-aws
@@ -75,15 +69,5 @@ spec:
             - media
           ttl: 360h
   valuesFrom:
-    - targetPath: configuration.backupStorageLocation.bucket
-      kind: Secret
+    - kind: Secret
       name: s3-provider
-      valuesKey: BUCKET_NAME
-    - targetPath: configuration.backupStorageLocation.config.s3Url
-      kind: Secret
-      name: s3-provider
-      valuesKey: S3_URL
-    - targetPath: configuration.backupStorageLocation.config.region
-      kind: Secret
-      name: s3-provider
-      valuesKey: S3_REGION
