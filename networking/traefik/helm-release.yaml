@@ -28,7 +28,7 @@ spec:
     image:
       registry: public.ecr.aws
       repository: docker/library/traefik
-      tag: v2.9.10
+      tag: v2.10.1
     experimental:
       kubernetesGateway:
         enabled: true
