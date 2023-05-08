@@ -5,9 +5,9 @@ resources:
   - namespace.yaml
   - nfs-data.yaml
   - qbittorrent
-  - prowlarr # TODO broken
+  # - prowlarr # TODO broken
   - sonarr
   - radarr
   - bazarr
   - requestrr
-  - flemmarr
+  # - flemmarr
