@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: gcr.io/velero-gcp/velero
-      tag: v1.10.2@sha256:7f61697d4ddc6500c8235da8b61fe7264edfb82bdf6acffa15cc18c77c2ff479
+      tag: v1.11.0@sha256:962935c3a39fa30a524e20a4a57ef389119571e987433714d60a745983085df2
     nodeSelector:
       kubernetes.io/hostname: gulsun
     tolerations:
@@ -58,7 +58,7 @@ spec:
 
     initContainers:
       - name: velero-plugin-for-aws
-        image: gcr.io/velero-gcp/velero-plugin-for-aws:v1.6.1@sha256:c5b6a16d3ab84bcd55fe779c4b6f8c91f0d926c387ea690c5fa5803b4cd3d5e7
+        image: gcr.io/velero-gcp/velero-plugin-for-aws:v1.7.0@sha256:5f5b7eb3b66340069a22a534102eac9cb5a1280798066ec36a9b0af3cbd129f7
         imagePullPolicy: IfNotPresent
         volumeMounts:
           - mountPath: /target
