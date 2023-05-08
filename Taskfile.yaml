@@ -53,6 +53,7 @@ tasks:
   #     --from-backup velero-daily-backup-20221130040003 \
   #     --restore-volumes=true \
   #     --include-namespaces media \
+  #     --include-resources pods,persistentvolumeclaims,persistentvolumes \
   #     --selector app.kubernetes.io/name=calibre \
   #     --show-labels
 
