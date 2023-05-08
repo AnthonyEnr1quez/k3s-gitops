@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/prowlarr-develop
-      tag: 1.3.2.3006@sha256:ad888d1b44d87733a8d971b1d17ff4e0f117e033db0c0a0b10e1e8088e3cf7ba
+      tag: 1.4.1.3258@sha256:21ca1fee60b279a3633e744c16f778ee21c0d1202dcdbea4112791cd1ae36eae
     nodeSelector:
       kubernetes.io/hostname: barzan
     controller:
