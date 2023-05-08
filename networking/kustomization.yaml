@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - metallb
-  # - pod-gateway
+  - pod-gateway
   - gateway-api
   - cert-manager
   - blocky
