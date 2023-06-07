@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/sonarr-develop
-      tag: 4.0.0.484@sha256:9193a7e3cd0b1f7f4f1eda1b1465f842cfbb05b7e8a6778a4f61902ae6baf42b
+      tag: 4.0.0.535@sha256:b3c11b23f489f758d1fd6775606cdb1b55e9b3e6d6bf4aa57c8f370f5e3f1490
     nodeSelector:
       kubernetes.io/hostname: barzan
     controller:
