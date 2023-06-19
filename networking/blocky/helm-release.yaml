@@ -32,7 +32,7 @@ spec:
       repository: ghcr.io/0xerr0r/blocky
       tag: v0.21@sha256:8c02217ff44678ab2246ca497a6cfe5d604e0cc64b7d6098f82269da4b7cfe9b
     nodeSelector:
-      kubernetes.io/arch: arm64
+      kubernetes.io/arch: amd64
     controller:
       replicas: 2
       strategy: RollingUpdate
