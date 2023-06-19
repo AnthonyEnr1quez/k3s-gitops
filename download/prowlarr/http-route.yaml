@@ -13,5 +13,5 @@ spec:
   rules:
     - matches:
       backendRefs:
-        - name: prowlarr
+        - name: prowlarr2
           port: 9696
