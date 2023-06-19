@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: radarr
+  name: radarr2
   namespace: download
 spec:
   chart:
@@ -29,7 +29,7 @@ spec:
       repository: ghcr.io/onedr0p/radarr-develop
       tag: 4.6.0.7439@sha256:2a65961de0e2bdd1c99a8ca7a92166d0e9d92ad42fc20fd7cacd260dab92d147
     nodeSelector:
-      kubernetes.io/hostname: barzan
+      kubernetes.io/hostname: loreto
     controller:
       type: statefulset
     podSecurityContext:
