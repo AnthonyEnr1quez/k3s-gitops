@@ -13,5 +13,5 @@ spec:
   rules:
     - matches:
       backendRefs:
-        - name: requestrr
+        - name: requestrr2
           port: 4545

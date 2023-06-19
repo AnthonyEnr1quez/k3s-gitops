@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: requestrr
+  name: requestrr2
   namespace: download
 spec:
   chart:
@@ -29,7 +29,7 @@ spec:
       repository: docker.io/darkalfx/requestrr
       tag: v2.1.2
     nodeSelector:
-      kubernetes.io/hostname: barzan
+      kubernetes.io/hostname: loreto
     controller:
       type: statefulset
     podAnnotations:
