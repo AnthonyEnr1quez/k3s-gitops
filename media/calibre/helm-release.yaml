@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: lscr.io/linuxserver/calibre
-      tag: 6.19.1
+      tag: 6.23.0
     nodeSelector:
       kubernetes.io/hostname: gulsun
     controller:
