@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: velero
-      version: 4.0.2
+      version: 4.1.3
       sourceRef:
         kind: HelmRepository
         name: vmware-tanzu
@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: gcr.io/velero-gcp/velero
-      tag: v1.11.0@sha256:962935c3a39fa30a524e20a4a57ef389119571e987433714d60a745983085df2
+      tag: v1.11.1@sha256:5d07ba747b05ecda48b67e1040d0bd917b98433eb9158c2eb60d8879a12715b3
     nodeSelector:
       kubernetes.io/hostname: gulsun
     tolerations:
