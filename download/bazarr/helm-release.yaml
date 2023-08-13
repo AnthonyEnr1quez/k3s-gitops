@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/bazarr
-      tag: 1.2.4@sha256:fae1b61e2764950e7d6f9c3f74576580d95785292fc6aaa7bcfde8c64e671096
+      tag: 1.2.4@sha256:80fbe89f5806015d67aa78c60bf64c068998507d08db5ea05ac7b9916dabb880
     nodeSelector:
       kubernetes.io/hostname: loreto
     controller:
