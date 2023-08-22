@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/sonarr-develop
-      tag: 4.0.0.577@sha256:753e931408dbfaa629f6c1983124feced727228f6efb1b2bd37d7c11caa68147
+      tag: 4.0.0.642@sha256:57dd9fe618be6de7e6f9f43b84658506196fc33ff6983d33cf6b942de66643cb
     nodeSelector:
       kubernetes.io/hostname: loreto
     controller:
