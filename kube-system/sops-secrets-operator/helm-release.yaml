@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: sops-secrets-operator
-      version: 0.15.1
+      version: 0.15.4
       sourceRef:
         kind: HelmRepository
         name: sops-secrets-operator
@@ -26,7 +26,7 @@ spec:
   values:
     image:
       repository: isindir/sops-secrets-operator
-      tag: 0.9.1
+      tag: 0.9.4
     secretsAsFiles:
       - name: age
         mountPath: /etc/age
