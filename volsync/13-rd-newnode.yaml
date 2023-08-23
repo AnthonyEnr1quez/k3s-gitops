@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: restic-config
+  namespace: test
+type: Opaque
+stringData:
+  # The repository url
+  # new nodes have to specify the full url, wont be a problem once using external s3
+  RESTIC_REPOSITORY: s3:http://minio.volsync.svc.cluster.local:9000/restic-repo
+  # # The repository encryption key
+  RESTIC_PASSWORD: my-secure-restic-password
+  # ENV vars specific to the chosen back end
+  # https://restic.readthedocs.io/en/stable/030_preparing_a_new_repo.html
+  AWS_ACCESS_KEY_ID: access
+  AWS_SECRET_ACCESS_KEY: password
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationDestination
+metadata:
+  name: datavol-dest-2
+spec:
+  trigger:
+    manual: restore-once
+  restic:
+    repository: restic-config # has to be the same secret at the replication source?
+    # Use an existing PVC, don't provision a new one
+    destinationPVC: bb-pvc-3
+    copyMethod: Direct

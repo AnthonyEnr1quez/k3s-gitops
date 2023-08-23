@@ -1,0 +1,13 @@
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationDestination
+metadata:
+  name: datavol-dest
+spec:
+  trigger:
+    manual: restore-once
+  restic:
+    repository: restic-config # has to be the same secret at the replication source?
+    # Use an existing PVC, don't provision a new one
+    destinationPVC: bb-pvc-restore
+    copyMethod: Direct
