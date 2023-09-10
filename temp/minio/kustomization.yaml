@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - bitnami.yaml
   - helm-release.yaml
+  - http-route.yaml
