@@ -26,3 +26,13 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  values:
+    # serviceMonitor:
+    #   create: true
+    volumeSnapshotClasses:
+      - name: democratic-csi-local-hostpath
+        driver: org.democratic-csi.local-hostpath
+        annotations:
+          snapshot.storage.kubernetes.io/is-default-class: "true"
+        deletionPolicy: Delete
+        parameters: {}
