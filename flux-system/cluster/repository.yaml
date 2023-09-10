@@ -22,3 +22,5 @@ spec:
     !/storage
     !/system-upgrade
     !/velero
+    # todo remove
+    !/temp
