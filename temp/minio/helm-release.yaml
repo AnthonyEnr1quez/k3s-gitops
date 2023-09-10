@@ -26,6 +26,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    nodeSelector:
+        kubernetes.io/hostname: loreto
     auth:
       rootUser: access
       rootPassword: password
