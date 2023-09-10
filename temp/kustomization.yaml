@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - minio
-  - busybox
+  # - busybox
