@@ -23,7 +23,6 @@ spec:
       kubernetes.io/hostname: loreto
     controller:
       type: statefulset
-      replicas: 2
     service:
       main:
         enabled: false
