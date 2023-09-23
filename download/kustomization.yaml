@@ -6,8 +6,8 @@ resources:
   - nfs-data.yaml
   - qbittorrent
   - prowlarr
-  - sonarr
-  - radarr
+  # - sonarr
+  # - radarr
   - bazarr
   - requestrr
   # - flemmarr
