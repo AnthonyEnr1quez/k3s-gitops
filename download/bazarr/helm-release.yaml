@@ -38,8 +38,8 @@ spec:
       fsGroup: 568
       fsGroupChangePolicy: OnRootMismatch
       supplementalGroups: [100]
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
+    # podAnnotations:
+    #   backup.velero.io/backup-volumes: config
     env:
       TZ: America/Chicago
     service:
@@ -51,8 +51,7 @@ spec:
       config:
         enabled: true
         retain: true
-        annotations:
-          volumeType: local
+        storageClass: local-hostpath
       data:
         enabled: true
         existingClaim: nfs-data
