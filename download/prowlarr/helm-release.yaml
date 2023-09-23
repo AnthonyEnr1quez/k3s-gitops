@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: prowlarr2
+  name: prowlarr
   namespace: download
 spec:
   chart:
@@ -33,7 +33,7 @@ spec:
     controller:
       type: statefulset
     podAnnotations:
-      backup.velero.io/backup-volumes: config
+      # backup.velero.io/backup-volumes: config
       setGateway: "true" #todo
     env:
       TZ: America/Chicago
@@ -46,5 +46,4 @@ spec:
       config:
         enabled: true
         retain: true
-        annotations:
-          volumeType: local
+        storageClass: local-hostpath
