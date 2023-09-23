@@ -13,5 +13,5 @@ spec:
   rules:
     - matches:
       backendRefs:
-        - name: radarr2
+        - name: radarr
           port: 7878

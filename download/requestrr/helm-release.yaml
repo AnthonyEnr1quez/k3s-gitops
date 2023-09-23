@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: requestrr2
+  name: requestrr
   namespace: download
 spec:
   chart:
@@ -32,8 +32,8 @@ spec:
       kubernetes.io/hostname: loreto
     controller:
       type: statefulset
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
+    # podAnnotations:
+    #   backup.velero.io/backup-volumes: config
     env:
       TZ: America/Chicago
     service:
@@ -46,5 +46,4 @@ spec:
         enabled: true
         retain: true
         mountPath: /root/config
-        annotations:
-          volumeType: local
+        storageClass: local-hostpath
