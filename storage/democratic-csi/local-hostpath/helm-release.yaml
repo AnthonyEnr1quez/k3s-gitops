@@ -40,9 +40,10 @@ spec:
     # TODO delete ?
     volumeSnapshotClasses:
       - name: local-hostpath
+        annotations:
+          snapshot.storage.kubernetes.io/is-default-class: "true"
         deletionPolicy: Delete
-        parameters:
-          dummy: {}
+        parameters: {}
     controller:
       enabled: true
       strategy: node

@@ -7,7 +7,7 @@ metadata:
 spec:
   interval: 1h
   dependsOn:
-    - name: repositories
+    - name: kube-system
   path: ./storage
   prune: true
   sourceRef:
