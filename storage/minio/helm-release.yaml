@@ -28,4 +28,5 @@ spec:
   values:
     nodeSelector:
         kubernetes.io/hostname: loreto
-    auth.existingSecret: minio-auth
+    auth:
+      existingSecret: minio-auth
