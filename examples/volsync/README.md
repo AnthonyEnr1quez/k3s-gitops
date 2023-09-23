@@ -14,3 +14,4 @@ Do I need privileged movers?
 - https://github.com/AnthonyEnr1quez/k3s-gitops/commit/fe2f2b8ffc7048d134cfee0b6ad628f3ba7c9aaf
 - remove the minio hr and bitnami helm repo
 - test diff volumesnapshotclasses
+  - currently using sc
