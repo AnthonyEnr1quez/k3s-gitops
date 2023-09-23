@@ -3,9 +3,9 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: minio
-  namespace: temp
+  namespace: storage
 spec:
-  interval: 15m
+  interval: 1h
   chart:
     spec:
       chart: minio

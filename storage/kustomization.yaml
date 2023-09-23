@@ -6,4 +6,5 @@ resources:
   - local-path-provisioner
   - democratic-csi
   - nfs-server
+  - minio
   - volsync
