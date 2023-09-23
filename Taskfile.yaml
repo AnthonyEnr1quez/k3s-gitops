@@ -49,13 +49,13 @@ tasks:
   #     // wait till pvc and pv are deleted
   #     kubectl delete pvc calibre-config
 
-  #     velero restore create \
-  #     --from-backup velero-daily-backup-20221130040003 \
-  #     --restore-volumes=true \
-  #     --include-namespaces media \
-  #     --include-resources pods,persistentvolumeclaims,persistentvolumes \
-  #     --selector app.kubernetes.io/name=calibre \
-  #     --show-labels
+      # velero restore create \
+      # --from-backup velero-daily-backup-20230619040044 \
+      # --restore-volumes=true \
+      # --include-namespaces download \
+      # --include-resources pods,persistentvolumeclaims,persistentvolumes,statefulsets \
+      # --selector app.kubernetes.io/name=bazarr \
+      # --show-labels
 
   #     // restore other stuff
   #     kubectl apply --kustomize calibre
