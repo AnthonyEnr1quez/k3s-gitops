@@ -28,7 +28,4 @@ spec:
   values:
     nodeSelector:
         kubernetes.io/hostname: loreto
-    auth:
-      rootUser: access
-      rootPassword: password
-    defaultBuckets: mybucket
+    auth.existingSecret: minio-auth
