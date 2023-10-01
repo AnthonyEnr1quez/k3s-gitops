@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: velero
-      version: 4.1.3
+      version: 4.4.1
       sourceRef:
         kind: HelmRepository
         name: vmware-tanzu
@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: gcr.io/velero-gcp/velero
-      tag: v1.11.1@sha256:5d07ba747b05ecda48b67e1040d0bd917b98433eb9158c2eb60d8879a12715b3
+      tag: v1.12.0@sha256:334776cc5f29831ac84d64bccfe4284eeaab8013732079665a462b0cbe2133d2
     nodeSelector:
       kubernetes.io/hostname: gulsun
     tolerations:
@@ -52,7 +52,7 @@ spec:
 
     initContainers:
       - name: velero-plugin-for-aws
-        image: gcr.io/velero-gcp/velero-plugin-for-aws:v1.7.0@sha256:5f5b7eb3b66340069a22a534102eac9cb5a1280798066ec36a9b0af3cbd129f7
+        image: gcr.io/velero-gcp/velero-plugin-for-aws:v1.8.0@sha256:466d4ee963de87b28e38098f5f91401bde514c7c2449ea6da4009be626a08f6c
         imagePullPolicy: IfNotPresent
         volumeMounts:
           - mountPath: /target
