@@ -31,8 +31,8 @@ spec:
       kubernetes.io/hostname: gulsun
     controller:
       type: statefulset
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
+    # podAnnotations:
+    #   backup.velero.io/backup-volumes: config
     env:
       TZ: America/Chicago
     service:
@@ -50,5 +50,4 @@ spec:
         retain: true
         mountPath: /data
         size: 1Gi
-        annotations:
-          volumeType: local
+        storageClass: local-hostpath

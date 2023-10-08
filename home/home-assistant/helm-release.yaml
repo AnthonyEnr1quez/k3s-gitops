@@ -38,8 +38,8 @@ spec:
       fsGroup: 612
       fsGroupChangePolicy: OnRootMismatch
       allowPrivilegeEscalation: false 
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
+    # podAnnotations:
+    #   backup.velero.io/backup-volumes: config
     env:
       TZ: America/Chicago
     service:
@@ -61,8 +61,7 @@ spec:
         enabled: true
         retain: true
         size: 5Gi
-        annotations:
-          volumeType: local
+        storageClass: local-hostpath
     resources:
       requests:
         cpu: 10m
