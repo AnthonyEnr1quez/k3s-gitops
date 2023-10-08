@@ -32,8 +32,8 @@ spec:
       kubernetes.io/hostname: gulsun
     controller:
       type: statefulset
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
+    # podAnnotations:
+    #   backup.velero.io/backup-volumes: config
     env:
       CALIBRE_OVERRIDE_DATABASE_PATH: /config/metadata.db
       TZ: America/Chicago
@@ -57,8 +57,7 @@ spec:
       config:
         enabled: true
         retain: true
-        annotations:
-          volumeType: local
+        storageClass: local-hostpath
       books:
         enabled: true
         mountPath: /books
