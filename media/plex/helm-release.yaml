@@ -36,8 +36,8 @@ spec:
         effect: NoSchedule
     controller:
       type: statefulset
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
+    # podAnnotations:
+    #   backup.velero.io/backup-volumes: config
     env:
       TZ: America/Chicago
     service:
@@ -53,8 +53,7 @@ spec:
         enabled: true
         retain: true
         size: 50Gi
-        annotations:
-          volumeType: local
+        storageClass: local-hostpath
       data:
         enabled: true
         mountPath: /data/media
