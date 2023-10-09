@@ -31,8 +31,6 @@ spec:
       kubernetes.io/hostname: gulsun
     controller:
       type: statefulset
-    # podAnnotations:
-    #   backup.velero.io/backup-volumes: config
     env:
       TZ: America/Chicago
     service:

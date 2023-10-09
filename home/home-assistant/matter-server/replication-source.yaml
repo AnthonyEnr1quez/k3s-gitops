@@ -1,0 +1,20 @@
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: &source matter-server-config
+  namespace: home
+spec:
+  sourcePVC: *source
+  trigger:
+    # every day at 9 UTC (4 am CDT)
+    schedule: "0 9 * * *"
+  restic:
+    copyMethod: Snapshot
+    repository: restic-matter-server-config
+    # Prune the repository (repack to free space) every 2 weeks
+    pruneIntervalDays: 14
+    retain:
+      daily: 14
+      within: 14d
+    capacity: 1Gi
