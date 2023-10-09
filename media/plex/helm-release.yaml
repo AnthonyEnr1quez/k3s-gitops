@@ -36,8 +36,6 @@ spec:
         effect: NoSchedule
     controller:
       type: statefulset
-    # podAnnotations:
-    #   backup.velero.io/backup-volumes: config
     env:
       TZ: America/Chicago
     service:
