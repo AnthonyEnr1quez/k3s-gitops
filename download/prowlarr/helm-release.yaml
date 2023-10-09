@@ -33,7 +33,6 @@ spec:
     controller:
       type: statefulset
     podAnnotations:
-      # backup.velero.io/backup-volumes: config
       setGateway: "true" #todo
     env:
       TZ: America/Chicago
