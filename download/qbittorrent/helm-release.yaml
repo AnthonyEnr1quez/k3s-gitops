@@ -39,7 +39,6 @@ spec:
       fsGroupChangePolicy: OnRootMismatch
       supplementalGroups: [100]
     podAnnotations:
-    #   backup.velero.io/backup-volumes: config
       setGateway: "true" #todo
     env:
       QBITTORRENT__PORT: &port 8080
