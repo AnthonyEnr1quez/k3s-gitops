@@ -38,8 +38,6 @@ spec:
       fsGroup: 612
       fsGroupChangePolicy: OnRootMismatch
       allowPrivilegeEscalation: false 
-    # podAnnotations:
-    #   backup.velero.io/backup-volumes: config
     env:
       TZ: America/Chicago
     service:
