@@ -32,8 +32,6 @@ spec:
       kubernetes.io/hostname: loreto
     controller:
       type: statefulset
-    # podAnnotations:
-    #   backup.velero.io/backup-volumes: config
     env:
       TZ: America/Chicago
     service:
