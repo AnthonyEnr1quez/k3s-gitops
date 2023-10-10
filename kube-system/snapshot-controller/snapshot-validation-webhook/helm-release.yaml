@@ -29,7 +29,7 @@ spec:
   dependsOn:
     - name: snapshot-controller
   values:
-    replicaCount: 3
+    replicaCount: 3 # TODO
     tolerations:
       - key: plex
         operator: Exists

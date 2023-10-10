@@ -23,3 +23,5 @@ spec:
       daily: 14
       within: 14d
     capacity: 5Gi
+    cacheStorageClassName: &sc local-hostpath-gulsun
+    storageClassName: *sc

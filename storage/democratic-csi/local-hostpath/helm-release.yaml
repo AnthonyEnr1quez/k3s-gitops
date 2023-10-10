@@ -30,16 +30,30 @@ spec:
       attachRequired: false
       storageCapacity: true
       fsGroupPolicy: File
-    storageClasses:
-      - name: local-hostpath
+    storageClasses: #TODO, make one for each node?
+      - &sc
+        name: &lhp local-hostpath
         defaultClass: false
         reclaimPolicy: Delete
         volumeBindingMode: WaitForFirstConsumer
         # distributed support is not yet ready for expansion
         allowVolumeExpansion: false
-    # TODO delete ?
+      - <<: *sc
+        name: local-hostpath-gulsun
+        allowedTopologies:
+          - matchLabelExpressions:
+            - key: &topo org.democratic-csi.topology/node
+              values:
+                - gulsun
+      - <<: *sc
+        name: local-hostpath-mina
+        allowedTopologies:
+          - matchLabelExpressions:
+            - key: *topo
+              values:
+                - mina
     volumeSnapshotClasses:
-      - name: local-hostpath
+      - name: *lhp
         annotations:
           snapshot.storage.kubernetes.io/is-default-class: "true"
         deletionPolicy: Delete
@@ -83,7 +97,7 @@ spec:
       driver:
         image: democraticcsi/democratic-csi:v1.8.3
         extraVolumeMounts:
-          - name: local-hostpath
+          - name: *lhp
             # TODO karios partitioning doesnt give my csi storage dir much room
             # This will have to be the path when moving to talos
             # mountPath: &path /var/lib/csi-local-hostpath
@@ -93,7 +107,7 @@ spec:
         enabled: true
         image: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.9.0
       extraVolumes:
-        - name: local-hostpath
+        - name: *lhp
           hostPath:
             path: *path
             type: DirectoryOrCreate
@@ -102,7 +116,7 @@ spec:
       image: docker.io/democraticcsi/csi-grpc-proxy:v0.5.3
     driver:
       config:
-        driver: local-hostpath
+        driver: *lhp
         instance_id:
         local-hostpath:
           shareBasePath: *path
