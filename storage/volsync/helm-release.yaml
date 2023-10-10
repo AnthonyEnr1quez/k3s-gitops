@@ -28,3 +28,9 @@ spec:
     manageCRDs: true
     metrics:
       disableAuth: true
+    nodeSelector:
+      kubernetes.io/hostname: loreto
+    tolerations:
+      - key: plex
+        operator: Exists
+        effect: NoSchedule
