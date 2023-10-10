@@ -24,3 +24,4 @@ spec:
       daily: 14
       within: 14d
     capacity: 10Gi
+    storageClassName: local-hostpath

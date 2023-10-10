@@ -24,4 +24,4 @@ spec:
       daily: 14
       within: 14d
     capacity: 1Gi
-## TODO not working ! says directory is empty
+    storageClassName: local-hostpath
