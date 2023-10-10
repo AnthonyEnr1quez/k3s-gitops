@@ -35,6 +35,8 @@ spec:
         effect: NoSchedule
     args:
       leaderElection: true
+      leaderElectionNamespace: "$(NAMESPACE)"
+      httpEndpoint: ":8080"
       enableDistributedSnapshotting: true
     # serviceMonitor:
     #   create: true
