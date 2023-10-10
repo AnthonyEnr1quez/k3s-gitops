@@ -28,9 +28,29 @@ spec:
     manageCRDs: true
     metrics:
       disableAuth: true
-    nodeSelector:
-      kubernetes.io/hostname: loreto
-    tolerations:
-      - key: plex
-        operator: Exists
-        effect: NoSchedule
+    # nodeSelector:
+    #   kubernetes.io/hostname: loreto
+    # tolerations:
+    #   - key: plex
+    #     operator: Exists
+    #     effect: NoSchedule
+    image:
+      repository: &image anthonyenr1quez/volsync
+      pullPolicy: IfNotPresent
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: &tag 0.7.1-custom
+    rclone:
+      repository: *image
+      tag: *tag
+    restic:
+      repository: *image
+      tag: *tag
+    rsync:
+      repository: *image
+      tag: *tag
+    rsync-tls:
+      repository: *image
+      tag: *tag
+    syncthing:
+      repository: *image
+      tag: *tag
