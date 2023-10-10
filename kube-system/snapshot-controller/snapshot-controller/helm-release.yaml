@@ -27,6 +27,15 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    # TODO everthing under here is testing
+    replicaCount: 3
+    tolerations:
+      - key: plex
+        operator: Exists
+        effect: NoSchedule
+    args:
+      leaderElection: true
+      enableDistributedSnapshotting: true
     # serviceMonitor:
     #   create: true
     # volumeSnapshotClasses:
