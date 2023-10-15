@@ -4,8 +4,6 @@ kind: PersistentVolume
 metadata:
   name: nfs-data-download
   namespace: download
-  labels:
-    velero.io/exclude-from-backup: 'true'
 spec:
   storageClassName: ""
   capacity:
@@ -32,8 +30,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: nfs-data
   namespace: download
-  labels:
-    velero.io/exclude-from-backup: 'true'
 spec:
   accessModes:
     - ReadWriteMany

@@ -38,24 +38,3 @@ tasks:
     desc: Taint mina node to only run plex
     cmds:
       - kubectl taint nodes mina plex:NoSchedule
-
-  ## TODO make this cleaner, look into velero backing up other items?, also why does it try to restore nfs-data
-  # velero:
-  #   desc: Example restore
-  #   cmds:
-  #     - |
-  #     kubectl delete --kustomize calibre
-      
-  #     // wait till pvc and pv are deleted
-  #     kubectl delete pvc calibre-config
-
-      # velero restore create \
-      # --from-backup velero-daily-backup-20230619040044 \
-      # --restore-volumes=true \
-      # --include-namespaces download \
-      # --include-resources pods,persistentvolumeclaims,persistentvolumes,statefulsets \
-      # --selector app.kubernetes.io/name=bazarr \
-      # --show-labels
-
-  #     // restore other stuff
-  #     kubectl apply --kustomize calibre

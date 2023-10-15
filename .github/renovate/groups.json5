@@ -29,12 +29,6 @@
       "matchPackagePatterns": ["fluxcd"],
       "matchDatasources": ["docker", "github-tags"],
       "separateMinorPatch": false
-    },
-    {
-      "groupName": "velero",
-      "matchPackagePatterns": ["velero"],
-      "matchDatasources": ["docker", "helm"],
-      "separateMinorPatch": false
     }
   ]
 }

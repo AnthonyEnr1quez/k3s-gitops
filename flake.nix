@@ -17,7 +17,6 @@
             kubectl
             kubernetes-helm
             sops
-            velero
             watch
           ];
         };
