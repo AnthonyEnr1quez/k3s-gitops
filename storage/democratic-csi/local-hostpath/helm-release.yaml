@@ -86,7 +86,7 @@ spec:
         image: registry.k8s.io/sig-storage/csi-snapshotter:v6.3.0
         extraArgs:
           - --leader-election=false
-          - --node-deployment=true # TODO, turning this on breaks snapshots :(
+          - --node-deployment=true # TODO, this only works rn with node topo storage classes
     node:
       tolerations:
         - key: plex
