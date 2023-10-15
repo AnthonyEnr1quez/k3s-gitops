@@ -7,16 +7,11 @@ metadata:
 spec:
   chart:
     spec:
-      # chart: volsync
-      # version: 0.7.1
-      # sourceRef:
-      #   kind: HelmRepository
-      #   name: backube
-      #   namespace: flux-system
-      chart: helm/volsync
+      chart: volsync
+      version: 0.7.1
       sourceRef:
-        kind: GitRepository
-        name: volsync
+        kind: HelmRepository
+        name: backube
         namespace: flux-system
   interval: 1h
   maxHistory: 3
@@ -33,23 +28,3 @@ spec:
     manageCRDs: true
     metrics:
       disableAuth: true
-    image:
-      repository: &image anthonyenr1quez/volsync
-      pullPolicy: IfNotPresent
-      # Overrides the image tag whose default is the chart appVersion.
-      tag: &tag test2-custom
-    rclone:
-      repository: *image
-      tag: *tag
-    restic:
-      repository: *image
-      tag: *tag
-    rsync:
-      repository: *image
-      tag: *tag
-    rsync-tls:
-      repository: *image
-      tag: *tag
-    syncthing:
-      repository: *image
-      tag: *tag
