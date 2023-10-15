@@ -30,7 +30,7 @@ spec:
   values:
     image:
       repository: ghcr.io/0xerr0r/blocky
-      tag: v0.21@sha256:8c02217ff44678ab2246ca497a6cfe5d604e0cc64b7d6098f82269da4b7cfe9b
+      tag: v0.22@sha256:ba17812054a15b58ac80772afe404e7caa1da8c972f0c9ff7754eb3924fd5f57
     nodeSelector:
       kubernetes.io/arch: amd64
     controller:
