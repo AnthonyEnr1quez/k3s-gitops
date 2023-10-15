@@ -37,4 +37,4 @@ tasks:
   plex-taint:
     desc: Taint mina node to only run plex
     cmds:
-      - kubectl taint nodes mina plex:NoSchedule
+      - kubectl taint nodes mina plex:PreferNoSchedule

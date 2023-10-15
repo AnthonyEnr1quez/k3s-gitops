@@ -33,4 +33,4 @@ spec:
     tolerations:
       - key: plex
         operator: Exists
-        effect: NoSchedule
+        effect: PreferNoSchedule

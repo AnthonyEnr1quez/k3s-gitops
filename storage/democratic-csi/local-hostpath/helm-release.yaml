@@ -61,10 +61,6 @@ spec:
     controller:
       enabled: true
       strategy: node
-      tolerations:
-        - key: plex
-          operator: Exists
-          effect: NoSchedule
       externalAttacher:
         enabled: false
       externalProvisioner:
@@ -88,10 +84,6 @@ spec:
           - --leader-election=false
           - --node-deployment=true # TODO, this only works rn with node topo storage classes
     node:
-      tolerations:
-        - key: plex
-          operator: Exists
-          effect: NoSchedule
       cleanup:
         image: public.ecr.aws/docker/library/busybox:1.36.1
       driver:

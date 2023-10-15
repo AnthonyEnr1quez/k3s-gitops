@@ -26,10 +26,6 @@ spec:
     keepHistory: false
   values:
     speaker:
-      tolerations:
-        - key: plex
-          operator: Exists
-          effect: NoSchedule
       livenessProbe:
         enabled: true
         failureThreshold: 3

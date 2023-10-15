@@ -19,7 +19,7 @@ spec:
   tolerations:
     - key: plex
       operator: Exists
-      effect: NoSchedule
+      effect: PreferNoSchedule
   upgrade:
     image: quay.io/kairos/kairos-opensuse-leap
     command:
