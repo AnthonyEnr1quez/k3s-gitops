@@ -5,5 +5,5 @@ resources:
   - helm-release.yaml
   - sops-secret.enc.yaml
   - replication-source.yaml
-  - http-routes.yaml
-  - ingress-route.yaml
+  # - http-routes.yaml
+  # - ingress-route.yaml
