@@ -9,3 +9,4 @@ resources:
   - cert-manager
   - blocky
   - traefik
+  - envoy-gateway
