@@ -28,7 +28,7 @@ spec:
   values:
     image:
       repository: quay.io/jetstack/cert-manager-controller
-      tag: v1.13.2@sha256:f1b8dad1af13e625ae4581fa3dd47b51d021d6ae2b8cec19e89326f9e89dc6ce
+      tag: v1.13.2@sha256:9c67cf8c92d8693f9b726bec79c2a84d2cebeb217af6947355601dec4acfa966
     installCRDs: true
     # webhook:
     featureGates: &fg "ExperimentalGatewayAPISupport=true"
