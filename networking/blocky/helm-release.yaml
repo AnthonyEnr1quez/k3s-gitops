@@ -103,6 +103,8 @@ spec:
             customDNS:
               customTTL: 1h
               filterUnmappedTypes: true
+              rewrite:
+                replace-me.com: example.com
               mapping:
                 ant-podz.xyz: 192.168.0.230
                 example.com: 192.168.0.233
