@@ -5,7 +5,7 @@ metadata:
   name: selfsigned
   namespace: networking
 spec:
-  secretName: selfsigned
+  secretName: selfsigned-tls
   issuerRef:
     name: selfsigned
     kind: ClusterIssuer
