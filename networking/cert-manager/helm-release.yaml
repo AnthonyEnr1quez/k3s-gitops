@@ -33,5 +33,12 @@ spec:
     # webhook:
     featureGates: &fg "ExperimentalGatewayAPISupport=true"
     # featureGates: *fg
+    dns01RecursiveNameservers: 1.1.1.1:53,9.9.9.9:53
+    dns01RecursiveNameserversOnly: true
+    podDnsPolicy: None
+    podDnsConfig:
+      nameservers:
+        - "1.1.1.1"
+        - "9.9.9.9"
     prometheus:
       enabled: false
