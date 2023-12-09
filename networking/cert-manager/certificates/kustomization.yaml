@@ -5,4 +5,4 @@ resources:
   - sops-secret.enc.yaml
   - selfsigned.yaml
   - lets-encrypt-staging.yaml
-  # - lets-encrypt-production.yaml
+  - lets-encrypt-production.yaml
