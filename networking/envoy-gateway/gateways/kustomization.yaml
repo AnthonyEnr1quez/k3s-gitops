@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - sops-secret.enc.yaml
   # - staging.yaml
+  - production.yaml
