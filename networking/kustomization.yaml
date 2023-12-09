@@ -8,5 +8,5 @@ resources:
   - gateway-api
   - cert-manager
   - blocky
-  - traefik
+  # - traefik
   - envoy-gateway
