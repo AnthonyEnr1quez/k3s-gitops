@@ -8,7 +8,7 @@ spec:
   interval: 1h
   dependsOn:
     - name: storage
-    - name: networking-issuers
+    - name: networking-cluster-issuers
   path: ./download
   prune: true
   sourceRef:
