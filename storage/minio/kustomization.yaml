@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - sops-secret.enc.yaml
   - helm-release.yaml
-  # - http-route.yaml
+  - http-route.yaml
