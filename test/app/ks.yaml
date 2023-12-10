@@ -4,6 +4,7 @@ kind: Kustomization
 metadata:
   name: &appname bb
   namespace: flux-system
+  # namespace: test
 spec:
   targetNamespace: test
   # commonMetadata:
@@ -15,6 +16,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
+    namespace: flux-system # TODO
   wait: false
   postBuild:
     substituteFrom:
