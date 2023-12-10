@@ -21,3 +21,5 @@ spec:
     !/media
     !/storage
     !/system-upgrade
+    # TODO temp
+    !/test
