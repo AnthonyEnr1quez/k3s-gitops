@@ -54,7 +54,7 @@ spec:
           # Name of the section within the target resource.
           sectionName: https
         hostnames:
-          - "bbk2.${HOSTNAME}"
+          - "bbk2.${INTERNAL_HOSTNAME}"
         rules:
           - backendRefs:
               - name: busybox
