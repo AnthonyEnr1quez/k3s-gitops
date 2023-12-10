@@ -13,6 +13,10 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: hostnames
 ---
 ## TODO, is there a way to delay this? or healthcheck the cert-manager webhook
 ## ✗ Kustomization reconciliation failed: ClusterIssuer/lets-encrypt-production dry-run failed, reason: InternalError,error: Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "https://cert-manager-webhook.networking.svc:443/mutate?timeout=10s": x509: certificate signed by unknown authority
