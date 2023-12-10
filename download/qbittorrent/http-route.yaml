@@ -8,7 +8,7 @@ spec:
   hostnames:
     - "qbittorrent.${INTERNAL_HOSTNAME}"
   parentRefs:
-    - name: traefik-production
+    - name: production
       namespace: networking
   rules:
     - matches:
