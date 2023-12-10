@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   hostnames:
-    - flux-webhook.ant-podz.xyz
+    - "flux-webhook.${INTERNAL_HOSTNAME}"
   parentRefs:
     - name: traefik-production
       namespace: networking

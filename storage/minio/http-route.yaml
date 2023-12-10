@@ -6,7 +6,7 @@ metadata:
   namespace: storage
 spec:
   hostnames:
-    - minio.ant-podz.xyz
+    - "minio.${INTERNAL_HOSTNAME}"
   parentRefs:
     - name: traefik-production
       namespace: networking

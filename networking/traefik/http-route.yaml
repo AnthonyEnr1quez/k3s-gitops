@@ -28,7 +28,7 @@ spec:
             - name: traefik-production
               namespace: networking
           hostnames:
-            - traefik.ant-podz.xyz
+            - "traefik.${INTERNAL_HOSTNAME}"
           rules:
             - matches:
                 - path:

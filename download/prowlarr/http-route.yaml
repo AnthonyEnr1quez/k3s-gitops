@@ -6,7 +6,7 @@ metadata:
   namespace: download
 spec:
   hostnames:
-    - prowlarr.ant-podz.xyz
+    - "prowlarr.${INTERNAL_HOSTNAME}"
   parentRefs:
     - name: traefik-production
       namespace: networking

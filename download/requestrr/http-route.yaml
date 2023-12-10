@@ -6,7 +6,7 @@ metadata:
   namespace: download
 spec:
   hostnames:
-    - requestrr.ant-podz.xyz
+    - "requestrr.${INTERNAL_HOSTNAME}"
   parentRefs:
     - name: traefik-production
       namespace: networking

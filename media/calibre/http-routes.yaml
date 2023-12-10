@@ -6,7 +6,7 @@ metadata:
   namespace: media
 spec:
   hostnames:
-    - calibre.ant-podz.xyz
+    - "calibre.${INTERNAL_HOSTNAME}"
   parentRefs:
     - name: traefik-production
       namespace: networking
@@ -23,7 +23,7 @@ metadata:
   namespace: media
 spec:
   hostnames:
-    - calibre-webserver.ant-podz.xyz
+    - "calibre-webserver.${INTERNAL_HOSTNAME}"
   parentRefs:
     - name: traefik-production
       namespace: networking

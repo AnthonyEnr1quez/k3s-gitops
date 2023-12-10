@@ -6,7 +6,7 @@ metadata:
   namespace: download
 spec:
   hostnames:
-    - qbittorrent.ant-podz.xyz
+    - "qbittorrent.${INTERNAL_HOSTNAME}"
   parentRefs:
     - name: traefik-production
       namespace: networking
