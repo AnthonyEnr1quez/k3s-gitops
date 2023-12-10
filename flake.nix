@@ -17,6 +17,7 @@
             kubectl
             kubernetes-helm
             sops
+            jq
             watch
           ];
         };
