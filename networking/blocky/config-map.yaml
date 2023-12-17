@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blocky
+  namespace: networking
+data:
+  config.yml: |-
+    upstream:
+      default:
+        - tcp-tls:one.one.one.one:853
+        - tcp-tls:dns.quad9.net:853
+    bootstrapDns: tcp+udp:1.1.1.1
+    redis:
+      address: blocky-redis:6379
+      # password: ${REDIS_PASSWORD}
+      required: true
+      connectionAttempts: 10
+      connectionCooldown: 3s
+    customDNS:
+      customTTL: 1h
+      filterUnmappedTypes: true
+      mapping:
+        # ant-podz.xyz: 192.168.0.230
+        ${INTERNAL_HOSTNAME}: 192.168.0.233
+    blocking:
+      blackLists:
+        ads:
+          - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+          - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
+          - http://sysctl.org/cameleon/hosts
+          - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
+          - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt
+        fakenews:
+          - https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews/hosts
+      whiteLists:
+        ads:
+          - https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt
+      clientGroupsBlock:
+        default:
+          - ads
+          - fakenews
+    # prometheus:
+    #   enable: true
+    #   path: /metrics
+    httpPort: 4000
+    logLevel: info

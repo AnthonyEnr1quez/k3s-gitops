@@ -80,8 +80,8 @@ spec:
     persistence:
       config:
         enabled: true
-        type: secret
-        name: blocky-config
+        type: configMap
+        name: blocky
         mountPath: /app/config.yml
         subPath: config.yml
     resources:
