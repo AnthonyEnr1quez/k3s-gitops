@@ -5,11 +5,13 @@ metadata:
   namespace: networking
 data:
   config.yml: |-
-    upstream:
-      default:
-        - tcp-tls:one.one.one.one:853
-        - tcp-tls:dns.quad9.net:853
-    bootstrapDns: tcp+udp:1.1.1.1
+    upstreams:
+      groups:
+        default:
+          - tcp-tls:one.one.one.one:853
+          - tcp-tls:dns.quad9.net:853
+    bootstrapDns: 
+      - tcp+udp:1.1.1.1
     redis:
       address: blocky-redis:6379
       # password: ${REDIS_PASSWORD}
@@ -20,7 +22,6 @@ data:
       customTTL: 1h
       filterUnmappedTypes: true
       mapping:
-        # ant-podz.xyz: 192.168.0.230
         ${INTERNAL_HOSTNAME}: 192.168.0.233
     blocking:
       blackLists:
@@ -42,5 +43,7 @@ data:
     # prometheus:
     #   enable: true
     #   path: /metrics
-    httpPort: 4000
-    logLevel: info
+    ports:
+      http: 4000
+    log:
+      level: info
