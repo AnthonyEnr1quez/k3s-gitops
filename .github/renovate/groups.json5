@@ -19,12 +19,6 @@
       "separateMinorPatch": false
     },
     {
-      "groupName": "traefik",
-      "matchPackagePatterns": ["traefik"],
-      "matchDatasources": ["docker", "helm"],
-      "separateMinorPatch": false
-    },
-    {
       "groupName": "flux",
       "matchPackagePatterns": ["fluxcd"],
       "matchDatasources": ["docker", "github-tags"],
