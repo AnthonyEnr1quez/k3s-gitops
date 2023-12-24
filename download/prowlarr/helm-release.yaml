@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/prowlarr-develop
-      tag: 1.9.3.4013@sha256:c9c2383dd51d1e584db54d49d4f35bd755298c35b63ab6c7514e3790a4375edc
+      tag: 1.11.3.4163@sha256:388ab3fafa6d5239fc931cf974fd32a5f64e88341fb167f815a3ffd370e615bf
     nodeSelector:
       kubernetes.io/hostname: loreto
     controller:
