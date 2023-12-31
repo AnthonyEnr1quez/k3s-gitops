@@ -109,7 +109,7 @@ spec:
     driver:
       config:
         driver: *lhp
-        instance_id:
+        instance_id: *lhp
         local-hostpath:
           shareBasePath: *path
           controllerBasePath: *path
