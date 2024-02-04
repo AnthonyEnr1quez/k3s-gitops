@@ -26,8 +26,8 @@ spec:
     keepHistory: false
   values:
     image:
-      repository: docker.io/darkalfx/requestrr
-      tag: v2.1.2
+      repository: docker.io/thomst08/requestrr
+      tag: v2.1.4
     nodeSelector:
       kubernetes.io/hostname: loreto
     controller:
