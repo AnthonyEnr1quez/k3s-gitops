@@ -9,7 +9,7 @@ spec:
     spec:
       # TODO, cant update until gateway api is updated to v1beta1 :(
       chart: cert-manager
-      version: v1.13.3
+      version: v1.14.1
       sourceRef:
         kind: HelmRepository
         name: jetstack
@@ -28,7 +28,7 @@ spec:
   values:
     image:
       repository: quay.io/jetstack/cert-manager-controller
-      tag: v1.13.3@sha256:2121d4250f5734ee097df243507d06536fc264140dba3425045a825ef597c79d
+      tag: v1.14.1@sha256:3ef9b7e85e89a21c3727f89f6e3f4186853df8de8393e309fa9bcc9a776e69a5
     installCRDs: true
     # webhook:
     featureGates: &fg "ExperimentalGatewayAPISupport=true"
