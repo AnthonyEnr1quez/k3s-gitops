@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/radarr-develop
-      tag: 5.3.1.8438@sha256:bec5e121dd84b3d6533c55e598837ff158e709d4d115d071475e95754951771c
+      tag: 5.3.3.8535@sha256:26828804d18717b6420b55e02f42a59024e3e2170457ae8b381a51f55229056a
     nodeSelector:
       kubernetes.io/hostname: loreto
     controller:
