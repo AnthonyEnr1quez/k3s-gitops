@@ -23,6 +23,12 @@
       "matchPackagePatterns": ["fluxcd"],
       "matchDatasources": ["docker", "github-tags"],
       "separateMinorPatch": false
+    },
+    {
+      "groupName": "envoy",
+      "matchPackagePatterns": ["envoy"],
+      "matchDatasources": ["docker", "github-tags"],
+      "separateMinorPatch": false
     }
   ]
 }
