@@ -29,7 +29,7 @@ spec:
       envoyGateway:
         image:
           repository: docker.io/envoyproxy/gateway
-          tag: v0.5.0
+          tag: v0.6.0
         imagePullPolicy: Always
         resources:
           limits:
