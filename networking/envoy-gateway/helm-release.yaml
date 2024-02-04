@@ -30,6 +30,8 @@ spec:
         image:
           repository: docker.io/envoyproxy/gateway
           tag: v0.6.0
+        cert:
+          expiryDays: 365
         imagePullPolicy: Always
         resources:
           limits:
@@ -38,17 +40,6 @@ spec:
           requests:
             cpu: 100m
             memory: 256Mi
-      kubeRbacProxy:
-        image:
-          repository: gcr.io/kubebuilder/kube-rbac-proxy
-          tag: v0.11.0
-        resources:
-          limits:
-            cpu: 500m
-            memory: 128Mi
-          requests:
-            cpu: 5m
-            memory: 64Mi
       ports:
         - name: grpc
           port: 18000
@@ -73,68 +64,19 @@ spec:
 
     envoyGatewayMetricsService:
       ports:
-        - name: https
-          port: 8443
+        - name: http
+          port: 19001
           protocol: TCP
-          targetPort: https
+          targetPort: 19001
 
     createNamespace: false
 
     kubernetesClusterDomain: cluster.local
 
-    # TODO v0.6.0
-    # deployment:
-    #   envoyGateway:
-    #     cert:
-    #       expiryDays: 365
-    #     image:
-    #       repository: docker.io/envoyproxy/gateway
-    #       tag: v0.5.0
-    #     imagePullPolicy: Always
-    #     resources:
-    #       limits:
-    #         cpu: 500m
-    #         memory: 1024Mi
-    #       requests:
-    #         cpu: 100m
-    #         memory: 256Mi
-    #   ports:
-    #     - name: grpc
-    #       port: 18000
-    #       targetPort: 18000
-    #     - name: ratelimit
-    #       port: 18001
-    #       targetPort: 18001
-    #   replicas: 1
-    #   pod:
-    #     annotations: {}
-    #     labels: {}
-
-    # config:
-    #   envoyGateway:
-    #     gateway:
-    #       controllerName: gateway.envoyproxy.io/gatewayclass-controller
-    #     provider:
-    #       type: Kubernetes
-    #     logging:
-    #       level:
-    #         default: info
-
-    # envoyGatewayMetricsService:
-    #   ports:
-    #     - name: http
-    #       port: 19001
-    #       protocol: TCP
-    #       targetPort: 19001
-
-    # createNamespace: false
-
-    # kubernetesClusterDomain: cluster.local
-
-    # certgen:
-    #   job:
-    #     annotations: {}
-    #     ttlSecondsAfterFinished: 0
-    #   rbac:
-    #     annotations: {}
-    #     labels: {}
+    certgen:
+      job:
+        annotations: {}
+        ttlSecondsAfterFinished: 0
+      rbac:
+        annotations: {}
+        labels: {}
