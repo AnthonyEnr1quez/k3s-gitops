@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: docker.io/thomst08/requestrr
-      tag: v2.1.5
+      tag: v2.1.6
     nodeSelector:
       kubernetes.io/hostname: loreto
     controller:
