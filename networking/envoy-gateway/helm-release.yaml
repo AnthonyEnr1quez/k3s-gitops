@@ -29,7 +29,7 @@ spec:
       envoyGateway:
         image:
           repository: docker.io/envoyproxy/gateway
-          tag: v0.6.0
+          tag: v1.0.0
         cert:
           expiryDays: 365
         imagePullPolicy: Always
