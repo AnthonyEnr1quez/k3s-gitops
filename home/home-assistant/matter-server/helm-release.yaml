@@ -26,7 +26,7 @@ spec:
   values:
     image:
       repository: ghcr.io/home-assistant-libs/python-matter-server
-      tag: 5.6.0@sha256:efa2b9fde4f5f07dae1553be13878b13f3b8c3c3bc1c65c69bc505bfc8d42075
+      tag: 5.9.0@sha256:f857a093129151ac300cfc1d57bd6c3f65917e00d214d8d78e752174357e30ee
     nodeSelector:
       kubernetes.io/hostname: gulsun
     controller:
