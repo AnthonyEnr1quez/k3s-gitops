@@ -87,7 +87,7 @@ spec:
       cleanup:
         image: public.ecr.aws/docker/library/busybox:1.36.1
       driver:
-        image: democraticcsi/democratic-csi:v1.8.4
+        image: democraticcsi/democratic-csi:v1.9.3
         extraVolumeMounts:
           - name: *lhp
             # TODO karios partitioning doesnt give my csi storage dir much room
