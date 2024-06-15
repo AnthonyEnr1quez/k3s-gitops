@@ -5,6 +5,7 @@ metadata:
   name: arm
   namespace: system-upgrade
 spec:
+  # todo remove? pis are not in cluster anymore
   # renovate: datasource=docker depName=quay.io/kairos/kairos-opensuse-leap-arm-rpi versioning=loose
   version: "v2.0.3-k3sv1.26.4-k3s1"
   serviceAccountName: system-upgrade

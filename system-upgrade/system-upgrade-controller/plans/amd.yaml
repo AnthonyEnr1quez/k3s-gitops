@@ -5,8 +5,8 @@ metadata:
   name: amd
   namespace: system-upgrade
 spec:
-  # renovate: datasource=docker depName=quay.io/kairos/kairos-opensuse-leap versioning=loose
-  version: "v2.0.3-k3sv1.26.4-k3s1"
+  # renovate: datasource=docker depName=quay.io/kairos/opensuse versioning=loose
+  version: "leap-15.5-standard-amd64-generic-v3.0.12-k3sv1.29.3-k3s1"
   serviceAccountName: system-upgrade
   concurrency: 1
   cordon: false
@@ -21,6 +21,6 @@ spec:
       operator: Exists
       effect: PreferNoSchedule
   upgrade:
-    image: quay.io/kairos/kairos-opensuse-leap
+    image: quay.io/kairos/opensuse
     command:
       - /usr/sbin/suc-upgrade
