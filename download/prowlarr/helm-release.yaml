@@ -32,6 +32,12 @@ spec:
       kubernetes.io/hostname: loreto
     controller:
       type: statefulset
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: OnRootMismatch
+      supplementalGroups: [100]
     podAnnotations:
       setGateway: "true" #todo
     env:
