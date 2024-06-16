@@ -2,7 +2,7 @@
 ## REF: https://github.com/billimek/k8s-gitops/blob/2d48e3ba92d984e21e5c2267d10d48e867898e0b/default/blocky/blocky.yaml
 ## REF: https://github.com/jr0dd/home-ops/blob/main/cluster/apps/networking/blocky/helm-release.yaml
 ## TODO create config map to sort the ip madness in this ns
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &app blocky
