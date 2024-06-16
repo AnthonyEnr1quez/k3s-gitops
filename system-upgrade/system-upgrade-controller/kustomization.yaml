@@ -7,10 +7,13 @@ resources:
 images:
   - name: rancher/system-upgrade-controller
     newTag: v0.13.4
-patchesStrategicMerge:
-  - |
-    $patch: delete
-    apiVersion: v1
-    kind: Namespace
-    metadata:
-      name: system-upgrade
+patches:
+  - target:
+      kind: Namespace
+      version: v1
+    patch: |
+      $patch: delete
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: system-upgrade

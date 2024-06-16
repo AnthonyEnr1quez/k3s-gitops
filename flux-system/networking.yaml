@@ -1,5 +1,5 @@
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: networking
@@ -22,7 +22,7 @@ spec:
 ## ✗ Kustomization reconciliation failed: ClusterIssuer/lets-encrypt-production dry-run failed, reason: InternalError,error: Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "https://cert-manager-webhook.networking.svc:443/mutate?timeout=10s": x509: certificate signed by unknown authority
 ## TODO should these be moved into their respective namespaces, explore this and regular kustomization differences, also using dysnix raw chart for things
 ## https://github.com/onedr0p/home-ops/blob/0072445beb5f112ff9ef469adaa8a419e186bff6/kubernetes/apps/cert-manager/cert-manager/ks.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: networking-cluster-issuers
