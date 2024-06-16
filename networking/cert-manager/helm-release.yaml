@@ -7,7 +7,6 @@ metadata:
 spec:
   chart:
     spec:
-      # TODO, cant update until gateway api is updated to v1beta1 :(
       chart: cert-manager
       version: v1.15.0
       sourceRef:
@@ -31,8 +30,8 @@ spec:
       tag: v1.15.0@sha256:d3e33a240db1be4076d1d1766fbaddd8a2dc7533d89b9f85e2b65b5419dd36a9
     installCRDs: true
     # webhook:
-    featureGates: &fg "ExperimentalGatewayAPISupport=true"
-    # featureGates: *fg
+    extraArgs:
+      - --enable-gateway-api
     dns01RecursiveNameservers: 1.1.1.1:53,9.9.9.9:53
     dns01RecursiveNameserversOnly: true
     podDnsPolicy: None
