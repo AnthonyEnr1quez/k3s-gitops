@@ -9,15 +9,6 @@ spec:
     kind: OCIRepository
     name: envoy-gateway
     namespace: flux-system
-  # todo delete
-  # chart:
-  #   spec:
-  #     # TODO how to use OCI
-  #     chart: ./charts/gateway-helm
-  #     sourceRef:
-  #       kind: GitRepository
-  #       name: envoy-proxy-gateway
-  #       namespace: flux-system
   interval: 1h
   maxHistory: 3
   install:
@@ -29,59 +20,3 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  # values:
-  #   deployment:
-  #     envoyGateway:
-  #       image:
-  #         repository: docker.io/envoyproxy/gateway
-  #         tag: v0.6.0
-  #       cert:
-  #         expiryDays: 365
-  #       imagePullPolicy: Always
-  #       resources:
-  #         limits:
-  #           cpu: 500m
-  #           memory: 1024Mi
-  #         requests:
-  #           cpu: 100m
-  #           memory: 256Mi
-  #     ports:
-  #       - name: grpc
-  #         port: 18000
-  #         targetPort: 18000
-  #       - name: ratelimit
-  #         port: 18001
-  #         targetPort: 18001
-  #     replicas: 1
-  #     pod:
-  #       annotations: {}
-  #       labels: {}
-
-  #   config:
-  #     envoyGateway:
-  #       gateway:
-  #         controllerName: gateway.envoyproxy.io/gatewayclass-controller
-  #       provider:
-  #         type: Kubernetes
-  #       logging:
-  #         level:
-  #           default: info
-
-  #   envoyGatewayMetricsService:
-  #     ports:
-  #       - name: http
-  #         port: 19001
-  #         protocol: TCP
-  #         targetPort: 19001
-
-  #   createNamespace: false
-
-  #   kubernetesClusterDomain: cluster.local
-
-  #   certgen:
-  #     job:
-  #       annotations: {}
-  #       ttlSecondsAfterFinished: 0
-  #     rbac:
-  #       annotations: {}
-  #       labels: {}
