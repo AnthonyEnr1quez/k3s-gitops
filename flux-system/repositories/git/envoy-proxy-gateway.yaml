@@ -8,4 +8,4 @@ spec:
   interval: 1h
   url: https://github.com/envoyproxy/gateway
   ref:
-    tag: v0.6.0
+    tag: v1.0.2
