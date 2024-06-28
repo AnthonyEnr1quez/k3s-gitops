@@ -2,13 +2,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: radarr
+  name: &app radarr
   namespace: download
 spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 3.2.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -25,32 +25,53 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    image:
-      repository: ghcr.io/onedr0p/radarr-develop
-      tag: 5.6.0.8846@sha256:99c264af3f2d177e6674a9b304b64a35261202de30e54b35d5758d40edd94366
-    nodeSelector:
-      kubernetes.io/hostname: loreto
-    controller:
-      type: statefulset
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-      supplementalGroups: [100]
-    env:
-      TZ: America/Chicago
+    controllers:
+      radarr:
+        type: statefulset
+        containers:
+          app:
+            image:
+              repository: ghcr.io/onedr0p/radarr-develop
+              tag: 5.6.0.8846@sha256:99c264af3f2d177e6674a9b304b64a35261202de30e54b35d5758d40edd94366
+            env:
+              TZ: America/Chicago
+    defaultPodOptions:
+      nodeSelector:
+        kubernetes.io/hostname: loreto
+      securityContext:
+        # runAsNonRoot: true
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups: [100]
+        # seccompProfile: { type: RuntimeDefault }
     service:
-      main:
+      app:
+        controller: *app
         ports:
           http:
-            port: 7878
+            port: &port 7878
+    route:
+      main:
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: production
+            namespace: networking
+        hostnames:
+          - "{{ .Release.Name }}.${INTERNAL_HOSTNAME}"
+        rules:
+          - backendRefs:
+            - name: *app
+              port: *port
     persistence:
       config:
         enabled: true
         retain: true
-        size: 10Gi
         storageClass: local-hostpath
+        accessMode: ReadWriteOnce
+        size: 10Gi
       data:
         enabled: true
         existingClaim: nfs-data
