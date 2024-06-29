@@ -2,13 +2,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: qbittorrent
+  name: &app qbittorrent
   namespace: download
 spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 3.2.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -25,39 +25,64 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    image:
-      repository: ghcr.io/onedr0p/qbittorrent
-      tag: 4.6.5@sha256:c019af23966ebafcaf1713d4553bc043246858b711a7d57d8bee358a89990a3e
-    nodeSelector:
-      kubernetes.io/hostname: gulsun
-    controller:
-      type: statefulset
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-      supplementalGroups: [100]
-    podAnnotations:
-      setGateway: "true" #todo
-    env:
-      QBITTORRENT__PORT: &port 8080
-      QBT_BitTorrent__Session__DefaultSavePath: '/data/torrents'
-      QBT_BitTorrent__Session__DisableAutoTMMByDefault: 'false'
-      QBT_BitTorrent__Session__GlobalMaxRatio: '2'
-      TZ: America/Chicago
+    controllers:
+      qbittorrent:
+        type: statefulset
+        containers:
+          app:
+            image:
+              repository: ghcr.io/onedr0p/qbittorrent
+              tag: 4.6.5@sha256:c019af23966ebafcaf1713d4553bc043246858b711a7d57d8bee358a89990a3e
+            env:
+              QBITTORRENT__PORT: &port 8080
+              QBT_BitTorrent__Session__DefaultSavePath: &path '/data/torrents'
+              QBT_BitTorrent__Session__DisableAutoTMMByDefault: 'false'
+              QBT_BitTorrent__Session__GlobalMaxRatio: '2'
+              TZ: America/Chicago
+    defaultPodOptions:
+      annotations:
+        setGateway: "true" # todo
+      nodeSelector:
+        kubernetes.io/hostname: gulsun
+      securityContext:
+        # runAsNonRoot: true
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups: [100]
+        # seccompProfile: { type: RuntimeDefault }
     service:
-      main:
+      app:
+        controller: *app
         ports:
           http:
             port: *port
+    route:
+      main:
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: production
+            namespace: networking
+        hostnames:
+          - "{{ .Release.Name }}.${INTERNAL_HOSTNAME}"
+        rules:
+          - backendRefs:
+            - name: *app
+              port: *port
     persistence:
       config:
         enabled: true
         retain: true
         storageClass: local-hostpath
+        accessMode: ReadWriteOnce
+        size: 1Gi
       data:
         enabled: true
-        mountPath: /data/torrents
         existingClaim: nfs-data
-        subPath: torrents
+        advancedMounts:
+          qbittorrent:
+            app:
+              - path: *path
+                subPath: torrents
