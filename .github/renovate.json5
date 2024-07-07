@@ -16,6 +16,15 @@
   "onboarding": false,
   "requireConfig": "optional",
   "commitBodyTable": true,
+  "nix": {
+    "enabled": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": [
+      "at any time"
+    ]
+  },
   "flux": {
     "fileMatch": ["\\.yaml$"]
   },

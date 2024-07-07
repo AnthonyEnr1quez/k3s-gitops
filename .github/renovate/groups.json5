@@ -29,6 +29,12 @@
       "matchPackagePatterns": ["envoy"],
       "matchDatasources": ["docker", "github-tags"],
       "separateMinorPatch": false
-    }
+    },
+    {
+      "groupName": "home-assistant",
+      "matchPackagePatterns": ["home-assistant"],
+      "matchDatasources": ["docker", "github-tags"],
+      "separateMinorPatch": false
+    },
   ]
 }
