@@ -2,13 +2,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: home-assistant
+  name: &app home-assistant
   namespace: home
 spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 3.2.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -25,44 +25,56 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    image:
-      repository: ghcr.io/home-assistant/home-assistant
-      tag: 2024.6.3@sha256:d50285bfb61769507e8fd6dc5867512ee752b27c37f47e5308ba908b264ae5f9
-    nodeSelector:
-      kubernetes.io/hostname: gulsun
-    controller:
-      type: statefulset
-    podSecurityContext:
-      runAsUser: 612
-      runAsGroup: 612
-      fsGroup: 612
-      fsGroupChangePolicy: OnRootMismatch
-      allowPrivilegeEscalation: false 
-    env:
-      TZ: America/Chicago
+    controllers:
+      home-assistant:
+        type: statefulset
+        containers:
+          app:
+            image:
+              repository: ghcr.io/home-assistant/home-assistant
+              tag: 2024.6.3@sha256:d50285bfb61769507e8fd6dc5867512ee752b27c37f47e5308ba908b264ae5f9
+            env:
+              TZ: America/Chicago
+            securityContext:
+              runAsUser: 612
+              runAsGroup: 612
+              # allowPrivilegeEscalation: false
+            resources:
+              requests:
+                cpu: 10m
+                memory: 100Mi
+              limits:
+                memory: 750Mi
+            probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
+              startup:
+                enabled: false
+    defaultPodOptions:
+      nodeSelector:
+        kubernetes.io/hostname: gulsun
+      hostNetwork: true
+      securityContext:
+        # runAsUser: 612
+        # runAsGroup: 612
+        fsGroup: 612
+        fsGroupChangePolicy: OnRootMismatch
     service:
-      main:
+      app:
+        controller: *app
         ports:
           http:
             port: 8123
-    hostNetwork: true
-    dnsPolicy: ClusterFirstWithHostNet
-    probes:
-      liveness:
-        enabled: false
-      readiness:
-        enabled: false
-      startup:
-        enabled: false
     persistence:
       config:
         enabled: true
         retain: true
-        size: 5Gi
         storageClass: local-hostpath
-    resources:
-      requests:
-        cpu: 10m
-        memory: 100Mi
-      limits:
-        memory: 750Mi
+        accessMode: ReadWriteOnce
+        size: 5Gi
+        advancedMounts:
+          home-assistant:
+            app:
+              - path: /config
