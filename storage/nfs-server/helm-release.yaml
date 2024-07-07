@@ -2,13 +2,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: nfs-server
+  name: &app nfs-server
   namespace: storage
 spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 3.2.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -25,19 +25,35 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    image:
-      repository: docker.io/itsthenetwork/nfs-server-alpine
-      # TODO https://github.com/aminvakil/docker-alpine-nfs-server
-      # repository: quay.io/aminvakil/alpine-nfs-server
-      tag: latest
-    nodeSelector:
-      kubernetes.io/hostname: mina
-    env:
-      TZ: America/Chicago
-      SHARED_DIRECTORY: /nfsshare
+    controllers:
+      nfs-server:
+        containers:
+          server:
+            image:
+              repository: docker.io/itsthenetwork/nfs-server-alpine
+              # TODO https://github.com/aminvakil/docker-alpine-nfs-server
+              # repository: quay.io/aminvakil/alpine-nfs-server
+              tag: latest
+            env:
+              TZ: America/Chicago
+              SHARED_DIRECTORY: &path /nfsshare
+            securityContext:
+              capabilities:
+                add:
+                  - SYS_ADMIN
+                  - SETPCAP
+    defaultPodOptions:
+      nodeSelector:
+        kubernetes.io/hostname: mina
+      priorityClassName: system-cluster-critical
+      tolerations:
+        - effect: NoSchedule
+          operator: Exists
+        - effect: NoExecute
+          operator: Exists
     service:
-      main:
-        enabled: true
+      server:
+        controller: *app
         clusterIP: 10.43.23.156
         ports:
           http:
@@ -45,15 +61,7 @@ spec:
     persistence:
       nfsshare:
         enabled: true
-        mountPath: /nfsshare
         type: hostPath
         hostPath: /home/ant/nas1
-    securityContext:
-      capabilities:
-        add: ["SYS_ADMIN", "SETPCAP"]
-    priorityClassName: system-cluster-critical
-    tolerations:
-      - effect: NoSchedule
-        operator: Exists
-      - effect: NoExecute
-        operator: Exists
+        globalMounts:
+          - path: *path
