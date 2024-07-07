@@ -35,7 +35,7 @@ spec:
           app:
             image:
               repository: ghcr.io/onedr0p/prowlarr-develop
-              tag: 1.18.0.4543@sha256:3b7016455028840cae468f1227560e84926c47d1d30b4f73c269704b3f97362f
+              tag: 1.20.1.4603@sha256:14577f7cd78d1ee9c9bc606ff96a9bdefde83c5fe93dc163b6c74c83ef5b1085
             env:
               TZ: America/Chicago
     defaultPodOptions:
