@@ -52,6 +52,15 @@ spec:
                 enabled: false
               startup:
                 enabled: false
+          matter-server:
+            image:
+              repository: ghcr.io/home-assistant-libs/python-matter-server
+              tag: 6.1.2@sha256:173f651f4dac7ac0f817fc4062acb5c3a8c0e648a78578a6f7912111a58738b4
+            env:
+              TZ: America/Chicago
+            securityContext:
+              runAsUser: 0
+              runAsGroup: 0
     defaultPodOptions:
       nodeSelector:
         kubernetes.io/hostname: gulsun
@@ -78,3 +87,10 @@ spec:
           home-assistant:
             app:
               - path: /config
+      matter-server-config:
+        enabled: true
+        existingClaim: matter-server-config
+        advancedMounts:
+          home-assistant:
+            matter-server:
+              - path: /data
