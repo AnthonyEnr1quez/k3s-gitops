@@ -11,7 +11,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 3.2.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -28,46 +28,63 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    image:
-      repository: ghcr.io/0xerr0r/blocky
-      tag: v0.24@sha256:9a82e0235c52ef3048586f8006add06e52132adaae70d02f980569dae16421a2
-    nodeSelector:
-      kubernetes.io/arch: amd64
-    controller:
-      replicas: 2
-      strategy: RollingUpdate
-    env:
-      TZ: America/Chicago
+    controllers:
+      blocky:
+        replicas: 2
+        strategy: RollingUpdate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/0xerr0r/blocky
+              tag: v0.24@sha256:9a82e0235c52ef3048586f8006add06e52132adaae70d02f980569dae16421a2
+            env:
+              TZ: America/Chicago
+            resources:
+              requests:
+                cpu: 10m
+                memory: 50Mi
+              limits:
+                memory: 750Mi
+      cache:
+        containers:
+          server:
+            image:
+              repository: public.ecr.aws/docker/library/redis
+              tag: 7.2.5
+            command: redis-server
+            env:
+              REDIS_REPLICATION_MODE: master
+            resources:
+              requests:
+                cpu: 10m
+                memory: 10Mi
+              limits:
+                memory: 100Mi
+    defaultPodOptions:
+      nodeSelector:
+        kubernetes.io/arch: amd64
     service:
-      main:
-        enabled: true
+      app:
+        controller: *app
         type: LoadBalancer
-        annotations:
-          metallb.universe.tf/allow-shared-ip: *app
-          metallb.universe.tf/loadBalancerIPs: &lb "192.168.0.231"
         externalTrafficPolicy: Local
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: 192.168.0.231
         ports:
           http:
             port: 4000
-            protocol: TCP
-      dns:
-        enabled: true
-        type: LoadBalancer
-        annotations:
-          metallb.universe.tf/allow-shared-ip: *app
-          metallb.universe.tf/loadBalancerIPs: *lb
-        externalTrafficPolicy: Local
-        ports:
-          tcp:
-            enabled: true
+            protocol: TCP #todo change?
+          dns-tcp:
             port: 53
             protocol: TCP
-            targetPort: 53
-          udp:
-            enabled: true
+          dns-udp:
             port: 53
             protocol: UDP
-            targetPort: 53
+      cache:
+        controller: cache
+        ports:
+          http:
+            port: 6379
     # serviceMonitor:
     #   main:
     #     enabled: true
@@ -82,11 +99,8 @@ spec:
         enabled: true
         type: configMap
         name: blocky
-        mountPath: /app/config.yml
-        subPath: config.yml
-    resources:
-      requests:
-        cpu: 10m
-        memory: 50Mi
-      limits:
-        memory: 750Mi
+        advancedMounts:
+          blocky:
+            app:
+              - path: /app/config.yml
+                subPath: config.yml

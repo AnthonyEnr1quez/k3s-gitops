@@ -13,7 +13,7 @@ data:
     bootstrapDns: 
       - tcp+udp:1.1.1.1
     redis:
-      address: blocky-redis:6379
+      address: blocky-cache:6379
       # password: ${REDIS_PASSWORD}
       required: true
       connectionAttempts: 10
