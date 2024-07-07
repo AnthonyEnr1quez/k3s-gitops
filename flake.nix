@@ -16,6 +16,7 @@
             go-task
             kubectl
             kubernetes-helm
+            k9s
             sops
             jq
             watch
