@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: minio
-      version: 14.6.9
+      version: 14.6.19
       sourceRef:
         kind: HelmRepository
         name: bitnami
