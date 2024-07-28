@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: ghcr.io/onedr0p/sonarr-develop
-              tag: 4.0.6.1847@sha256:bc7a8d9124a14562644a21a4209e3ac9424c9787ae179f39da83549d23a6d430
+              tag: 4.0.8.1929@sha256:40e4cd941486a77d8b40760363f5027186b4f56a1ed9f3b42190a08a5e492279
             env:
               TZ: America/Chicago
     defaultPodOptions:
