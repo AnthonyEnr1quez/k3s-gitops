@@ -19,5 +19,6 @@ spec:
     !/kube-system
     !/networking
     !/media
+    !/observability
     !/storage
     !/system-upgrade
