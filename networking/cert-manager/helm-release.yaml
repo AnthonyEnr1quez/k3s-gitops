@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: cert-manager
-      version: v1.15.1
+      version: v1.15.3
       sourceRef:
         kind: HelmRepository
         name: jetstack
@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: quay.io/jetstack/cert-manager-controller
-      tag: v1.15.1@sha256:057ace5734b53ebdec20b3a0d182c37c9ef0014e9f6364f9b99018e76936e984
+      tag: v1.15.3@sha256:eee34b3de2dd63f7e5ac459fc2d407662d433fd267d574557b76ee3c7d4bc44f
     installCRDs: true
     # webhook:
     extraArgs:
