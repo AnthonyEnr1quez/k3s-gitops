@@ -6,15 +6,10 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1h
-  # dependsOn:
-  #   - name: storage
-    # - name: networking-cluster-issuers
+  dependsOn:
+    - name: kube-system
   path: ./observability
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  # postBuild:
-  #   substituteFrom:
-  #     - kind: Secret
-  #       name: hostnames
