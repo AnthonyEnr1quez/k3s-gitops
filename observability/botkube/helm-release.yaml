@@ -25,6 +25,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    analytics:
+      disable: true
     settings:
       clusterName: home-lab
     communications:
