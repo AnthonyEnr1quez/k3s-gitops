@@ -19,6 +19,7 @@
             k9s
             sops
             jq
+            yq
             watch
           ];
         };

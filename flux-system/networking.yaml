@@ -8,6 +8,7 @@ spec:
   interval: 1h
   dependsOn:
     - name: kube-system
+    - name: storage
   path: ./networking
   prune: true
   sourceRef:

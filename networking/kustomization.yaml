@@ -9,3 +9,4 @@ resources:
   - cert-manager
   - blocky
   - envoy-gateway
+  - omada-controller

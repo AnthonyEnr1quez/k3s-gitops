@@ -1,0 +1,149 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app omada-controller
+  namespace: networking
+spec:
+  chart:
+    spec:
+      chart: app-template
+      version: 3.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      omada-controller:
+        containers:
+          app:
+            image:
+              repository: mbentley/omada-controller
+              tag: beta-5.14.30.7@sha256:337aa4a5326e557613ffd01c4e676f6f49897e7e649d25e7ffb2f06ea31595c4
+            env:
+              TZ: America/Chicago
+              MANAGE_HTTP_PORT: &manage-http 8088
+              MANAGE_HTTPS_PORT: &manage-https 8043
+              PORTAL_HTTP_PORT: &portal-http 8888
+              PORTAL_HTTPS_PORT: &portal-https 8843
+              SHOW_SERVER_LOGS: true
+              SHOW_MONGODB_LOGS: true
+            # probes:
+            #   liveness:
+            #     enabled: true
+            #   readiness:
+            #     enabled: true
+            resources:
+              requests:
+                cpu: 500m
+                memory: 1200Mi
+              limits:
+                memory: 2000Mi
+    defaultPodOptions:
+      nodeSelector:
+        kubernetes.io/hostname: loreto
+      hostNetwork: true #TODO
+    service:
+      app:
+        controller: *app
+        primary: true
+        ports:
+          http:
+            port: *manage-https
+            protocol: TCP
+      controller:
+        controller: *app
+        type: LoadBalancer
+        annotations: 
+          metallb.universe.tf/loadBalancerIPs: 192.168.0.234
+        externalTrafficPolicy: Local
+        ports:
+          # Docs: https://www.tp-link.com/us/support/faq/3281/
+          # Management Ports
+          mgmt-http:
+            port: *manage-http
+            protocol: TCP
+          mgmt-https:
+            port: *manage-https
+            protocol: TCP
+          portal-https:
+            port: *portal-https
+            protocol: TCP
+          # Device Discovery, Adoption, Management, and Upgrade
+          eap-v5-discovery:
+            port: 29810
+            protocol: UDP
+          eap-v4-discovery1:
+            port: 29811
+            protocol: TCP
+          eap-v4-discovery2:
+            port: 29812
+            protocol: TCP
+          eap-v4-upgrade:
+            port: 29813
+            protocol: TCP
+          eap-v5-manage:
+            port: 29814
+            protocol: TCP
+          eap-v5-device-info:
+            port: 29815
+            protocol: TCP
+          eap-v5-remote-control:
+            port: 29816
+            protocol: TCP
+          init-check:
+            port: 27001
+            protocol: UDP
+          old-init-info:
+            port: 27002
+            protocol: TCP
+          old-db-access:
+            port: 27017
+            protocol: TCP
+          db-access:
+            port: 27217
+            protocol: TCP
+    # TODO config for reverse proxy
+    # route:
+    #   main:
+    #     enabled: true
+    #     kind: HTTPRoute
+    #     parentRefs:
+    #       - name: production
+    #         namespace: networking
+    #     hostnames:
+    #       - "{{ .Release.Name }}.${INTERNAL_HOSTNAME}"
+    #     rules:
+    #       - backendRefs:
+    #         - name: *app
+    #           port: *manage-https
+    persistence:
+      data:
+        &persist
+        enabled: true
+        retain: true
+        storageClass: local-hostpath
+        accessMode: ReadWriteOnce
+        size: 10Gi
+        globalMounts:
+          - path: /opt/tplink/EAPController/data
+      logs:
+        <<: *persist
+        globalMounts:
+          - path: /opt/tplink/EAPController/logs
+      backup:
+        <<: *persist
+        globalMounts:
+          - path: /opt/tplink/EAPController/data/autobackup
