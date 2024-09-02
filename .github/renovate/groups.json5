@@ -36,5 +36,17 @@
       "matchDatasources": ["docker", "github-tags"],
       "separateMinorPatch": false
     },
+    {
+      "groupName": "democratic-csi",
+      "matchPackagePatterns": [
+        "democratic-csi",
+        "democraticcsi/csi-grpc-proxy",
+        "sig-storage/csi-node-driver-registrar",
+        "sig-storage/csi-provisioner",
+        "sig-storage/csi-snapshotter"
+      ],
+      "matchDatasources": ["docker", "github-tags"],
+      "separateMinorPatch": false
+    }
   ]
 }
