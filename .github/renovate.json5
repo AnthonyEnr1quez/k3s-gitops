@@ -31,7 +31,30 @@
   "helm-values": {
     "fileMatch": ["\\.yaml$"]
   },
+  "ignoreTests": true,
   "packageRules": [
+    {
+      "automerge": true,
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "matchPackageNames": [
+        "lscr.io/linuxserver/calibre",
+        "ghcr.io/qdm12/gluetun",
+        "ghcr.io/onedr0p/plex",
+        "ghcr.io/onedr0p/prowlarr-develop",
+        "ghcr.io/onedr0p/qbittorrent",
+        "ghcr.io/onedr0p/radarr-develop",
+        "public.ecr.aws/docker/library/redis",
+        "ghcr.io/onedr0p/sonarr-develop",
+        "mikefarah/yq",
+      ]
+    },
+    {
+      "automerge": true,
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/"
+    },
     {
       "description": "Use loose versioning for certain dependencies",
       "matchDatasources": ["docker", "github-releases"],
