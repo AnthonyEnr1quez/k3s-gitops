@@ -1,0 +1,49 @@
+name: "Kairos Update"
+
+on:
+  workflow_dispatch:
+  schedule:
+   - cron: "22 9 * * 0"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/kairos-update.yaml"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - uses: workflow/nix-shell-action@v3
+        with:
+          packages: regctl
+          script: |
+            kairos_version=$(regctl tag ls quay.io/kairos/opensuse \
+              --include 'leap-\d+.\d+-standard-amd64-generic.*' \
+              --exclude '.*(master|alpha|beta|rc).*' \
+              | tail -1)
+
+            echo $kairos_version
+
+            replacement_pattern='s|version: "[^"]*"|version: "'"$kairos_version"'"|g'
+
+            sed -i "$replacement_pattern" ./system-upgrade/system-upgrade-controller/plans/amd.yaml
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: Update karios version
+          title: 'Update kairos version'
+          draft: false
+          branch: chore/update-kairos
+          delete-branch: true
