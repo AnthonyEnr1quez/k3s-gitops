@@ -17,3 +17,12 @@ patches:
       kind: Namespace
       metadata:
         name: system-upgrade
+  # TODO remove after new release
+  # https://github.com/rancher/system-upgrade-controller/commit/256e42be652bd8981241749420121be67c92ab7c
+  - target:
+      kind: ClusterRole
+      name: system-upgrade-controller-drainer
+    patch: |
+      - op: add
+        path: /rules/1/verbs/-
+        value: "delete"
