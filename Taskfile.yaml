@@ -13,6 +13,9 @@ tasks:
       - sops -d age.enc.agekey | kubectl -n kube-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
       - kubectl apply --kustomize {{.PROJECT_DIR}}/flux-system/installation/
       - kubectl apply --kustomize {{.PROJECT_DIR}}/flux-system/cluster/
+
+      # TODO, clean up after moving
+      - kubectl apply --kustomize {{.PROJECT_DIR}}/kubernetes/home-lab/flux/config
       - task: reconcile
 
   reconcile:
@@ -20,6 +23,9 @@ tasks:
     cmds:
       - flux reconcile -n flux-system source git flux-cluster
       - flux reconcile -n flux-system kustomization flux-cluster
+      
+      # TODO, clean up after moving
+      - flux reconcile -n flux-system kustomization cluster
 
   label-agents:
     desc: Add agent node role to agent nodes

@@ -22,3 +22,5 @@ spec:
     !/observability
     !/storage
     !/system-upgrade
+
+    !/kubernetes/home-lab
