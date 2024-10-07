@@ -38,6 +38,7 @@
       "matchUpdateTypes": ["minor", "patch"],
       "matchCurrentVersion": "!/^0/",
       "matchPackageNames": [
+        "ghcr.io/onedr0p/bazarr",
         "lscr.io/linuxserver/calibre",
         "ghcr.io/qdm12/gluetun",
         "ghcr.io/onedr0p/plex",
@@ -45,6 +46,7 @@
         "ghcr.io/onedr0p/qbittorrent",
         "ghcr.io/onedr0p/radarr-develop",
         "public.ecr.aws/docker/library/redis",
+        "docker.io/thomst08/requestrr"
         "ghcr.io/onedr0p/sonarr-develop",
         "mikefarah/yq",
       ]
