@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: ghcr.io/onedr0p/radarr-develop
-              tag: 5.10.4.9218@sha256:f986ba978d450226de00d8174552f62cc877aca7693bb1b32e7ac70af62f8f8d
+              tag: 5.12.0.9255@sha256:be91d7f205a76640795198e850541d09a63e3e4ba6efad5d928e23a84c1b95ad
             env:
               TZ: America/Chicago
     defaultPodOptions:
