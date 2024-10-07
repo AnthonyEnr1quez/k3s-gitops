@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: docker.io/thomst08/requestrr
-              tag: v2.1.6
+              tag: v2.1.7
             env:
               TZ: America/Chicago
     defaultPodOptions:
