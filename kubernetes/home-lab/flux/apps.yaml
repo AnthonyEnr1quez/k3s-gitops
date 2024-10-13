@@ -12,6 +12,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  # TODO
-  # postBuild:
-  #   substituteFrom:
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: hostnames
