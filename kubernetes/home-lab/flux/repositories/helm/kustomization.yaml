@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - angelnu.yaml
+  - backube.yaml
+  - bitnami.yaml
+  - bjw-s.yaml
+  - botkube.yaml
+  - democratic-csi.yaml
+  - dysnix.yaml
+  - jetstack.yaml
+  - metallb.yaml
+  - metrics-server.yaml
+  - piraeus.yaml
+  - sops-secrets-operator.yaml
