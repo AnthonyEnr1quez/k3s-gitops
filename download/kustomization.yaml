@@ -6,7 +6,7 @@ resources:
   - nfs-data.yaml
   - qbittorrent
   - prowlarr
-  - sonarr
+  # - sonarr
   # - radarr
   # - bazarr
   # - requestrr
