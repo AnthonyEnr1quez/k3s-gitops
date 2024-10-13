@@ -6,8 +6,9 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1h
-  dependsOn:
-    - name: networking-cluster-issuers
+  # TODO
+  # dependsOn:
+    # - name: networking-cluster-issuers
   path: ./flux-system/addons
   prune: true
   sourceRef:
