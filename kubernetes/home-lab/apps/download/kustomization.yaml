@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   # todo
   # - namespace.yaml
+  - prowlarr/ks.yaml
   - sonarr/ks.yaml
   - radarr/ks.yaml
   - bazarr/ks.yaml
