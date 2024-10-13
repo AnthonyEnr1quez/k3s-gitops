@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - nfs-data.yaml
-  - plex
-  - calibre
+
+  - plex/ks.yaml
+  - calibre/ks.yaml
