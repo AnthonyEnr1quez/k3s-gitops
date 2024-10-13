@@ -5,3 +5,4 @@ resources:
   # todo
   # - namespace.yaml
   - bazarr/ks.yaml
+  - requestrr/ks.yaml
