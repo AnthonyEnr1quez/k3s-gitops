@@ -4,6 +4,8 @@ kind: Kustomization
 resources:
   # todo
   # - namespace.yaml
+  - nfs-data.yaml
+  
   - qbittorrent/ks.yaml
   - prowlarr/ks.yaml
   - sonarr/ks.yaml
