@@ -3,10 +3,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - namespace.yaml
-  - metallb
-  - pod-gateway
-  - gateway-api
-  - cert-manager
-  - blocky
-  - envoy-gateway
-  - omada-controller
+
+  - metallb/ks.yaml
+  - pod-gateway/ks.yaml
+  - gateway-api/ks.yaml
+  - cert-manager/ks.yaml
+  - blocky/ks.yaml
+  - envoy-gateway/ks.yaml
+  - omada-controller/ks.yaml
