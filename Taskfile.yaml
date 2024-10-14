@@ -9,7 +9,7 @@ tasks:
   install:
     desc: Install Flux into cluster
     cmds:
-      - kubectl apply --kustomize {{.PROJECT_DIR}}/bootstrap/
+      - kubectl apply --kustomize {{.PROJECT_DIR}}/kubernetes/home-lab/bootstrap/
       - sops -d age.enc.agekey | kubectl -n kube-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
       - kubectl apply --kustomize {{.PROJECT_DIR}}/flux-system/installation/
       - kubectl apply --kustomize {{.PROJECT_DIR}}/flux-system/cluster/
