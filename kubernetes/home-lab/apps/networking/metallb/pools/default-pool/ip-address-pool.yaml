@@ -1,36 +1,9 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
 metadata:
-  name: metallb-pool
+  name: default-pool
   namespace: networking
 spec:
-  interval: 1h
-  chart:
-    spec:
-      chart: raw
-      version: v0.3.2
-      sourceRef:
-        kind: HelmRepository
-        name: dysnix
-        namespace: flux-system
-  dependsOn:
-    - name: metallb
-  values:
-    resources:
-      - apiVersion: metallb.io/v1beta1
-        kind: IPAddressPool
-        metadata:
-          name: default-pool
-          namespace: networking
-        spec:
-          addresses:
-            - 192.168.0.230-192.168.0.254
-      - apiVersion: metallb.io/v1beta1
-        kind: L2Advertisement
-        metadata:
-          name: l2-ip
-          namespace: networking
-        spec:
-          ipAddressPools:
-            - default-pool
+  addresses:
+    - 192.168.0.230-192.168.0.254
