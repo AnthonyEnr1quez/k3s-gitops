@@ -7,6 +7,10 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: flux-system
+  dependsOn:
+    - name: cluster-secrets
+    - name: envoy-gateway-gateways
+    - name: sops-secrets-operator
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
