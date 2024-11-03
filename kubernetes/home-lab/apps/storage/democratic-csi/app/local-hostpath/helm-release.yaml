@@ -24,6 +24,9 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  dependsOn:
+    - name: snapshot-controller
+      namespace: kube-system
   values:
     csiDriver:
       name: "org.democratic-csi.local-hostpath"
