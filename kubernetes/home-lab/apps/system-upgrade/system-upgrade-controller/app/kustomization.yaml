@@ -2,11 +2,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - https://github.com/rancher/system-upgrade-controller/releases/download/v0.13.4/crd.yaml
-  - https://github.com/rancher/system-upgrade-controller?ref=v0.13.4
+  - https://github.com/rancher/system-upgrade-controller/releases/download/v0.14.2/crd.yaml
+  - https://github.com/rancher/system-upgrade-controller?ref=v0.14.2
 images:
   - name: rancher/system-upgrade-controller
-    newTag: v0.13.4
+    newTag: v0.14.2
 patches:
   - target:
       kind: Namespace
@@ -17,12 +17,3 @@ patches:
       kind: Namespace
       metadata:
         name: system-upgrade
-  # TODO remove after new release
-  # https://github.com/rancher/system-upgrade-controller/commit/256e42be652bd8981241749420121be67c92ab7c
-  - target:
-      kind: ClusterRole
-      name: system-upgrade-controller-drainer
-    patch: |
-      - op: add
-        path: /rules/1/verbs/-
-        value: "delete"
