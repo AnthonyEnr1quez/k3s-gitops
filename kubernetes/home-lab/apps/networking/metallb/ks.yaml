@@ -28,6 +28,8 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: networking
+  dependsOn:
+    - name: metallb
   path: ./kubernetes/home-lab/apps/networking/metallb/pools
   prune: true
   sourceRef:
