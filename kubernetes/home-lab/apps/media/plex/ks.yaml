@@ -7,6 +7,12 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: media
+  dependsOn:
+    - name: cluster-secrets
+    - name: envoy-gateway-gateways
+    - name: metallb-pools
+    - name: sops-secrets-operator
+    - name: volsync
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
