@@ -7,6 +7,8 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: networking
+  dependsOn:
+  - name: gateway-api
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app

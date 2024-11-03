@@ -19,10 +19,6 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: hostnames
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -32,7 +28,11 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
+    - name: cert-manager-cluster-issuers
+    - name: cluster-secrets
     - name: envoy-gateway
+    - name: gateway-api
+    - name: metallb-pools
   targetNamespace: networking
   path: ./kubernetes/home-lab/apps/networking/envoy-gateway/gateways
   prune: true

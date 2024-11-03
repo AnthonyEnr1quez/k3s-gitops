@@ -7,6 +7,9 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: networking
+  dependsOn:
+    - name: cluster-secrets
+    - name: metallb-pools
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
