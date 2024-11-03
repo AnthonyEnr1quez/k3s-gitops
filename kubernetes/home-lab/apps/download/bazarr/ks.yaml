@@ -9,6 +9,8 @@ spec:
   targetNamespace: download
   dependsOn:
     - name: cluster-secrets
+    - name: sops-secrets-operator
+    - name: volsync
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
