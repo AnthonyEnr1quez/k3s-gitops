@@ -34,16 +34,24 @@ spec:
       vpn:
         enabled: true
         type: gluetun
-        image:
-          repository: ghcr.io/qdm12/gluetun
-          tag: v3.39.1@sha256:6a8058e626763cbf735ac2f78c774dbb24fec2490bd9d9f7d67e22592cb4a991
+        gluetun:
+          image:
+            repository: ghcr.io/qdm12/gluetun
+            tag: v3.39.1@sha256:6a8058e626763cbf735ac2f78c774dbb24fec2490bd9d9f7d67e22592cb4a991
         env:
           - name: VPN_TYPE
             value: wireguard
           - name: VPN_INTERFACE
             value: &if wg0
+            # old version
           - name: FIREWALL
-            value: "off"
+            value: &fw "off"
+            # Do not interject firewall rules, pod-gateway applies it's own
+            # Make sure firewall is off, otherwise child pods cannot reach gateway pod
+            # https://github.com/qdm12/gluetun/issues/2363#issuecomment-2263568842
+            # new version from 3.39.0
+          - name:  FIREWALL_ENABLED_DISABLING_IT_SHOOTS_YOU_IN_YOUR_FOOT
+            value: *fw
           - name: DOT
             value: "off"
         envFrom:
