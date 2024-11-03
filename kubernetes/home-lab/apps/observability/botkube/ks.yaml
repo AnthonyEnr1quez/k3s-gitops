@@ -7,6 +7,8 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: observability
+  dependsOn:
+    - name: sops-secrets-operator
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
