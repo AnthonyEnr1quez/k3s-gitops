@@ -13,14 +13,4 @@ spec:
     # exclude all
     /*
     # include 
-    !/download
-    !/flux-system
-    !/home
-    !/kube-system
-    !/networking
-    !/media
-    !/observability
-    !/storage
-    !/system-upgrade
-
     !/kubernetes/home-lab
