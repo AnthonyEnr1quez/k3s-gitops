@@ -36,7 +36,7 @@ jobs:
 
             replacement_pattern='s|version: "[^"]*"|version: "'"$kairos_image_tag"'"|g'
 
-            sed -i "$replacement_pattern" ./system-upgrade/system-upgrade-controller/plans/amd.yaml
+            sed -i "$replacement_pattern" ./kubernetes/home-lab/apps/system-upgrade/system-upgrade-controller/plans/amd.yaml
 
             # outputs
             leap_version="$(cut -d'-' -f2 <<< $kairos_image_tag)"
