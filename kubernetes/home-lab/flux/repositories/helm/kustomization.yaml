@@ -9,7 +9,6 @@ resources:
   - bjw-s.yaml
   - botkube.yaml
   - democratic-csi.yaml
-  - dysnix.yaml
   - jetstack.yaml
   - metallb.yaml
   - metrics-server.yaml
