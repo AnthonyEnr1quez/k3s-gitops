@@ -25,7 +25,7 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
       - name: test flake ci
-        run: nix develop --command task kubernetes:ci-karios-update
+        run: nix develop --command task kubernetes:ci-kairos-update
 
       # - uses: workflow/nix-shell-action@v3
       #   id: update
@@ -55,7 +55,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: Update karios version
+          commit-message: Update kairos version
           title: 'Update kairos version'
           draft: false
           branch: chore/update-kairos

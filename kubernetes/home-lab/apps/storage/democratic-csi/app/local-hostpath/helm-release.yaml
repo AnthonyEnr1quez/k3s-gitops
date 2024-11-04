@@ -93,7 +93,7 @@ spec:
         image: democraticcsi/democratic-csi:v1.9.3
         extraVolumeMounts:
           - name: *lhp
-            # TODO karios partitioning doesnt give my csi storage dir much room
+            # TODO kairos partitioning doesnt give my csi storage dir much room
             # This will have to be the path when moving to talos
             # mountPath: &path /var/lib/csi-local-hostpath
             mountPath: &path /var/lib/rancher/k3s/storage/csi-local-hostpath
