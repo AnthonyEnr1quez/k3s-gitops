@@ -31,9 +31,6 @@ spec:
     controllers:
       prowlarr:
         type: statefulset
-        # just setting it here didnt work
-        # annotations:
-        #   setGateway: "true" #todo
         containers:
           app:
             image:
@@ -43,7 +40,7 @@ spec:
               TZ: America/Chicago
     defaultPodOptions:
       annotations:
-        setGateway: "true" # todo
+        setGateway: "true"
       nodeSelector:
         kubernetes.io/hostname: loreto
       securityContext:

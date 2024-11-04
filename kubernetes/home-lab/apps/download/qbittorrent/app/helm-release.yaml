@@ -46,7 +46,7 @@ spec:
               TZ: America/Chicago
     defaultPodOptions:
       annotations:
-        setGateway: "true" # todo
+        setGateway: "true"
       nodeSelector:
         kubernetes.io/hostname: gulsun
       securityContext:
