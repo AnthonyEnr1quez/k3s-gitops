@@ -1,0 +1,20 @@
+---
+version: '3'
+
+tasks:
+  test123:
+    desc: plz work
+    cmds:
+      - echo HELLO WORLD
+  
+  test456:
+    desc: test var
+    vars:
+      GIT_COMMIT:
+        sh: >
+          regctl tag ls quay.io/kairos/opensuse \
+              --include 'leap-\d+.\d+-standard-amd64-generic.*' \
+              --exclude '.*(master|alpha|beta|rc).*' \
+              | tail -1
+    cmd: >
+      echo {{.GIT_COMMIT}}

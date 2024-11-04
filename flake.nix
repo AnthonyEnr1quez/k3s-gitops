@@ -21,6 +21,7 @@
             jq
             yq
             watch
+            regctl
           ];
         };
       });
