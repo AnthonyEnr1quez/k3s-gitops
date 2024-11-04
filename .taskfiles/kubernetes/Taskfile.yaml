@@ -2,6 +2,18 @@
 version: '3'
 
 tasks:
+
+  label-agents:
+    desc: Add agent node role to agent nodes
+    cmds:
+      - kubectl label nodes mina node-role.kubernetes.io/agent=true
+      - kubectl label nodes loreto node-role.kubernetes.io/agent=true
+
+  plex-taint:
+    desc: Taint mina node to only run plex
+    cmds:
+      - kubectl taint nodes mina plex:PreferNoSchedule
+
   get-latest-kairos-tag:
     desc: save latest kairos image tag to vars
     vars:
