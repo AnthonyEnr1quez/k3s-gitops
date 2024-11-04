@@ -79,20 +79,19 @@ spec:
         ports:
           http:
             port: &port 8123
-    # TODO config HA for reverse proxy
-    # route:
-    #   main:
-    #     enabled: true
-    #     kind: HTTPRoute
-    #     parentRefs:
-    #       - name: production
-    #         namespace: networking
-    #     hostnames:
-    #       - "{{ .Release.Name }}.${INTERNAL_HOSTNAME}"
-    #     rules:
-    #       - backendRefs:
-    #         - name: *app
-    #           port: *port
+    route:
+      main:
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: production
+            namespace: networking
+        hostnames:
+          - "{{ .Release.Name }}.${INTERNAL_HOSTNAME}"
+        rules:
+          - backendRefs:
+            - name: *app
+              port: *port
     persistence:
       config:
         enabled: true
