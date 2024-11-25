@@ -8,10 +8,9 @@ metadata:
     cert-manager.io/cluster-issuer: lets-encrypt-production
 spec:
   gatewayClassName: envoy-gateway
-  # TODO gateway api 1.2.0
-  # infrastructure:
-  #   annotations:
-  #     metallb.universe.tf/loadBalancerIPs: 192.168.0.236
+  infrastructure:
+    annotations:
+      metallb.universe.tf/loadBalancerIPs: 192.168.0.230
   listeners:
     - name: http
       protocol: HTTP
