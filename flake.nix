@@ -22,6 +22,7 @@
             yq
             watch
             regctl
+            cmctl
           ];
         };
       });
