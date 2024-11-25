@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: sops-secrets-operator
-      version: 0.20.1
+      version: 0.20.3
       sourceRef:
         kind: HelmRepository
         name: sops-secrets-operator
