@@ -35,7 +35,7 @@ spec:
           app:
             image:
               repository: ghcr.io/home-assistant/home-assistant
-              tag: 2024.11.3@sha256:988ae0f8bab0620d7e9abdcf07f8a8f6d88f5ae301749e61e6cf00aaed13a19b
+              tag: 2024.12.1@sha256:ec483debb415123b5ebe49b9e6b5021d055e5f62c832acc094503afa09bb448d
             env:
               TZ: America/Chicago
             securityContext:
@@ -58,7 +58,7 @@ spec:
           matter-server:
             image:
               repository: ghcr.io/home-assistant-libs/python-matter-server
-              tag: 6.6.0@sha256:e291154e44accc5284ec14fbc52a32764a8286deb68b4d3b91b280ad644715d8
+              tag: 6.6.1@sha256:2057a36093e8a0e5a9d6c391a2be64401944783a6263e26c992b7790033304b5
             env:
               TZ: America/Chicago
             securityContext:
