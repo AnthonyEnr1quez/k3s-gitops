@@ -35,7 +35,7 @@
   "packageRules": [
     {
       "automerge": true,
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchUpdateTypes": ["digest", "minor", "patch"],
       "matchCurrentVersion": "!/^0/",
       "matchPackageNames": [
         "ghcr.io/onedr0p/bazarr",
