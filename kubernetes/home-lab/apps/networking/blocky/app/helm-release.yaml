@@ -69,7 +69,7 @@ spec:
         type: LoadBalancer
         externalTrafficPolicy: Local
         annotations:
-          metallb.universe.tf/loadBalancerIPs: 192.168.0.231
+          metallb.io/loadBalancerIPs: 192.168.0.231
         ports:
           http:
             port: 4000

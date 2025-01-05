@@ -10,7 +10,7 @@ spec:
   gatewayClassName: envoy-gateway
   infrastructure:
     annotations:
-      metallb.universe.tf/loadBalancerIPs: 192.168.0.230
+      metallb.io/loadBalancerIPs: 192.168.0.230
   listeners:
     - name: http
       protocol: HTTP
