@@ -39,6 +39,8 @@ spec:
               tag: v2.4.1@sha256:efd4001597fbcea58aa1e2ff54f5e5b5f8fe6237df6862a2e4576dcb5ff0d24e
             env:
               TZ: America/Chicago
+              BASE_URL: https://mealie.${INTERNAL_HOSTNAME}
+              TOKEN_TIME: 720
             resources:
               requests:
                 cpu: 10m
