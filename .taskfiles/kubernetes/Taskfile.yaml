@@ -11,8 +11,8 @@ tasks:
 
   plex-taint:
     desc: Taint mina node to only run plex
-    cmds:
-      - kubectl taint nodes mina plex:PreferNoSchedule
+    cmd: >
+      kubectl taint nodes mina plex:PreferNoSchedule
 
   get-latest-kairos-tag:
     desc: save latest kairos image tag to vars
@@ -28,20 +28,25 @@ tasks:
 
   ci-kairos-update:
     desc: ci task to update kairos and k3s
-    cmd: >
-      kairos_image_tag="leap-15.8-standard-amd64-generic-v3.4.5-k3sv1.39.4-k3s1"
-
-      replacement_pattern='s|version: "[^"]*"|version: "'"$kairos_image_tag"'"|g'
+    vars:
+      LATEST_KAIROS_IMAGE_TAG:
+        sh: >
+          regctl tag ls quay.io/kairos/opensuse \
+            --include 'leap-\d+.\d+-standard-amd64-generic.*' \
+            --exclude '.*(master|alpha|beta|rc).*' \
+            | tail -1
+    cmd: |
+      replacement_pattern='s|version: "[^"]*"|version: "'"{{ .LATEST_KAIROS_IMAGE_TAG }}"'"|g'
 
       sed -i "$replacement_pattern" ./kubernetes/home-lab/apps/system-upgrade/system-upgrade-controller/plans/amd.yaml
 
       # outputs
-      leap_version="$(cut -d'-' -f2 <<< $kairos_image_tag)"
+      leap_version="$(cut -d'-' -f2 <<< {{ .LATEST_KAIROS_IMAGE_TAG }})"
       echo "opensuse_url=https://doc.opensuse.org/release-notes/x86_64/openSUSE/Leap/$leap_version/" >> $GITHUB_OUTPUT
 
-      kairos_version="$(cut -d'-' -f6 <<< $kairos_image_tag)"
+      kairos_version="$(cut -d'-' -f6 <<< {{ .LATEST_KAIROS_IMAGE_TAG }})"
       echo "kairos_url=https://github.com/kairos-io/kairos/releases/tag/$kairos_version" >> $GITHUB_OUTPUT
 
-      k3s_version="$(cut -d'-' -f7 <<< $kairos_image_tag)"
+      k3s_version="$(cut -d'-' -f7 <<< {{ .LATEST_KAIROS_IMAGE_TAG }})"
       k3s_version=${k3s_version:3}
       echo "k3s_url=https://github.com/k3s-io/k3s/releases/tag/$k3s_version+k3s1" >> $GITHUB_OUTPUT
