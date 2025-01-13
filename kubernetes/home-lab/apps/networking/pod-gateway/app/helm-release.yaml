@@ -58,6 +58,7 @@ spec:
           - secretRef:
               name: wireguard-config
         securityContext:
+          privileged: true
           capabilities:
             add: ["NET_ADMIN"]
         networkPolicy:
