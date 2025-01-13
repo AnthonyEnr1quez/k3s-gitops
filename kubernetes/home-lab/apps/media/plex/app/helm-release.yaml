@@ -24,6 +24,8 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  driftDetection:
+    mode: enabled
   dependsOn:
     - name: democratic-csi-local-hostpath
       namespace: storage
