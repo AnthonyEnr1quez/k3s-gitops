@@ -35,7 +35,24 @@ data:
           - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
           - http://sysctl.org/cameleon/hosts
           - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
-          - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt
+          - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dblw.txt
+          - https://big.oisd.nl/domainswild
+          - https://v.firebog.net/hosts/AdguardDNS.txt
+          - https://urlhaus.abuse.ch/downloads/hostfile
+          - https://raw.githubusercontent.com/mullvad/dns-blocklists/main/output/doh/doh_privacy.txt
+          - https://raw.githubusercontent.com/durablenapkin/scamblocklist/master/hosts.txt
+          - https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt
+          - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt
+          - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt
+          # use DoH-only first rather than doh-vpn-proxy-bypass since I do use Mullvad
+          - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/doh.txt
+          - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/gambling.txt
+          - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/anti.piracy.txt
+          - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/nosafesearch.txt
+          - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/hoster.txt
+          - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/dyndns.txt
+          - https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt
+          - https://raw.githubusercontent.com/BlackJack8/iOSAdblockList/master/Regular%20Hosts.txt
         fakenews:
           - https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews/hosts
       allowlists:
