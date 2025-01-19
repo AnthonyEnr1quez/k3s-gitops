@@ -82,7 +82,7 @@ spec:
         enabled: false
       externalSnapshotter:
         enabled: true
-        image: registry.k8s.io/sig-storage/csi-snapshotter:v8.1.0
+        image: registry.k8s.io/sig-storage/csi-snapshotter:v8.2.0
         extraArgs:
           - --leader-election=false
           - --node-deployment=true # TODO, this only works rn with node topo storage classes
@@ -100,7 +100,7 @@ spec:
             mountPropagation: Bidirectional
       driverRegistrar:
         enabled: true
-        image: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.12.0
+        image: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.13.0
       extraVolumes:
         - name: *lhp
           hostPath:
