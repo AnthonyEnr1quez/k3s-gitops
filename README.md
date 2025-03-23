@@ -7,7 +7,7 @@ _... managed by Flux and Renovate_ :robot:
 
 <br/>
 
-[![k3s](https://img.shields.io/badge/k3s-v1.31.2-blue?style=for-the-badge&logo=kubernetes&logoColor=white)](https://k3s.io/)
+[![k3s](https://img.shields.io/badge/k3s-v1.32.2-blue?style=for-the-badge&logo=kubernetes&logoColor=white)](https://k3s.io/)
 [![Renovate](https://img.shields.io/github/actions/workflow/status/AnthonyEnr1quez/k3s-gitops/renovate.yaml?branch=main&label=&logo=renovatebot&style=for-the-badge&color=blue)](https://github.com/AnthonyEnr1quez/k3s-gitops/actions/workflows/renovate.yaml)
 
 </div>
