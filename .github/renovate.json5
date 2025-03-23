@@ -1,6 +1,6 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: [
     "config:recommended",
     ":configMigration",
     ":timezone(America/Chicago)",
@@ -11,35 +11,35 @@
     "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/groups.json5",
     "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/semanticCommits.json5"
   ],
-  "platform": "github",
-  "repositories": ["AnthonyEnr1quez/k3s-gitops"],
-  "username": "anthonyenr1quez-renovate[bot]",
-  "gitAuthor": "anthonyenr1quez-renovate[bot] <117547040+anthonyenr1quez-renovate[bot]@users.noreply.github.com>",
-  "onboarding": false,
-  "requireConfig": "optional",
-  "commitBodyTable": true,
-  "nix": {
-    "enabled": true
+  platform: "github",
+  repositories: ["AnthonyEnr1quez/k3s-gitops"],
+  username: "anthonyenr1quez-renovate[bot]",
+  gitAuthor: "anthonyenr1quez-renovate[bot] <117547040+anthonyenr1quez-renovate[bot]@users.noreply.github.com>",
+  onboarding: false,
+  requireConfig: "optional",
+  commitBodyTable: true,
+  nix: {
+    enabled: true
   },
-  "lockFileMaintenance": {
-    "enabled": true,
-    "schedule": [
+  lockFileMaintenance: {
+    enabled: true,
+    schedule: [
       "at any time"
     ]
   },
-  "flux": {
-    "fileMatch": ["\\.yaml$"]
+  flux: {
+    fileMatch: ["\\.yaml$"]
   },
-  "helm-values": {
-    "fileMatch": ["\\.yaml$"]
+  helm-values: {
+    fileMatch: ["\\.yaml$"]
   },
-  "ignoreTests": true,
-  "packageRules": [
+  ignoreTests: true,
+  packageRules: [
     {
-      "automerge": true,
-      "matchUpdateTypes": ["digest", "minor", "patch"],
-      "matchCurrentVersion": "!/^0/",
-      "matchPackageNames": [
+      automerge: true,
+      matchUpdateTypes: ["digest", "minor", "patch"],
+      matchCurrentVersion: "!/^0/",
+      matchPackageNames: [
         "ghcr.io/onedr0p/bazarr",
         "lscr.io/linuxserver/calibre",
         "ghcr.io/qdm12/gluetun",
@@ -54,37 +54,37 @@
       ]
     },
     {
-      "automerge": true,
-      "matchManagers": ["github-actions"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchCurrentVersion": "!/^0/"
+      automerge: true,
+      matchManagers: ["github-actions"],
+      matchUpdateTypes: ["minor", "patch"],
+      matchCurrentVersion: "!/^0/"
     },
     {
-      "description": "Use loose versioning for certain dependencies",
-      "matchDatasources": ["docker", "github-releases"],
-      "versioning": "loose",
-      "matchPackageNames": [
+      description: "Use loose versioning for certain dependencies",
+      matchDatasources: ["docker", "github-releases"],
+      versioning: "loose",
+      matchPackageNames: [
         "ghcr.io/onedr0p/plex",
         "ghcr.io/onedr0p/qbittorrent"
       ]
     },
     {
-      "description": "Ignore the .img tags for kairos arm builds",
-      "matchDatasources": ["docker"],
-      "matchManagers": ["regex"],
-      "matchPackageNames": ["quay.io/kairos/kairos-opensuse-leap-arm-rpi"],
-      "allowedVersions": "!/(.*?).img/",
+      description: "Ignore the .img tags for kairos arm builds",
+      matchDatasources: ["docker"],
+      matchManagers: ["regex"],
+      matchPackageNames: ["quay.io/kairos/kairos-opensuse-leap-arm-rpi"],
+      allowedVersions: "!/(.*?).img/",
     }
   ],
-  // "regexManagers": [
+  // regexManagers: [
   //   {
-  //     "description": "Process various dependencies",
-  //     "fileMatch": ["\\.yaml$"],
-  //     "matchStrings": [
+  //     description: "Process various dependencies",
+  //     fileMatch: ["\\.yaml$"],
+  //     matchStrings: [
   //       "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
   //     ],
-  //     "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
-  //     "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+  //     datasourceTemplate: "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
+  //     versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
   //   }
   // ]
 }

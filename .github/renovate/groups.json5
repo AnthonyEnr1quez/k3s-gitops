@@ -1,52 +1,52 @@
 {
-  "packageRules": [
+  packageRules: [
     {
-      "groupName": "kairos-opensuse-leap",
-      "matchPackagePatterns": ["kairos"],
-      "matchDatasources": ["docker"],
-      "separateMinorPatch": false
+      groupName: "kairos-opensuse-leap",
+      matchPackagePatterns: ["kairos"],
+      matchDatasources: ["docker"],
+      separateMinorPatch: false
     },
     {
-      "groupName": "cert-manager",
-      "matchPackagePatterns": ["cert-manager"],
-      "matchDatasources": ["docker", "helm"],
-      "separateMinorPatch": false
+      groupName: "cert-manager",
+      matchPackagePatterns: ["cert-manager"],
+      matchDatasources: ["docker", "helm"],
+      separateMinorPatch: false
     },
     {
-      "groupName": "sops-secrets-operator",
-      "matchPackagePatterns": ["sops-secrets-operator"],
-      "matchDatasources": ["docker", "helm"],
-      "separateMinorPatch": false
+      groupName: "sops-secrets-operator",
+      matchPackagePatterns: ["sops-secrets-operator"],
+      matchDatasources: ["docker", "helm"],
+      separateMinorPatch: false
     },
     {
-      "groupName": "flux",
-      "matchPackagePatterns": ["fluxcd"],
-      "matchDatasources": ["docker", "github-tags"],
-      "separateMinorPatch": false
+      groupName: "flux",
+      matchPackagePatterns: ["fluxcd"],
+      matchDatasources: ["docker", "github-tags"],
+      separateMinorPatch: false
     },
     {
-      "groupName": "envoy-gateway",
-      "matchPackagePatterns": ["envoy"],
-      "matchDatasources": ["docker", "github-tags"],
-      "separateMinorPatch": false
+      groupName: "envoy-gateway",
+      matchPackagePatterns: ["envoy"],
+      matchDatasources: ["docker", "github-tags"],
+      separateMinorPatch: false
     },
     {
-      "groupName": "home-assistant",
-      "matchPackagePatterns": ["home-assistant"],
-      "matchDatasources": ["docker", "github-tags"],
-      "separateMinorPatch": false
+      groupName: "home-assistant",
+      matchPackagePatterns: ["home-assistant"],
+      matchDatasources: ["docker", "github-tags"],
+      separateMinorPatch: false
     },
     {
-      "groupName": "democratic-csi",
-      "matchPackagePatterns": [
+      groupName: "democratic-csi",
+      matchPackagePatterns: [
         "democratic-csi",
         "democraticcsi/csi-grpc-proxy",
         "sig-storage/csi-node-driver-registrar",
         "sig-storage/csi-provisioner",
         "sig-storage/csi-snapshotter"
       ],
-      "matchDatasources": ["docker", "github-tags"],
-      "separateMinorPatch": false
+      matchDatasources: ["docker", "github-tags"],
+      separateMinorPatch: false
     }
   ]
 }
