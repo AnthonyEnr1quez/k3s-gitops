@@ -2,18 +2,29 @@
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   extends: [
     "config:recommended",
-    ":configMigration",
-    ":timezone(America/Chicago)",
-    ":disableRateLimiting",
     "docker:enableMajor",
+    "helpers:pinGitHubActionDigests",
+    ":configMigration",
+    ":disableRateLimiting",
     ":semanticCommits",
+    ":timezone(America/Chicago)",
+    "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/autoMerge.json5",
     "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/commitMessage.json5",
     "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/groups.json5",
     "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/semanticCommits.json5"
   ],
   commitBodyTable: true,
-  nix: {
-    enabled: true
+  ignorePaths: [
+    "**/*.sops.*",
+  ],
+  flux: {
+    fileMatch: ["(^|/)kubernetes/.+\\.ya?ml$"]
+  },
+  "helm-values": {
+    fileMatch: ["(^|/)kubernetes/.+\\.ya?ml$"]
+  },
+  kubernetes: {
+    fileMatch: ["(^|/)kubernetes/.+\\.ya?ml$"]
   },
   lockFileMaintenance: {
     enabled: true,
@@ -21,64 +32,7 @@
       "at any time"
     ]
   },
-  flux: {
-    fileMatch: ["\\.yaml$"]
+  nix: {
+    enabled: true
   },
-  helm-values: {
-    fileMatch: ["\\.yaml$"]
-  },
-  ignoreTests: true,
-  packageRules: [
-    {
-      automerge: true,
-      matchUpdateTypes: ["digest", "minor", "patch"],
-      matchCurrentVersion: "!/^0/",
-      matchPackageNames: [
-        "ghcr.io/onedr0p/bazarr",
-        "lscr.io/linuxserver/calibre",
-        "ghcr.io/qdm12/gluetun",
-        "ghcr.io/onedr0p/plex",
-        "ghcr.io/onedr0p/prowlarr-develop",
-        "ghcr.io/onedr0p/qbittorrent",
-        "ghcr.io/onedr0p/radarr-develop",
-        "public.ecr.aws/docker/library/redis",
-        "docker.io/thomst08/requestrr",
-        "ghcr.io/onedr0p/sonarr-develop",
-        "mikefarah/yq",
-      ]
-    },
-    {
-      automerge: true,
-      matchManagers: ["github-actions"],
-      matchUpdateTypes: ["minor", "patch"],
-      matchCurrentVersion: "!/^0/"
-    },
-    {
-      description: "Use loose versioning for certain dependencies",
-      matchDatasources: ["docker", "github-releases"],
-      versioning: "loose",
-      matchPackageNames: [
-        "ghcr.io/onedr0p/plex",
-        "ghcr.io/onedr0p/qbittorrent"
-      ]
-    },
-    {
-      description: "Ignore the .img tags for kairos arm builds",
-      matchDatasources: ["docker"],
-      matchManagers: ["regex"],
-      matchPackageNames: ["quay.io/kairos/kairos-opensuse-leap-arm-rpi"],
-      allowedVersions: "!/(.*?).img/",
-    }
-  ],
-  // regexManagers: [
-  //   {
-  //     description: "Process various dependencies",
-  //     fileMatch: ["\\.yaml$"],
-  //     matchStrings: [
-  //       "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
-  //     ],
-  //     datasourceTemplate: "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
-  //     versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
-  //   }
-  // ]
 }

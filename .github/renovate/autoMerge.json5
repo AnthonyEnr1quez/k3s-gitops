@@ -1,0 +1,32 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  packageRules: [
+    {
+      description: "Auto-merge GitHub Actions",
+      matchDatasources: ["github-tags"],
+      matchManagers: ["github-actions"],
+      automerge: true,
+      automergeType: "pr",
+      matchUpdateTypes: ["minor", "patch"],
+      minimumReleaseAge: "3 days",
+      ignoreTests: true,
+    },
+    {
+      description: "Auto-merge trusted container images",
+      matchDatasources: ["docker"],
+      automerge: true,
+      automergeType: "pr",
+      matchUpdateTypes: ["digest", "minor", "patch"],
+      ignoreTests: true,
+      matchPackageNames: [
+        "/home-operations/",
+        
+        "lscr.io/linuxserver/calibre",
+        "ghcr.io/qdm12/gluetun",
+        "public.ecr.aws/docker/library/redis",
+        "docker.io/thomst08/requestrr",
+        "mikefarah/yq",
+        ],
+    },
+  ],
+}
