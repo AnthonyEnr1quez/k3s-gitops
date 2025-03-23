@@ -5,14 +5,9 @@ metadata:
   name: democratic-csi-local-hostpath
   namespace: storage
 spec:
-  chart:
-    spec:
-      chart: democratic-csi
-      version: 0.14.7
-      sourceRef:
-        name: democratic-csi
-        kind: HelmRepository
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: democratic-csi
   interval: 1h
   maxHistory: 3
   install:
