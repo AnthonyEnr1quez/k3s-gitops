@@ -11,12 +11,6 @@
     "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/groups.json5",
     "github>AnthonyEnr1quez/k3s-gitops//.github/renovate/semanticCommits.json5"
   ],
-  platform: "github",
-  repositories: ["AnthonyEnr1quez/k3s-gitops"],
-  username: "anthonyenr1quez-renovate[bot]",
-  gitAuthor: "anthonyenr1quez-renovate[bot] <117547040+anthonyenr1quez-renovate[bot]@users.noreply.github.com>",
-  onboarding: false,
-  requireConfig: "optional",
   commitBodyTable: true,
   nix: {
     enabled: true
