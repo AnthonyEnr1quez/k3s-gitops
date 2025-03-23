@@ -7,6 +7,5 @@ resources:
   - bitnami.yaml
   - botkube.yaml
   - metallb.yaml
-  - metrics-server.yaml
   - piraeus.yaml
   - sops-secrets-operator.yaml
