@@ -6,7 +6,6 @@ resources:
   - angelnu.yaml
   - backube.yaml
   - bitnami.yaml
-  - bjw-s.yaml
   - botkube.yaml
   - democratic-csi.yaml
   - jetstack.yaml
