@@ -86,3 +86,8 @@ spec:
         size: 10Gi
         globalMounts:
           - path: /app/data
+      nltk:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /nltk_data
