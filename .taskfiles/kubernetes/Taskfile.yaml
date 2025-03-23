@@ -42,11 +42,12 @@ tasks:
 
       # outputs
       leap_version="$(cut -d'-' -f2 <<< {{ .LATEST_KAIROS_IMAGE_TAG }})"
-      echo "opensuse_url=https://doc.opensuse.org/release-notes/x86_64/openSUSE/Leap/$leap_version/" >> $GITHUB_OUTPUT
-
       kairos_version="$(cut -d'-' -f6 <<< {{ .LATEST_KAIROS_IMAGE_TAG }})"
-      echo "kairos_url=https://github.com/kairos-io/kairos/releases/tag/$kairos_version" >> $GITHUB_OUTPUT
-
       k3s_version="$(cut -d'-' -f7 <<< {{ .LATEST_KAIROS_IMAGE_TAG }})"
       k3s_version=${k3s_version:3}
+
+      sed -i "s|k3s-.*-blue|k3s-$k3s_version-blue|g" README.md
+
+      echo "opensuse_url=https://doc.opensuse.org/release-notes/x86_64/openSUSE/Leap/$leap_version/" >> $GITHUB_OUTPUT
+      echo "kairos_url=https://github.com/kairos-io/kairos/releases/tag/$kairos_version" >> $GITHUB_OUTPUT
       echo "k3s_url=https://github.com/k3s-io/k3s/releases/tag/$k3s_version+k3s1" >> $GITHUB_OUTPUT
