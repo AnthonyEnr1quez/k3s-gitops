@@ -16,20 +16,26 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      
+      - name: Generate Token
+        uses: actions/create-github-app-token@af35edadc00be37caa72ed9f3e6d5f7801bfdf09 # v1.11.7
+        id: generate-token
+        with:
+          app-id: ${{ secrets.CPR_APP_ID }}
+          private-key: ${{ secrets.CPR_APP_PRIVATE_KEY }}
 
       - name: Install Nix
         uses: cachix/install-nix-action@v30
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-
       - id: update
         run: nix develop --command task kubernetes:ci-kairos-update
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7
         with:
+          token: ${{ steps.generate-token.outputs.token }}
           commit-message: Update kairos version
           title: 'Update kairos version'
           draft: false
