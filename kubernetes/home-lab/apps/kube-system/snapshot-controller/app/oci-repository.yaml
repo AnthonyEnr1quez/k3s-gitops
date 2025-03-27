@@ -12,7 +12,7 @@ spec:
     operation: copy
   url: oci://ghcr.io/home-operations/charts-mirror/snapshot-controller
   ref:
-    tag: 4.0.1
+    tag: 4.0.2
   verify:
     provider: cosign
     matchOIDCIdentity:
