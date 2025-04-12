@@ -1,0 +1,41 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cleanuperr
+  namespace: download
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+    namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      cleanuperr:
+        type: deployment
+        containers:
+          app:
+            image:
+              repository: ghcr.io/flmorg/cleanuperr
+              tag: 1.5.18@sha256:ea0358531eb50f40a6f9e420527c0642ee86ac08d0320879f3f069f91ed781af
+            env:
+              TZ: America/Chicago
+              QUEUECLEANER__ENABLED: true
+              SONARR__ENABLED: true
+              SONARR__INSTANCES__0__URL: http://sonarr:8989
+              RADARR__ENABLED: true
+              RADARR__INSTANCES__0__URL: http://radarr:7878
+            envFrom:
+              - secretRef:
+                  name: cleanuperr-config
