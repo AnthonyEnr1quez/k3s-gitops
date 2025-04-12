@@ -36,10 +36,27 @@ spec:
               tag: 5.0.4@sha256:995c561247b069c10b1fa098186f35b3155c2df63912041f70637a9232755756
             env:
               QBITTORRENT__PORT: &port 8080
+              QBT_Preferences__WebUI__AlternativeUIEnabled: true
+              QBT_Preferences__WebUI__RootFolder: /addons/VueTorrent
               QBT_BitTorrent__Session__DefaultSavePath: &path '/data/torrents'
               QBT_BitTorrent__Session__DisableAutoTMMByDefault: 'false'
               QBT_BitTorrent__Session__GlobalMaxRatio: '2'
               TZ: America/Chicago
+          vuetorrent:
+            image:
+              repository: registry.k8s.io/git-sync/git-sync
+              tag: v4.4.0@sha256:0330739a707a2969d617e859f096659ab6d149212658ac0ad7e550b59482ebf0
+            args:
+              - --repo=https://github.com/VueTorrent/VueTorrent
+              - --ref=latest-release
+              - --period=24h
+              - --root=/addons
+            resources:
+              requests:
+                cpu: 10m
+                memory: 25Mi
+              limits:
+                memory: 50Mi
     defaultPodOptions:
       annotations:
         setGateway: "true"
@@ -87,3 +104,7 @@ spec:
             app:
               - path: *path
                 subPath: torrents
+      addons:
+        type: emptyDir
+        globalMounts:
+          - path: /addons
