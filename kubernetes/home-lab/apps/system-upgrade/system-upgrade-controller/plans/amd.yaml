@@ -5,7 +5,7 @@ metadata:
   name: amd
   namespace: system-upgrade
 spec:
-  version: "leap-15.6-standard-amd64-generic-v3.3.6-k3sv1.32.2-k3s1"
+  version: "leap-15.6-standard-amd64-generic-v3.4.2-k3sv1.32.3-k3s1"
   serviceAccountName: system-upgrade
   concurrency: 1
   cordon: false
