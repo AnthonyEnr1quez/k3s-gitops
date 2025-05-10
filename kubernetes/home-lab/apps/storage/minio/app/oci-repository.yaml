@@ -13,4 +13,4 @@ spec:
     operation: copy
   url: oci://registry-1.docker.io/bitnamicharts/minio
   ref:
-    tag: 16.0.8
+    tag: 16.0.10
