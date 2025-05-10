@@ -46,7 +46,7 @@ spec:
           server:
             image:
               repository: public.ecr.aws/docker/library/redis
-              tag: 7.4.3
+              tag: 8.0.0
             command: redis-server
             env:
               REDIS_REPLICATION_MODE: master
