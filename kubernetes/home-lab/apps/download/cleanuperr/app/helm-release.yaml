@@ -28,7 +28,7 @@ spec:
           app:
             image:
               repository: ghcr.io/flmorg/cleanuperr
-              tag: 1.6.7@sha256:8d73983cff21ba8e08e9863ddc6705805ef4d5baaed805df0da64fe8d70cbcb9
+              tag: 1.6.8@sha256:550881bda5dc23755183767e6067434d267c4b87e59aa2698549617c2e4b3f70
             env:
               TZ: America/Chicago
               QUEUECLEANER__ENABLED: true
