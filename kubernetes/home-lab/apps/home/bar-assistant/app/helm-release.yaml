@@ -1,0 +1,154 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app bar-assistant
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+    namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: democratic-csi-local-hostpath
+      namespace: storage
+  values:
+    controllers:
+      bar-assistant:
+        type: statefulset
+        containers:
+          api:
+            image:
+              repository: ghcr.io/karlomikus/barassistant
+              tag: 5.4.2@sha256:eb5331d1764d6a697a1f0f7f564b4e87f2768d89168030ab969a11d50e21f406
+            env:
+              TZ: America/Chicago
+              APP_URL: &api-url "https://{{ .Release.Name }}.${INTERNAL_HOSTNAME}/bar"
+              MEILISEARCH_HOST: http://localhost:7700
+              MEILISEARCH_KEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: "{{ .Release.Name }}-config"
+                    key: MEILISEARCH_KEY
+              REDIS_HOST: localhost
+              CACHE_DRIVER: redis
+              SESSION_DRIVER: redis
+              ALLOW_REGISTRATION: true
+          cache:
+            image:
+              repository: public.ecr.aws/docker/library/redis
+              tag: 8.0.1
+            command: redis-server
+            env:
+              REDIS_REPLICATION_MODE: master
+            resources:
+              requests:
+                cpu: 10m
+                memory: 10Mi
+              limits:
+                memory: 50Mi
+          search:
+            image:
+              repository: getmeili/meilisearch
+              tag: v1.14.0
+            env:
+              MEILI_ENV: production
+              MEILI_MASTER_KEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: "{{ .Release.Name }}-config"
+                    key: MEILISEARCH_KEY
+              MEILI_NO_ANALYTICS: true
+      frontend:
+        containers:
+          salt-rim:
+            image:
+              repository: ghcr.io/karlomikus/salt-rim
+              tag: 4.3.0@sha256:b6968dfb976b4421c5acdf4a82be9d6ca3291fbc26a871df01eb46b33c9c89ce
+            env:
+              API_URL: *api-url
+              MEILISEARCH_URL: "https://{{ .Release.Name }}.${INTERNAL_HOSTNAME}/search"
+    defaultPodOptions:
+      nodeSelector:
+        kubernetes.io/hostname: loreto
+    service:
+      backend:
+        controller: *app
+        ports:
+          api:
+            port: &port 8080
+          search:
+            port: &search-port 7700
+      frontend:
+        controller: frontend
+        ports:
+          http:
+            port: *port
+    route:
+      main:
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: production
+            namespace: networking
+        hostnames:
+          - "{{ .Release.Name }}.${INTERNAL_HOSTNAME}"
+        rules:
+          - matches:
+            - path:
+                value: "/bar"
+            filters:
+            - type: URLRewrite
+              urlRewrite:
+                path:
+                  type: ReplacePrefixMatch
+                  replacePrefixMatch: "/"
+            backendRefs:
+            - name: bar-assistant-backend
+              port: *port
+          - matches:
+            - path:
+                value: "/search"
+            filters:
+            - type: URLRewrite
+              urlRewrite:
+                path:
+                  type: ReplacePrefixMatch
+                  replacePrefixMatch: "/"
+            backendRefs:
+            - name: bar-assistant-backend
+              port: *search-port
+          - backendRefs:
+            - name: bar-assistant-frontend
+              port: *port
+    persistence:
+      data:
+        enabled: true
+        retain: true
+        storageClass: local-hostpath
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        advancedMounts:
+          bar-assistant:
+            api:
+              - path: /var/www/cocktails/storage/bar-assistant
+      search:
+        enabled: true
+        retain: true
+        storageClass: local-hostpath
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        advancedMounts:
+          bar-assistant:
+            search:
+              - path: /meili_data

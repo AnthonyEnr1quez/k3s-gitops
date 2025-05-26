@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
 
+  - bar-assistant/ks.yaml
   - home-assistant/ks.yaml
   - mealie/ks.yaml
