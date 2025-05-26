@@ -43,7 +43,7 @@ spec:
               REDIS_HOST: localhost
               CACHE_DRIVER: redis
               SESSION_DRIVER: redis
-              ALLOW_REGISTRATION: true
+              ALLOW_REGISTRATION: false
           cache:
             image:
               repository: public.ecr.aws/docker/library/redis
