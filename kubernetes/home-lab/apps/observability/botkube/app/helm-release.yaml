@@ -3,7 +3,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: botkube
-  namespace: observability
 spec:
   chart:
     spec:
