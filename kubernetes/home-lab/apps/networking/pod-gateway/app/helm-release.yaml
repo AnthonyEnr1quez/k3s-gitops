@@ -12,7 +12,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: angelnu
-        namespace: flux-system
   interval: 1h
   maxHistory: 3
   install:
