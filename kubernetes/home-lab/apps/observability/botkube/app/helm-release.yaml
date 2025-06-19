@@ -12,7 +12,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: botkube
-        namespace: flux-system
   interval: 1h
   maxHistory: 3
   install:
