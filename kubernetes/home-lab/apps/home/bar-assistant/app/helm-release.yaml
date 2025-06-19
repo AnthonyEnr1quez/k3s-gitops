@@ -69,6 +69,7 @@ spec:
                     name: "{{ .Release.Name }}-config"
                     key: MEILISEARCH_KEY
               MEILI_NO_ANALYTICS: true
+              MEILI_EXPERIMENTAL_DUMPLESS_UPGRADE: true
       frontend:
         containers:
           salt-rim:
