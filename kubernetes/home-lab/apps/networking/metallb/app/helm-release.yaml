@@ -23,7 +23,14 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    controller:
+      image:
+        repository: quay.io/metallb/controller
+        tag: v0.15.2@sha256:417cdb6d6f9f2c410cceb84047d3a4da3bfb78b5ddfa30f4cf35ea5c667e8c2e
     speaker:
+      image:
+        repository: quay.io/metallb/speaker
+        tag: v0.15.2@sha256:260c9406f957c0830d4e6cd2e9ac8c05e51ac959dd2462c4c2269ac43076665a
       livenessProbe:
         enabled: true
         failureThreshold: 3
@@ -31,3 +38,7 @@ spec:
         periodSeconds: 30
         successThreshold: 1
         timeoutSeconds: 10
+      frr:
+        image:
+          repository: quay.io/frrouting/frr
+          tag: 9.1.0@sha256:f310c2ebb3827fa03b9674ee05e70a7d5eef2123bcc3b475eb2ef14dafcb52b4
