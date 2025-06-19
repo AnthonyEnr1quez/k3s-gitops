@@ -5,5 +5,4 @@ kind: Kustomization
 resources:
   - angelnu.yaml
   - botkube.yaml
-  - metallb.yaml
   - sops-secrets-operator.yaml
