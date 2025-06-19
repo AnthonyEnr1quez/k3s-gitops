@@ -60,7 +60,7 @@ spec:
           search:
             image:
               repository: getmeili/meilisearch
-              tag: v1.14.0
+              tag: v1.15.2
             env:
               MEILI_ENV: production
               MEILI_MASTER_KEY:
@@ -69,6 +69,7 @@ spec:
                     name: "{{ .Release.Name }}-config"
                     key: MEILISEARCH_KEY
               MEILI_NO_ANALYTICS: true
+              MEILI_EXPERIMENTAL_DUMPLESS_UPGRADE: true
       frontend:
         containers:
           salt-rim:
