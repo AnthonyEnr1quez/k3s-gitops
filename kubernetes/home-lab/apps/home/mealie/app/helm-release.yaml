@@ -75,6 +75,7 @@ spec:
               port: *port
     persistence:
       data:
+        suffix: data
         enabled: true
         retain: true
         storageClass: local-hostpath

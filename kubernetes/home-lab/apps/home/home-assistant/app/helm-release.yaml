@@ -90,6 +90,7 @@ spec:
               port: *port
     persistence:
       config:
+        suffix: config
         enabled: true
         retain: true
         storageClass: local-hostpath

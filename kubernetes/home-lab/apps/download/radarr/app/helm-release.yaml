@@ -70,6 +70,7 @@ spec:
               request: 10m
     persistence:
       config:
+        suffix: config
         enabled: true
         retain: true
         storageClass: local-hostpath
