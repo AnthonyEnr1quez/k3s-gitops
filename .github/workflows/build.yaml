@@ -1,0 +1,35 @@
+name: Build Flake
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/build.yaml"
+  push:
+    paths:
+      - ".github/workflows/build.yaml"
+
+jobs:
+  build:
+    name: Build Flake
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-15
+        include:
+          - os: ubuntu-latest
+            system: x86_64-linux
+          - os: macos-15
+            system: aarch64-darwin
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@17fe5fb4a23ad6cbbe47d6b3f359611ad276644c # v31
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+
+      - run: nix build .#devShells.${{ matrix.system }}.default

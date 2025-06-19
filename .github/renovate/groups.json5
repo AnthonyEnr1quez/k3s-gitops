@@ -50,9 +50,9 @@
       separateMinorPatch: false
     },
     {
-      groupName: "bar-assisstant",
+      groupName: "bar-assistant",
       matchPackagePatterns: [
-        "bar-assisstant",
+        "barassistant",
         "meilisearch",
         "salt-rim"
       ],
