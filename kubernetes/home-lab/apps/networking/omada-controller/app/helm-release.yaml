@@ -30,14 +30,9 @@ spec:
           app:
             image:
               repository: mbentley/omada-controller
-              tag: 5.15.20.20
-              # tag: 5.14.32.3@sha256:2d55a4c63168daae0ad69a1f1872e253cc76b5299e4d6df8a6bd7b17bd090b22
+              tag: 5.15.24.17@sha256:e0c17f1a00cf010e345070a119682ccb0d89bd3d0a335cc8ec5342f275b3ef2e
             env:
               TZ: America/Chicago
-              MANAGE_HTTP_PORT: &manage-http 8088
-              MANAGE_HTTPS_PORT: &manage-https 8043
-              PORTAL_HTTP_PORT: &portal-http 8888
-              PORTAL_HTTPS_PORT: &portal-https 8843
               SHOW_SERVER_LOGS: true
               SHOW_MONGODB_LOGS: true
             # probes:
@@ -61,7 +56,7 @@ spec:
         primary: true
         ports:
           http:
-            port: *manage-https
+            port: &manage-https 8043
             protocol: TCP
       controller:
         controller: *app
@@ -73,15 +68,21 @@ spec:
           # Docs: https://www.tp-link.com/us/support/faq/3281/
           # Management Ports
           mgmt-http:
-            port: *manage-http
+            port: 8088
             protocol: TCP
           mgmt-https:
             port: *manage-https
             protocol: TCP
+          # portal-http:
+          #   port: 8888
+          #   protocol: TCP
           portal-https:
-            port: *portal-https
+            port: 8843
             protocol: TCP
           # Device Discovery, Adoption, Management, and Upgrade
+          optical-line-terminal:
+            port: 19810
+            protocol: UDP
           eap-v5-discovery:
             port: 29810
             protocol: UDP
