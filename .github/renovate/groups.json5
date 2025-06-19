@@ -48,6 +48,16 @@
       ],
       matchDatasources: ["docker", "github-tags"],
       separateMinorPatch: false
+    },
+    {
+      groupName: "bar-assisstant",
+      matchPackagePatterns: [
+        "bar-assisstant",
+        "meilisearch",
+        "salt-rim"
+      ],
+      matchDatasources: ["docker", "github-tags"],
+      separateMinorPatch: false
     }
   ]
 }
