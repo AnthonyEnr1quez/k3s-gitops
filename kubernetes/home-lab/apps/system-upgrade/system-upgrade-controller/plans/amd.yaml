@@ -3,7 +3,6 @@ apiVersion: upgrade.cattle.io/v1
 kind: Plan
 metadata:
   name: amd
-  namespace: system-upgrade
 spec:
   version: "leap-15.6-standard-amd64-generic-v3.3.6-k3sv1.32.2-k3s1"
   serviceAccountName: system-upgrade
