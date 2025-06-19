@@ -7,5 +7,4 @@ resources:
   - local-path-provisioner/ks.yaml
   - democratic-csi/ks.yaml
   - nfs-server/ks.yaml
-  - minio/ks.yaml
   - volsync/ks.yaml

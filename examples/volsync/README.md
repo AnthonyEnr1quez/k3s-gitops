@@ -12,6 +12,5 @@ This was a lot of trial and error lolz
 Do I need privileged movers?
 - https://volsync.readthedocs.io/en/stable/usage/permissionmodel.html
 - https://github.com/AnthonyEnr1quez/k3s-gitops/commit/fe2f2b8ffc7048d134cfee0b6ad628f3ba7c9aaf
-- remove the minio hr and bitnami helm repo
 - test diff volumesnapshotclasses
   - currently using sc
