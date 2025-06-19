@@ -11,7 +11,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: sops-secrets-operator
-        namespace: flux-system
   interval: 1h
   maxHistory: 3
   install:
