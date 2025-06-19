@@ -3,7 +3,6 @@ apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
   name: &source home-assistant-config
-  namespace: home
 spec:
   sourcePVC: *source
   trigger:
