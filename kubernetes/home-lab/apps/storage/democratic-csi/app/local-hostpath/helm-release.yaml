@@ -63,7 +63,7 @@ spec:
         enabled: false
       externalProvisioner:
         enabled: true
-        image: registry.k8s.io/sig-storage/csi-provisioner:v5.2.0
+        image: registry.k8s.io/sig-storage/csi-provisioner:v5.3.0
         extraArgs:
           - --leader-election=false
           - --node-deployment=true
@@ -95,7 +95,7 @@ spec:
             mountPropagation: Bidirectional
       driverRegistrar:
         enabled: true
-        image: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.13.0
+        image: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.14.0
       extraVolumes:
         - name: *lhp
           hostPath:
