@@ -18,3 +18,9 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  values:
+    deployment:
+      envoyGateway:
+        image:
+          repository: docker.io/envoyproxy/gateway
+          tag: v1.4.1@sha256:493348cd82d0d9f7b838bcbe050d43018bf34d5d33a1ee4a5d2936e27a3ab34e
