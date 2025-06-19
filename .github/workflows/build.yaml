@@ -5,9 +5,13 @@ on:
   pull_request:
     paths:
       - ".github/workflows/build.yaml"
+      - "flake.nix"
+      - "flake.lock"
   push:
     paths:
       - ".github/workflows/build.yaml"
+      - "flake.nix"
+      - "flake.lock"
 
 jobs:
   build:
