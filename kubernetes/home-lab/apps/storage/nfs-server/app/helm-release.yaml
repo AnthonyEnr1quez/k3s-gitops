@@ -28,7 +28,7 @@ spec:
               repository: docker.io/itsthenetwork/nfs-server-alpine
               # TODO https://github.com/aminvakil/docker-alpine-nfs-server
               # repository: quay.io/aminvakil/alpine-nfs-server
-              tag: latest
+              tag: latest@sha256:7fa99ae65c23c5af87dd4300e543a86b119ed15ba61422444207efc7abd0ba20
             env:
               TZ: America/Chicago
               SHARED_DIRECTORY: &path /nfsshare
