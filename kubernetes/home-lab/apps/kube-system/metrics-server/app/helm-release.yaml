@@ -19,6 +19,9 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    image:
+      repository: registry.k8s.io/metrics-server/metrics-server
+      tag: v0.7.2@sha256:ffcb2bf004d6aa0a17d90e0247cf94f2865c8901dcab4427034c341951c239f9
     args:
       - --kubelet-insecure-tls
       - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
