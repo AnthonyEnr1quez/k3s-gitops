@@ -63,7 +63,9 @@ spec:
         enabled: false
       externalProvisioner:
         enabled: true
-        image: registry.k8s.io/sig-storage/csi-provisioner:v5.3.0
+        image:
+          registry: registry.k8s.io/sig-storage/csi-provisioner
+          tag: v5.3.0
         extraArgs:
           - --leader-election=false
           - --node-deployment=true
@@ -77,15 +79,21 @@ spec:
         enabled: false
       externalSnapshotter:
         enabled: true
-        image: registry.k8s.io/sig-storage/csi-snapshotter:v8.2.1
+        image: 
+          registry: registry.k8s.io/sig-storage/csi-snapshotter
+          tag: v8.2.1
         extraArgs:
           - --leader-election=false
           - --node-deployment=true # TODO, this only works rn with node topo storage classes
     node:
       cleanup:
-        image: public.ecr.aws/docker/library/busybox:1.37.0
+        image: 
+          registry: public.ecr.aws/docker/library/busybox
+          tag: 1.37.0
       driver:
-        image: democraticcsi/democratic-csi:v1.9.3
+        image: 
+          registry: democraticcsi/democratic-csi
+          tag: v1.9.3
         extraVolumeMounts:
           - name: *lhp
             # TODO kairos partitioning doesnt give my csi storage dir much room
@@ -95,7 +103,9 @@ spec:
             mountPropagation: Bidirectional
       driverRegistrar:
         enabled: true
-        image: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.14.0
+        image: 
+          registry: registry.k8s.io/sig-storage/csi-node-driver-registrar
+          tag: v2.14.0
       extraVolumes:
         - name: *lhp
           hostPath:
@@ -103,7 +113,9 @@ spec:
             type: DirectoryOrCreate
     csiProxy:
       enabled: true
-      image: docker.io/democraticcsi/csi-grpc-proxy:v0.5.6
+      image: 
+        registry: docker.io/democraticcsi/csi-grpc-proxy
+        tag: v0.5.6
     driver:
       config:
         driver: *lhp
