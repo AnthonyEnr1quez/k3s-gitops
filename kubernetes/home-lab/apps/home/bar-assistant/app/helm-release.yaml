@@ -59,8 +59,8 @@ spec:
                 memory: 50Mi
           search:
             image:
-              repository: getmeili/meilisearch
-              tag: v1.15.2
+              repository: docker.io/getmeili/meilisearch
+              tag: v1.15.2@sha256:fe500cf9cca05cb9f027981583f28eccf17d35d94499c1f8b7b844e7418152fc
             env:
               MEILI_ENV: production
               MEILI_MASTER_KEY:
