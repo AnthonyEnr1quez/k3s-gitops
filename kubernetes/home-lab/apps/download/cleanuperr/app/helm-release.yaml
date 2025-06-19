@@ -32,6 +32,10 @@ spec:
               TZ: America/Chicago
               DOWNLOAD_CLIENT: disabled
               QUEUECLEANER__ENABLED: true
+              QUEUECLEANER__IMPORT_FAILED_MAX_STRIKES: 3
+              QUEUECLEANER__STALLED_MAX_STRIKES: 3
+              QUEUECLEANER__DOWNLOADING_METADATA_MAX_STRIKES: 3
+              QUEUECLEANER__STALLED_RESET_STRIKES_ON_PROGRESS: true
               SONARR__ENABLED: true
               SONARR__INSTANCES__0__URL: http://sonarr:8989
               RADARR__ENABLED: true
