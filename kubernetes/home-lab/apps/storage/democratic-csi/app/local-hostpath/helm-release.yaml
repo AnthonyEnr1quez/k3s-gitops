@@ -90,9 +90,9 @@ spec:
           registry: public.ecr.aws/docker/library/busybox
           tag: 1.37.0
       driver:
-        image: 
-          registry: democraticcsi/democratic-csi
-          tag: v1.9.3
+        image:
+          registry: ghcr.io/democratic-csi/democratic-csi
+          tag: v1.9.3@sha256:8ce65ce5bd9b9cdd79ace0e94b6652a233cfbfb26af177fb7912c1217a3f2c19
         extraVolumeMounts:
           - name: *lhp
             # TODO kairos partitioning doesnt give my csi storage dir much room
@@ -113,8 +113,8 @@ spec:
     csiProxy:
       enabled: true
       image: 
-        registry: docker.io/democraticcsi/csi-grpc-proxy
-        tag: v0.5.6
+        registry: ghcr.io/democratic-csi/csi-grpc-proxy
+        tag: v0.5.6@sha256:fc5fc1fe9c682463fe8b219db070930e77067d76449749ef5ba99cedd30fa437
     driver:
       config:
         driver: *lhp
