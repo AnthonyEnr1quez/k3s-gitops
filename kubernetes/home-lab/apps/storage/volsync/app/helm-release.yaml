@@ -19,6 +19,14 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    image: &image
+      repository: quay.io/backube/volsync
+      tag: 0.12.1@sha256:2dd1ef4251b3a5881ab9289dce481de3fe30da7fc8da5e4dfed2d562964c888a
+    restic:
+      <<: *image
+    kube-rbac-proxy:
+      repository: quay.io/brancz/kube-rbac-proxy
+      tag: v0.19.1@sha256:9f21034731c7c3228611b9d40807f3230ce8ed2b286b913bf2d1e760d8d866fc
     manageCRDs: true
     metrics:
       disableAuth: true
