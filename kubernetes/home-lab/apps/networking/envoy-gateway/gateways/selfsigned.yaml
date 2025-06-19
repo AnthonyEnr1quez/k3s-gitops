@@ -3,7 +3,6 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: selfsigned
-  namespace: networking
   annotations:
     cert-manager.io/cluster-issuer: selfsigned
 spec:

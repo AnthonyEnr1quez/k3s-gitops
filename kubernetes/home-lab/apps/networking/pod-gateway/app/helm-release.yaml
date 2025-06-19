@@ -3,7 +3,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: pod-gateway
-  namespace: networking
 spec:
   chart:
     spec:

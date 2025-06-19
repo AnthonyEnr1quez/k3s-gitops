@@ -3,7 +3,6 @@ apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
   name: &source omada-controller-backup
-  namespace: networking
 spec:
   sourcePVC: *source
   trigger:
