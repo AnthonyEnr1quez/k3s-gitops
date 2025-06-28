@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: cleanuparr
+  name: &app cleanuparr
 spec:
   chartRef:
     kind: OCIRepository
@@ -43,3 +43,22 @@ spec:
             envFrom:
               - secretRef:
                   name: cleanuparr-config
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: &port 11011
+    route:
+      main:
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: production
+            namespace: networking
+        hostnames:
+          - "{{ .Release.Name }}.${INTERNAL_HOSTNAME}"
+        rules:
+          - backendRefs:
+            - name: *app
+              port: *port
