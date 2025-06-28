@@ -49,6 +49,9 @@ spec:
             - key: *topo
               values:
                 - mina
+      - <<: *sc
+        name: local-hostpath-test
+        volumeBindingMode: Immediate
     volumeSnapshotClasses:
       - name: *lhp
         annotations:
