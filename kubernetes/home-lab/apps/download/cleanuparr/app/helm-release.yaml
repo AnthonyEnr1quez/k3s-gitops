@@ -22,7 +22,7 @@ spec:
   values:
     controllers:
       cleanuparr:
-        type: deployment
+        type: statefulset
         containers:
           app:
             image:
@@ -62,3 +62,11 @@ spec:
           - backendRefs:
             - name: *app
               port: *port
+    persistence:
+      config:
+        suffix: config
+        enabled: true
+        retain: true
+        storageClass: local-hostpath
+        accessMode: ReadWriteOnce
+        size: 1Gi
