@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: cleanuperr
+  name: cleanuparr
 spec:
   chartRef:
     kind: OCIRepository
@@ -21,13 +21,13 @@ spec:
     keepHistory: false
   values:
     controllers:
-      cleanuperr:
+      cleanuparr:
         type: deployment
         containers:
           app:
             image:
-              repository: ghcr.io/flmorg/cleanuperr
-              tag: 1.6.8@sha256:550881bda5dc23755183767e6067434d267c4b87e59aa2698549617c2e4b3f70
+              repository: ghcr.io/cleanuparr/cleanuparr
+              tag: 2.0.3@sha256:e4770ef93fec9d2e81e00365ad99a71b03e374a1de87acde5082be845dc94fdc
             env:
               TZ: America/Chicago
               DOWNLOAD_CLIENT: disabled
@@ -42,4 +42,4 @@ spec:
               RADARR__INSTANCES__0__URL: http://radarr:7878
             envFrom:
               - secretRef:
-                  name: cleanuperr-config
+                  name: cleanuparr-config
