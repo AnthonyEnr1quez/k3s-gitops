@@ -43,6 +43,9 @@ spec:
             envFrom:
               - secretRef:
                   name: cleanuparr-config
+    defaultPodOptions:
+      nodeSelector:
+        kubernetes.io/hostname: loreto
     service:
       app:
         controller: *app
