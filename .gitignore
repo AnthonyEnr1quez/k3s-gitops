@@ -1,2 +1,4 @@
 .direnv/
+**/sops-secret.yaml
+
 miggy/
