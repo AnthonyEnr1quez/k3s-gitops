@@ -21,22 +21,48 @@ spec:
     keepHistory: false
   values:
     controllers:
-      nfs-server:
+      *app :
+        strategy: RollingUpdate
+        pod:
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+            runAsNonRoot: false
+            seccompProfile: { type: RuntimeDefault }
         containers:
           server:
             image:
-              repository: docker.io/itsthenetwork/nfs-server-alpine
-              # TODO https://github.com/aminvakil/docker-alpine-nfs-server
-              # repository: quay.io/aminvakil/alpine-nfs-server
-              tag: latest@sha256:7fa99ae65c23c5af87dd4300e543a86b119ed15ba61422444207efc7abd0ba20
+              repository: quay.io/aminvakil/alpine-nfs-server
+              tag: latest@sha256:f9701ce09662d86944cf942ec73873ee770dde15b23eca295fe3bfbdc95c875e
             env:
               TZ: America/Chicago
               SHARED_DIRECTORY: &path /nfsshare
+              SYNC: true
+            # probes:
+            #   readiness: &probes
+            #     enabled: true
+            #     custom: true
+            #     spec:
+            #       exec:
+            #         command:
+            #           - sh
+            #           - -c
+            #           - "showmount -e localhost | grep -q $(SHARED_DIRECTORY)"
+            #   liveness: *probes
+            # resources:
+            #   requests:
+            #     cpu: 10m
+            #     memory: 10Mi
+            #   limits:
+            #     memory: 512Mi
             securityContext:
-              capabilities:
-                add:
-                  - SYS_ADMIN
-                  - SETPCAP
+              allowPrivilegeEscalation: true
+              readOnlyRootFilesystem: false
+              privileged: true
+              # capabilities:
+              #   add:
+              #     - SYS_ADMIN
+              #     - SETPCAP
     defaultPodOptions:
       nodeSelector:
         kubernetes.io/hostname: mina
@@ -49,10 +75,11 @@ spec:
     service:
       server:
         controller: *app
-        clusterIP: 10.43.23.156
+        clusterIP: 10.43.23.156 #todo var
         ports:
           http:
             port: 2049
+            protocol: TCP
     persistence:
       nfsshare:
         enabled: true
