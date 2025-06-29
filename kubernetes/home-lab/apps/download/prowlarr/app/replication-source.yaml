@@ -23,4 +23,12 @@ spec:
       daily: 14
       within: 14d
     capacity: 1Gi
-    storageClassName: local-hostpath
+    storageClassName: local-hostpath-v2
+    moverAffinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values: ["${node}"]

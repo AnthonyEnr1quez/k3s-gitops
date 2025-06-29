@@ -37,7 +37,7 @@ spec:
       annotations:
         setGateway: "true"
       nodeSelector:
-        kubernetes.io/hostname: loreto
+        kubernetes.io/hostname: ${node}
       securityContext:
         # runAsNonRoot: true
         runAsUser: 568
@@ -70,6 +70,6 @@ spec:
         suffix: config
         enabled: true
         retain: true
-        storageClass: local-hostpath
+        storageClass: local-hostpath-v2
         accessMode: ReadWriteOnce
         size: 1Gi
