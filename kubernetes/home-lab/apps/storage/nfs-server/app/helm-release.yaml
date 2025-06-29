@@ -38,31 +38,27 @@ spec:
               TZ: America/Chicago
               SHARED_DIRECTORY: &path /nfsshare
               SYNC: true
-            # probes:
-            #   readiness: &probes
-            #     enabled: true
-            #     custom: true
-            #     spec:
-            #       exec:
-            #         command:
-            #           - sh
-            #           - -c
-            #           - "showmount -e localhost | grep -q $(SHARED_DIRECTORY)"
-            #   liveness: *probes
-            # resources:
-            #   requests:
-            #     cpu: 10m
-            #     memory: 10Mi
-            #   limits:
-            #     memory: 512Mi
+            probes:
+              readiness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  exec:
+                    command:
+                      - sh
+                      - -c
+                      - "showmount -e localhost | grep -q \"$SHARED_DIRECTORY\""
+              liveness: *probes
+            resources:
+              requests:
+                cpu: 10m
+                memory: 10Mi
+              limits:
+                memory: 512Mi
             securityContext:
               allowPrivilegeEscalation: true
               readOnlyRootFilesystem: false
               privileged: true
-              # capabilities:
-              #   add:
-              #     - SYS_ADMIN
-              #     - SETPCAP
     defaultPodOptions:
       nodeSelector:
         kubernetes.io/hostname: mina
