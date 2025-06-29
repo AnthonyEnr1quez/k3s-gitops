@@ -70,6 +70,6 @@ spec:
         suffix: config
         enabled: true
         retain: true
-        storageClass: local-hostpath-
+        storageClass: local-hostpath
         accessMode: ReadWriteOnce
         size: 1Gi
