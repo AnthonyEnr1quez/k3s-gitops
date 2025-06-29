@@ -30,7 +30,7 @@ spec:
           app:
             image:
               repository: ghcr.io/cleanuparr/cleanuparr
-              tag: 2.0.3@sha256:e4770ef93fec9d2e81e00365ad99a71b03e374a1de87acde5082be845dc94fdc
+              tag: 2.0.5@sha256:6a5300ef48ffd1bf571ff4a12664f7fa9e959c130372ac30877ed3f69df24553
             env:
               TZ: America/Chicago
               DOWNLOAD_CLIENT: disabled
