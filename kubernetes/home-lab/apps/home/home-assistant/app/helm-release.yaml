@@ -61,7 +61,7 @@ spec:
               runAsGroup: 0
     defaultPodOptions:
       nodeSelector:
-        kubernetes.io/hostname: gulsun
+        kubernetes.io/hostname: ${node}
       hostNetwork: true
       securityContext:
         # runAsUser: 612
@@ -92,7 +92,7 @@ spec:
         suffix: config
         enabled: true
         retain: true
-        storageClass: local-hostpath
+        storageClass: local-hostpath-v2
         accessMode: ReadWriteOnce
         size: 5Gi
         advancedMounts:
