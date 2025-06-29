@@ -71,7 +71,7 @@ spec:
     service:
       server:
         controller: *app
-        clusterIP: 10.43.23.156 #todo var
+        clusterIP: ${NFS_IP_ADDRESS}
         ports:
           http:
             port: 2049
