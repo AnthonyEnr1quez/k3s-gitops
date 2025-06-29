@@ -35,25 +35,6 @@ spec:
         volumeBindingMode: WaitForFirstConsumer
         # distributed support is not yet ready for expansion
         allowVolumeExpansion: false
-        allowedTopologies:
-          - matchLabelExpressions:
-            - key: &topo org.democratic-csi.topology/node
-              values:
-                - loreto
-      - <<: *sc
-        name: local-hostpath-gulsun
-        allowedTopologies:
-          - matchLabelExpressions:
-            - key: *topo
-              values:
-                - gulsun
-      - <<: *sc
-        name: local-hostpath-mina
-        allowedTopologies:
-          - matchLabelExpressions:
-            - key: *topo
-              values:
-                - mina
       - name: local-hostpath-v2
         defaultClass: false
         reclaimPolicy: Delete
