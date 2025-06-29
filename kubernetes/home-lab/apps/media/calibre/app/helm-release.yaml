@@ -40,7 +40,7 @@ spec:
               PGID: 568
     defaultPodOptions:
       nodeSelector:
-        kubernetes.io/hostname: gulsun
+        kubernetes.io/hostname: ${node}
     service:
       app:
         controller: *app
@@ -81,7 +81,7 @@ spec:
         suffix: config
         enabled: true
         retain: true
-        storageClass: local-hostpath
+        storageClass: local-hostpath-v2
         accessMode: ReadWriteOnce
         size: 1Gi
       books:
