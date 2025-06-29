@@ -47,7 +47,7 @@ spec:
                 memory: 2000Mi
     defaultPodOptions:
       nodeSelector:
-        kubernetes.io/hostname: loreto
+        kubernetes.io/hostname: ${node}
       hostNetwork: true #TODO
     service:
       app:
@@ -134,7 +134,7 @@ spec:
         &persist
         enabled: true
         retain: true
-        storageClass: local-hostpath
+        storageClass: local-hostpath-v2
         accessMode: ReadWriteOnce
         size: 10Gi
         globalMounts:
