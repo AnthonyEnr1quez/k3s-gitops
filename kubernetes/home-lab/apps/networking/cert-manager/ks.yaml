@@ -31,6 +31,8 @@ metadata:
 spec:
   targetNamespace: networking
   dependsOn:
+    - name: cluster-secrets
+    - name: sops-secrets-operator
     - name: cert-manager
   path: ./kubernetes/home-lab/apps/networking/cert-manager/cluster-issuers
   prune: true
@@ -41,3 +43,7 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: acme

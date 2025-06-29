@@ -5,7 +5,7 @@ metadata:
   name: lets-encrypt-production
 spec:
   acme:
-    email: your-email@my-site.com ## TODO update
+    email: ${email}
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: lets-encrypt-production
