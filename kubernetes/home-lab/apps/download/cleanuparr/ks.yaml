@@ -8,7 +8,10 @@ metadata:
 spec:
   targetNamespace: download
   dependsOn:
+    - name: cluster-secrets
+    - name: envoy-gateway-gateways
     - name: sops-secrets-operator
+    - name: volsync
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
