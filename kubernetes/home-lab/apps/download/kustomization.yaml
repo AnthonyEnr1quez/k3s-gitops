@@ -12,4 +12,3 @@ resources:
   - bazarr/ks.yaml
   - requestrr/ks.yaml
   - cleanuparr/ks.yaml
-  - cleanuparr-test/ks.yaml
