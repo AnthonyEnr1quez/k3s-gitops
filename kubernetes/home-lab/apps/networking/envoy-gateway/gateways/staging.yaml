@@ -10,7 +10,6 @@ spec:
   listeners:
     - name: http
       protocol: HTTP
-      # hostname: "*.${INTERNAL_HOSTNAME}" TODO
       port: 80
       allowedRoutes:
         namespaces:

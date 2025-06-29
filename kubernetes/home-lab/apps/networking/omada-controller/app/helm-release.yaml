@@ -115,7 +115,7 @@ spec:
           db-access:
             port: 27217
             protocol: TCP
-    # TODO config for reverse proxy
+    # TODO config for reverse proxy, http -> https
     # route:
     #   main:
     #     enabled: true
