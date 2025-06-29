@@ -24,3 +24,11 @@ spec:
       within: 14d
     capacity: 10Gi
     storageClassName: local-hostpath
+    moverAffinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values: ["${node}"]
