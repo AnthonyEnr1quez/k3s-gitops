@@ -29,7 +29,7 @@ spec:
       fsGroupPolicy: File
     storageClasses:
       - name: &lhp local-hostpath
-        defaultClass: false
+        defaultClass: true
         reclaimPolicy: Delete
         volumeBindingMode: WaitForFirstConsumer
         # distributed support is not yet ready for expansion
