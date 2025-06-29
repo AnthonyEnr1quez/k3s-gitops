@@ -10,7 +10,7 @@
       in
       {
         devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
+          packages = with pkgs; [
             age
             fluxcd
             go-task
@@ -23,7 +23,10 @@
             watch
             regctl
             cmctl
+            restic
           ];
         };
+
+        formatter = pkgs.nixpkgs-fmt;
       });
 }
