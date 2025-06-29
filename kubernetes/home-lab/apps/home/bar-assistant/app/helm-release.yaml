@@ -81,7 +81,7 @@ spec:
               MEILISEARCH_URL: "https://{{ .Release.Name }}.${INTERNAL_HOSTNAME}/search"
     defaultPodOptions:
       nodeSelector:
-        kubernetes.io/hostname: loreto
+        kubernetes.io/hostname: ${node}
     service:
       backend:
         controller: *app
@@ -136,7 +136,7 @@ spec:
       data:
         enabled: true
         retain: true
-        storageClass: local-hostpath
+        storageClass: local-hostpath-v2
         accessMode: ReadWriteOnce
         size: 1Gi
         advancedMounts:
@@ -146,7 +146,7 @@ spec:
       search:
         enabled: true
         retain: true
-        storageClass: local-hostpath
+        storageClass: local-hostpath-v2
         accessMode: ReadWriteOnce
         size: 1Gi
         advancedMounts:
