@@ -57,7 +57,7 @@ spec:
         controller: *app
         type: LoadBalancer
         annotations: 
-          metallb.io/loadBalancerIPs: 192.168.0.232
+          metallb.io/loadBalancerIPs: ${PLEX_IP_ADDRESS}
         ports:
           http:
             port: &port 32400
