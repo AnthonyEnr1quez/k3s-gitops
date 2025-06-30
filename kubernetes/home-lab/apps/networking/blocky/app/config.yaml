@@ -1,70 +1,64 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: blocky
-data:
-  config.yml: |-
-    upstreams:
-      groups:
-        default:
-          - tcp-tls:one.one.one.one:853
-          - tcp-tls:dns.quad9.net:853
-    bootstrapDns: 
-      - tcp+udp:1.1.1.1
-    redis:
-      address: blocky-cache:6379
-      # password: ${REDIS_PASSWORD}
-      required: true
-      connectionAttempts: 10
-      connectionCooldown: 3s
-    caching:
-      minTime: 15m
-      prefetching: true
-      prefetchExpires: 2h
-      #cacheTimeNegative: -1m
-    customDNS:
-      customTTL: 1h
-      filterUnmappedTypes: true
-      mapping:
-        ${INTERNAL_HOSTNAME}: ${ENVOY_IP_ADDRESS}
-    blocking:
-      denylists:
-        ads:
-          - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
-          # - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
-          # - http://sysctl.org/cameleon/hosts
-          # - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
-          # - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dblw.txt
-          # - https://big.oisd.nl/domainswild
-          # - https://v.firebog.net/hosts/AdguardDNS.txt
-          # - https://urlhaus.abuse.ch/downloads/hostfile
-          # - https://raw.githubusercontent.com/mullvad/dns-blocklists/main/output/doh/doh_privacy.txt
-          # - https://raw.githubusercontent.com/durablenapkin/scamblocklist/master/hosts.txt
-          # - https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt
-          # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt
-          # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt
-          # # use DoH-only first rather than doh-vpn-proxy-bypass since I do use Mullvad
-          # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/doh.txt
-          # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/gambling.txt
-          # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/anti.piracy.txt
-          # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/nosafesearch.txt
-          # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/hoster.txt
-          # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/dyndns.txt
-          # - https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt
-          # - https://raw.githubusercontent.com/BlackJack8/iOSAdblockList/master/Regular%20Hosts.txt
-        fakenews:
-          - https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews/hosts
-      allowlists:
-        ads:
-          - https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt
-      clientGroupsBlock:
-        default:
-          - ads
-          - fakenews
-    # prometheus:
-    #   enable: true
-    #   path: /metrics
-    ports:
-      http: 4000
-    log:
-      level: info
+upstreams:
+  groups:
+    default:
+      - tcp-tls:one.one.one.one:853
+      - tcp-tls:dns.quad9.net:853
+bootstrapDns: 
+  - tcp+udp:1.1.1.1
+redis:
+  address: blocky-cache:6379
+  # password: ${REDIS_PASSWORD}
+  required: true
+  connectionAttempts: 10
+  connectionCooldown: 3s
+caching:
+  minTime: 15m
+  prefetching: true
+  prefetchExpires: 2h
+  #cacheTimeNegative: -1m
+customDNS:
+  customTTL: 1h
+  filterUnmappedTypes: true
+  mapping:
+    ${INTERNAL_HOSTNAME}: ${ENVOY_IP_ADDRESS}
+blocking:
+  denylists:
+    ads:
+      - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+      # - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
+      # - http://sysctl.org/cameleon/hosts
+      # - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
+      # - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dblw.txt
+      # - https://big.oisd.nl/domainswild
+      # - https://v.firebog.net/hosts/AdguardDNS.txt
+      # - https://urlhaus.abuse.ch/downloads/hostfile
+      # - https://raw.githubusercontent.com/mullvad/dns-blocklists/main/output/doh/doh_privacy.txt
+      # - https://raw.githubusercontent.com/durablenapkin/scamblocklist/master/hosts.txt
+      # - https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt
+      # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt
+      # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt
+      # # use DoH-only first rather than doh-vpn-proxy-bypass since I do use Mullvad
+      # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/doh.txt
+      # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/gambling.txt
+      # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/anti.piracy.txt
+      # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/nosafesearch.txt
+      # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/hoster.txt
+      # - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/dyndns.txt
+      # - https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt
+      # - https://raw.githubusercontent.com/BlackJack8/iOSAdblockList/master/Regular%20Hosts.txt
+    fakenews:
+      - https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews/hosts
+  allowlists:
+    ads:
+      - https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt
+  clientGroupsBlock:
+    default:
+      - ads
+      - fakenews
+# prometheus:
+#   enable: true
+#   path: /metrics
+ports:
+  http: 4000
+log:
+  level: info
