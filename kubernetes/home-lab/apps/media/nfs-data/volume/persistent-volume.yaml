@@ -12,11 +12,8 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: 10.43.23.156
+    server: ${NFS_IP_ADDRESS}
     path: /data
-  # claimRef:
-  #   name: nfs-data
-  #   namespace: media
   mountOptions:
   - nfsvers=4.2
   - tcp
@@ -24,16 +21,3 @@ spec:
   - hard
   - noatime
   - nodiratime
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: nfs-data
-  namespace: media
-spec:
-  accessModes:
-    - ReadWriteMany
-  storageClassName: ""
-  resources:
-    requests:
-      storage: 1Mi
