@@ -30,6 +30,7 @@ spec:
   targetNamespace: networking
   dependsOn:
     - name: metallb
+    - name: cluster-variables
   path: ./kubernetes/home-lab/apps/networking/metallb/pools
   prune: true
   sourceRef:

@@ -9,6 +9,7 @@ spec:
   targetNamespace: download
   dependsOn:
     - name: cluster-variables
+    - name: nfs-server
   path: ./kubernetes/home-lab/apps/download/nfs-data/volume
   prune: true
   sourceRef:
