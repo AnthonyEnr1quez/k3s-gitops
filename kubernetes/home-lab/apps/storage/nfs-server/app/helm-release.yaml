@@ -1,3 +1,4 @@
+# REF: https://github.com/ant385525/home-ops/blob/82d217acc980d8377c03f5a672b0a0349e778db3/kubernetes/apps/storage/nfs-server/app/hr.yaml
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
