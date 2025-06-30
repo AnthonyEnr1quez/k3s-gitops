@@ -61,7 +61,7 @@ spec:
         controller: *app
         type: LoadBalancer
         annotations: 
-          metallb.io/loadBalancerIPs: 192.168.0.234
+          metallb.io/loadBalancerIPs: ${OMADA_IP_ADDRESS}
         externalTrafficPolicy: Local
         ports:
           # Docs: https://www.tp-link.com/us/support/faq/3281/
