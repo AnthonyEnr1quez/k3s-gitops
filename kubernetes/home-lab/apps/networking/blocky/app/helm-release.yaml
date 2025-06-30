@@ -64,7 +64,7 @@ spec:
         type: LoadBalancer
         externalTrafficPolicy: Local
         annotations:
-          metallb.io/loadBalancerIPs: 192.168.0.231
+          metallb.io/loadBalancerIPs: ${BLOCKY_IP_ADDRESS}
         ports:
           http:
             port: 4000
