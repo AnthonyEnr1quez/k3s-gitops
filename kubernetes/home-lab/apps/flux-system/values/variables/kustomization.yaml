@@ -5,5 +5,11 @@ configMapGenerator:
 - name: ip-addresses
   literals:
   - NFS_IP_ADDRESS=10.43.23.156
+
+  - METALLB_POOL=192.168.0.230-192.168.0.254
+  - ENVOY_IP_ADDRESS=192.168.0.230
+  - BLOCKY_IP_ADDRESS=192.168.0.231
+  - PLEX_IP_ADDRESS=192.168.0.232
+  - OMADA_IP_ADDRESS=192.168.0.234
 generatorOptions:
   disableNameSuffixHash: true
