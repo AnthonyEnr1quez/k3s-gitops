@@ -47,7 +47,7 @@ spec:
           cache:
             image:
               repository: public.ecr.aws/docker/library/redis
-              tag: 8.0.2@sha256:e71b4cb00ea461ac21114cff40ff12fb8396914238e1e9ec41520b2d5a4d3423
+              tag: 8.0.2@sha256:b43d2dcbbdb1f9e1582e3a0f37e53bf79038522ccffb56a25858969d7a9b6c11
             command: redis-server
             env:
               REDIS_REPLICATION_MODE: master
