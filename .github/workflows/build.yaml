@@ -16,8 +16,8 @@ on:
       - "flake.lock"
 
 jobs:
-  build:
-    name: Build Flake
+  build-default:
+    name: Build Default Devshell
     strategy:
       matrix:
         os:
@@ -36,6 +36,20 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@c134e4c9e34bac6cab09cf239815f9339aaaf84e # v31
         with:
-          nix_path: nixpkgs=channel:nixos-unstable
+          nix_path: nixpkgs=channel:nixpkgs-unstable
 
       - run: nix build .#devShells.${{ matrix.system }}.default
+
+  build-ci:
+    name: Build CI Devshell
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@c134e4c9e34bac6cab09cf239815f9339aaaf84e # v31
+        with:
+          nix_path: nixpkgs=channel:nixpkgs-unstable
+
+      - run: nix build .#devShells.x86_64-linux.ci
