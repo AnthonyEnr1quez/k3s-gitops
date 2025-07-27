@@ -43,8 +43,7 @@ tasks:
       # outputs
       leap_version="$(cut -d'-' -f2 <<< {{ .LATEST_KAIROS_IMAGE_TAG }})"
       kairos_version="$(cut -d'-' -f6 <<< {{ .LATEST_KAIROS_IMAGE_TAG }})"
-      k3s_version="$(cut -d'-' -f7 <<< {{ .LATEST_KAIROS_IMAGE_TAG }})"
-      k3s_version=${k3s_version:3}
+      k3s_version="$(cut -d'-' -f8 <<< {{ .LATEST_KAIROS_IMAGE_TAG }})"
 
       sed -i "s|k3s-.*-blue|k3s-$k3s_version-blue|g" README.md
 
