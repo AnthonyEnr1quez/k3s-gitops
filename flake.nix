@@ -23,23 +23,32 @@
         };
       in
       {
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            age
-            fluxcd
-            go-task
-            kubectl
-            kubernetes-helm
-            k9s
-            sops
-            jq
-            yq
-            watch
-            regctl
-            cmctl
-            restic
-            korb
-          ];
+        devShells = {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
+              age
+              fluxcd
+              go-task
+              kubectl
+              kubernetes-helm
+              k9s
+              sops
+              jq
+              yq
+              watch
+              regctl
+              cmctl
+              restic
+              korb
+            ];
+          };
+
+          ci = pkgs.mkShell {
+            packages = with pkgs; [
+              go-task
+              regctl
+            ];
+          };
         };
 
         formatter = pkgs.nixpkgs-fmt;
