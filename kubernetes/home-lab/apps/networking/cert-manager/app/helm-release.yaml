@@ -21,16 +21,16 @@ spec:
   values:
     image:
       repository: quay.io/jetstack/cert-manager-controller
-      tag: v1.18.1@sha256:aed7274ed7007d8be144253978807453391d2b8b3a634ef9a6eb4e720f866239
+      tag: v1.18.2@sha256:81316365dc0b713eddddfbf9b8907b2939676e6c0e12beec0f9625f202a36d16
     installCRDs: true
     webhook:
       image:
         repository: quay.io/jetstack/cert-manager-webhook
-        tag: v1.18.1@sha256:a741148c89ab6361bfa2f5e0562826e26edaffcf8fceb3c1ac4641b2627a19c1
+        tag: v1.18.2@sha256:9431f0d8b5103b06cc6138564f471ac02c6b2638c2fa399d81e28a01d817ae73
     cainjector:
       image:
         repository: quay.io/jetstack/cert-manager-cainjector
-        tag: v1.18.1@sha256:58e7be5d42844a0dcbd0d48907808bbce0813ccf04646e68ff2052f07095cfad
+        tag: v1.18.2@sha256:af59e01ad9756a1034fbf948330e75702e5d79b3577f323f6a9947707ba262fc
     extraArgs:
       - --enable-gateway-api
     dns01RecursiveNameservers: 1.1.1.1:53,9.9.9.9:53
