@@ -4,7 +4,7 @@ kind: Plan
 metadata:
   name: amd
 spec:
-  version: "leap-15.6-standard-amd64-generic-v3.3.6-k3sv1.32.2-k3s1"
+  version: "leap-15.6-standard-amd64-generic-v3.5.0-k3s-v1.33.2-k3s1"
   serviceAccountName: system-upgrade
   concurrency: 1
   cordon: false
