@@ -5,3 +5,4 @@ resources:
   - namespace.yaml
 
   - botkube/ks.yaml
+  - kube-prometheus-stack/ks.yaml
