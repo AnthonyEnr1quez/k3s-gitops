@@ -20,6 +20,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    admin:
+      existingSecret: grafana-admin-creds
     route:
       main:
         enabled: true
