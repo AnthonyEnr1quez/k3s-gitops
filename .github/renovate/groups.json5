@@ -70,9 +70,13 @@
     },
     {
       groupName: "metrics-server",
-      matchPackagePatterns: [
-        "metrics-server",
-      ],
+      matchPackagePatterns: ["metrics-server"],
+      matchDatasources: ["docker", "github-tags"],
+      separateMinorPatch: false
+    },
+    {
+      groupName: "volsync",
+      matchPackagePatterns: ["volsync"],
       matchDatasources: ["docker", "github-tags"],
       separateMinorPatch: false
     },
