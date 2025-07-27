@@ -19,4 +19,25 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  # values:
+  values:
+    crds:
+      enabled: true
+      upgradeJob:
+        enabled: true
+        forceConflicts: true
+    cleanPrometheusOperatorObjectNames: true
+    kubeProxy:
+      enabled: false
+    # prometheus:
+    #   route:
+    #     # TODO HTTP
+    #     main:
+    #       enabled: true
+    #       hostnames: ["prometheus.${INTERNAL_HOSTNAME}"]
+    #       parentRefs:
+    #         - name: production
+    #           namespace: networking
+    #           sectionName: https
+    grafana:
+      enabled: false
+      forceDeployDashboards: true

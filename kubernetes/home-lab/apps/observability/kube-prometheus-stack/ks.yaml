@@ -7,9 +7,9 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: observability
-  # dependsOn:
-  #   - name: cluster-secrets
-  #   - name: envoy-gateway-gateways
+  dependsOn:
+    - name: cluster-secrets
+    - name: envoy-gateway-gateways
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -22,3 +22,7 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: hostnames
