@@ -1,0 +1,34 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: grafana
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: grafana
+  interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    route:
+      main:
+        enabled: true
+        hostnames: ["{{ .Release.Name }}.${INTERNAL_HOSTNAME}"]
+        parentRefs:
+          - name: production
+            namespace: networking
+            sectionName: https
+    persistence:
+      enabled: false
+    testFramework:
+      enabled: false

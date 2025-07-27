@@ -6,3 +6,4 @@ resources:
 
   - botkube/ks.yaml
   - kube-prometheus-stack/ks.yaml
+  - grafana/ks.yaml
