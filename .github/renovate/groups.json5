@@ -58,6 +58,23 @@
       ],
       matchDatasources: ["docker", "github-tags"],
       separateMinorPatch: false
-    }
+    },
+    {
+      groupName: "metallb",
+      matchPackagePatterns: [
+        "metallb",
+        "frrouting/frr"
+      ],
+      matchDatasources: ["docker", "github-tags"],
+      separateMinorPatch: false
+    },
+    {
+      groupName: "metrics-server",
+      matchPackagePatterns: [
+        "metrics-server",
+      ],
+      matchDatasources: ["docker", "github-tags"],
+      separateMinorPatch: false
+    },
   ]
 }
