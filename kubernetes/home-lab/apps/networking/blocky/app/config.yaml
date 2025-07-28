@@ -55,9 +55,9 @@ blocking:
     default:
       - ads
       - fakenews
-# prometheus:
-#   enable: true
-#   path: /metrics
+prometheus:
+  enable: true
+  path: /metrics
 ports:
   http: 4000
 log:
