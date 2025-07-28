@@ -74,6 +74,11 @@ spec:
           dns-udp:
             port: 53
             protocol: UDP
+      app2:
+        controller: *app
+        ports:
+          http:
+            port: 4000
       cache:
         controller: cache
         ports:
@@ -91,14 +96,16 @@ spec:
     serviceMonitor:
       main:
         enabled: true
-        serviceName: *app
+        # serviceName: *app
+        serviceName: blocky-app2
         labels:
-          app.kubernetes.io/name: *app
+          # app.kubernetes.io/name: *app
           release: kube-prometheus-stack
         endpoints:
           - interval: 30s
             path: /metrics
             port: http
+            scheme: http
             scrapeTimeout: 10s
     persistence:
       config:
