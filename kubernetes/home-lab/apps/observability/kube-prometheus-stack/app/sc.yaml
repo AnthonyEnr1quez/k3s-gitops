@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/scrapeconfig_v1alpha1.json
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: &name blocky
+spec:
+  staticConfigs:
+    - targets:
+      # - http://blocky-app.networking.svc.cluster.local:4000
+        - ${BLOCKY_IP_ADDRESS}:4000
+  metricsPath: /metrics
+  relabelings:
+    - action: replace
+      targetLabel: job
+      replacement: *name
+  # relabelings:
+  # - sourceLabels: [__address__]
+  #   targetLabel: alias
+  #   regex: ([^\.]*)\..*
+  #   replacement: $1

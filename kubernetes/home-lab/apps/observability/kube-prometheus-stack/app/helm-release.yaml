@@ -28,16 +28,38 @@ spec:
     cleanPrometheusOperatorObjectNames: true
     kubeProxy:
       enabled: false
-    # prometheus:
-    #   route:
-    #     # TODO HTTP
-    #     main:
-    #       enabled: true
-    #       hostnames: ["prometheus.${INTERNAL_HOSTNAME}"]
-    #       parentRefs:
-    #         - name: production
-    #           namespace: networking
-    #           sectionName: https
     grafana:
       enabled: false
       forceDeployDashboards: true
+    prometheus:
+      route:
+        # TODO HTTP
+        main:
+          enabled: true
+          hostnames: ["prometheus.${INTERNAL_HOSTNAME}"]
+          parentRefs:
+            - name: production
+              namespace: networking
+              sectionName: https
+    prometheusSpec:
+      ruleSelectorNilUsesHelmValues: false
+      serviceMonitorSelectorNilUsesHelmValues: false
+      podMonitorSelectorNilUsesHelmValues: false
+      probeSelectorNilUsesHelmValues: false
+      scrapeConfigSelectorNilUsesHelmValues: false
+      serviceDiscoveryRole: "EndpointSlice"
+      # enableAdminAPI: true
+      # walCompression: true
+      enableFeatures:
+      #   - auto-gomaxprocs
+      #   - memory-snapshot-on-shutdown
+        - new-service-discovery-manager
+    # addtionalScrapeConfigs:
+    #   - job_name: "blocky"
+    #     honor_timestamps: true
+    #     static_configs:
+    #       - targets:
+    #         - "${BLOCKY_IP_ADDRESS}:4000"
+    #           # - "blocky-app.networking.svc.cluster.local:4000"
+    serviceMonitorSelector: {}
+    serviceMonitorNamespaceSelector: {}

@@ -67,7 +67,7 @@ spec:
         ports:
           http:
             port: 4000
-            protocol: TCP #todo change?
+            # protocol: TCP #todo change?
           dns-tcp:
             port: 53
             protocol: TCP
@@ -88,6 +88,18 @@ spec:
     #         path: /metrics
     #         port: http
     #         scrapeTimeout: 10s
+    serviceMonitor:
+      main:
+        enabled: true
+        serviceName: *app
+        labels:
+          app.kubernetes.io/name: *app
+          release: kube-prometheus-stack
+        endpoints:
+          - interval: 30s
+            path: /metrics
+            port: http
+            scrapeTimeout: 10s
     persistence:
       config:
         enabled: true
