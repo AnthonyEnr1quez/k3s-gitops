@@ -30,7 +30,7 @@ spec:
           app:
             image:
               repository: ghcr.io/0xerr0r/blocky
-              tag: v0.26@sha256:b259ada3f943e73283f1fc5e84ac39a791afec7de86515d1aeccc03d2c39e595
+              tag: v0.26.2@sha256:46150ee0a8a414170ac861343ab7640eb0182a736f7d59f4c0c41383443932fd
             env:
               TZ: America/Chicago
             # resources:
@@ -60,6 +60,11 @@ spec:
     service:
       app:
         controller: *app
+        ports:
+          http:
+            port: 4000
+      dns:
+        controller: *app
         type: LoadBalancer
         externalTrafficPolicy: Local
         annotations:
@@ -67,11 +72,11 @@ spec:
         ports:
           http:
             port: 4000
-            protocol: TCP #todo change?
-          dns-tcp:
+            protocol: TCP
+          tcp:
             port: 53
             protocol: TCP
-          dns-udp:
+          udp:
             port: 53
             protocol: UDP
       cache:
@@ -79,15 +84,20 @@ spec:
         ports:
           http:
             port: 6379
-    # serviceMonitor:
-    #   main:
-    #     enabled: true
-    #     serviceName: *app
-    #     endpoints:
-    #       - interval: 30s
-    #         path: /metrics
-    #         port: http
-    #         scrapeTimeout: 10s
+    serviceMonitor:
+      main:
+        enabled: true
+        serviceName: blocky-app
+        # selector:
+        #   matchLabels:
+        #     app.kubernetes.io/name: *app
+        # labels:
+        #   release: kube-prometheus-stack #idk why this is required
+        endpoints:
+          - interval: 30s
+            path: /metrics
+            port: http
+            scrapeTimeout: 10s
     persistence:
       config:
         enabled: true
@@ -97,4 +107,4 @@ spec:
           blocky:
             app:
               - path: /app/config.yml
-                subPath: config.yml
+                subPath: config.yaml
