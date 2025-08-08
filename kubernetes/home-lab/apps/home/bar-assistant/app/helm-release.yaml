@@ -30,7 +30,7 @@ spec:
           api:
             image:
               repository: ghcr.io/karlomikus/barassistant
-              tag: 5.6.0@sha256:192e955b47c09e1f086929e924c673d8071287f3fc09c2d2632b7ea2262859b4
+              tag: 5.6.1@sha256:4a6e2d9be1fa6c7030631d7ae832f97f3bb49b1dfc69d48eae32a32ff5acb7e1
             env:
               TZ: America/Chicago
               APP_URL: &api-url "https://{{ .Release.Name }}.${INTERNAL_HOSTNAME}/bar"
@@ -60,7 +60,7 @@ spec:
           search:
             image:
               repository: docker.io/getmeili/meilisearch
-              tag: v1.15.2@sha256:fe500cf9cca05cb9f027981583f28eccf17d35d94499c1f8b7b844e7418152fc
+              tag: v1.16.0@sha256:c0c45cb82a96221d7c855d1cc36ca04ff4b3ce6330fbd8df5ba82e86e632a053
             env:
               MEILI_ENV: production
               MEILI_MASTER_KEY:
