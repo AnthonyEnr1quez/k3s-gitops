@@ -30,7 +30,7 @@ spec:
           api:
             image:
               repository: ghcr.io/karlomikus/barassistant
-              tag: 5.6.0@sha256:192e955b47c09e1f086929e924c673d8071287f3fc09c2d2632b7ea2262859b4
+              tag: 5.8.0@sha256:395abe539f84bd66c5fcfbbbd7ead749ef64cacdc1f84c3a4de4b6a55fe25f8c
             env:
               TZ: America/Chicago
               APP_URL: &api-url "https://{{ .Release.Name }}.${INTERNAL_HOSTNAME}/bar"
@@ -60,7 +60,7 @@ spec:
           search:
             image:
               repository: docker.io/getmeili/meilisearch
-              tag: v1.15.2@sha256:fe500cf9cca05cb9f027981583f28eccf17d35d94499c1f8b7b844e7418152fc
+              tag: v1.19.1@sha256:abab6e9054572fea9fd409cf0f4fe3b65f6c8e70cd0f213004592b6d0e9587ac
             env:
               MEILI_ENV: production
               MEILI_MASTER_KEY:
@@ -75,7 +75,7 @@ spec:
           salt-rim:
             image:
               repository: ghcr.io/karlomikus/salt-rim
-              tag: 4.6.0@sha256:e65650ed02ad62d8ec51f4cb94e6da8349303b4bc25aa7919dc6936d1086d8e5
+              tag: 4.9.0@sha256:cb700a988ba9c46c3b7ae15b2324d9c17c066587d63ad23dbb576ac7204c565a
             env:
               API_URL: *api-url
               MEILISEARCH_URL: "https://{{ .Release.Name }}.${INTERNAL_HOSTNAME}/search"
