@@ -6,7 +6,7 @@ spec:
   chart:
     spec:
       chart: sops-secrets-operator
-      version: 0.22.0
+      version: 0.23.0
       sourceRef:
         kind: HelmRepository
         name: sops-secrets-operator
@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: docker.io/isindir/sops-secrets-operator
-      tag: 0.16.0@sha256:252fc938071a3087b532f5fe4465aff0967c822d5fd4ba271fbb586c522311a6
+      tag: 0.17.0@sha256:7035a9eec314a1a0ac0b9f5c6883529e753e293d32b66e26e63ee950d1796184
     secretsAsFiles:
       - name: age
         mountPath: /etc/age
