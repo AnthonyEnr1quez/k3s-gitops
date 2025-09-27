@@ -28,7 +28,7 @@ spec:
   timeout: 5m
   postBuild:
     substitute:
-      node: loreto # todo
+      node: mina
     substituteFrom:
       - kind: Secret
         name: hostnames

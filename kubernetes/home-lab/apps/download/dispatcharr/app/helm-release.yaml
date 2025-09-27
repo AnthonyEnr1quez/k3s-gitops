@@ -25,8 +25,6 @@ spec:
   dependsOn:
     - name: democratic-csi-local-hostpath
       namespace: storage
-    # - name: nfs-server
-    #   namespace: storage
   values:
     controllers:
       dispatcharr:
