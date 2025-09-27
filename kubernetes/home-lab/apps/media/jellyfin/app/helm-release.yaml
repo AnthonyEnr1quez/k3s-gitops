@@ -1,0 +1,166 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app jellyfin
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+    namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  driftDetection:
+    mode: enabled
+  dependsOn:
+    - name: democratic-csi-local-hostpath
+      namespace: storage
+    - name: nfs-server
+      namespace: storage
+  values:
+    controllers:
+      jellyfin:
+        type: statefulset
+        containers:
+          app:
+            image:
+              repository: ghcr.io/jellyfin/jellyfin
+              tag: 10.10.7@sha256:e4d1dc5374344446a3a78e43dd211247f22afba84ea2e5a13cbe1a94e1ff2141
+            env:
+              TZ: America/Chicago
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: &port 8096
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: true
+                spec:
+                  periodSeconds: 10
+                  failureThreshold: 30
+            resources:
+              requests:
+                cpu: 100m
+                memory: 1Gi
+            #   limits:
+            #     memory: 8Gi
+            #     gpu.intel.com/i915: 1
+    defaultPodOptions:
+      nodeSelector:
+        kubernetes.io/hostname: ${node}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups:
+          - 44 # video
+          - 109 # render
+          # - 100 #?
+        # seccompProfile: { type: RuntimeDefault }
+    service:
+      app:
+        controller: *app
+        type: LoadBalancer
+        annotations: 
+          metallb.io/loadBalancerIPs: ${JELLYFIN_IP_ADDRESS}
+        ports:
+          http:
+            port: *port
+    route:
+      main:
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: production
+            namespace: networking
+            sectionName: https
+        hostnames:
+          - "{{ .Release.Name }}.${INTERNAL_HOSTNAME}"
+        rules:
+          - backendRefs:
+            - name: *app
+              port: *port
+      http:
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: production
+            namespace: networking
+            sectionName: http
+        hostnames:
+          - "{{ .Release.Name }}.${INTERNAL_HOSTNAME}"
+        rules:
+          - filters:
+            - type: RequestRedirect
+              requestRedirect:
+                scheme: https
+                statusCode: 301
+    persistence:
+      config:
+        suffix: config
+        enabled: true
+        # retain: true
+        storageClass: local-hostpath
+        accessMode: ReadWriteOnce
+        size: 50Gi
+      config-cache:
+        suffix: config-cache
+        enabled: true
+        # retain: true
+        storageClass: local-hostpath
+        accessMode: ReadWriteOnce
+        size: 10Gi
+        advancedMounts:
+          jellyfin:
+            app:
+              - path: /config/metadata
+                subPath: metadata
+              - path: /config/transcode
+                subPath: transcode
+              - path: /config/cache
+                subPath: cache
+      data:
+        enabled: true
+        existingClaim: nfs-data
+        advancedMounts:
+          jellyfin:
+            app:
+              - path: /media
+                subPath: media
+                readOnly: true
+      tmpfs:
+        type: emptyDir
+        advancedMounts:
+          jellyfin:
+            app:
+              - path: /cache
+                subPath: cache
+              - path: /config/log
+                subPath: log
+              - path: /transcode
+                subPath: transcode
+              - path: /tmp
+                subPath: tmp

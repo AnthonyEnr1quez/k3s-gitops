@@ -10,6 +10,7 @@ configMapGenerator:
   - ENVOY_IP_ADDRESS=192.168.0.230
   - BLOCKY_IP_ADDRESS=192.168.0.231
   - PLEX_IP_ADDRESS=192.168.0.232
+  - JELLYFIN_IP_ADDRESS=192.168.0.233
   - OMADA_IP_ADDRESS=192.168.0.234
 generatorOptions:
   disableNameSuffixHash: true
