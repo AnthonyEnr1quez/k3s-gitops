@@ -25,6 +25,7 @@
       matchPackageNames: [
         "ghcr.io/home-operations/bazarr",
         "lscr.io/linuxserver/calibre",
+        "registry.k8s.io/git-sync/git-sync",
         "ghcr.io/qdm12/gluetun",
         "ghcr.io/mealie-recipes/mealie",
         "ghcr.io/home-operations/plex",
