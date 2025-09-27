@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: lscr.io/linuxserver/calibre
-              tag: 8.11.0@sha256:3a9c05f7cf1fe93ddb1c78595b936a3fc6331b8a0af4474262b06cd2516027e8
+              tag: 8.11.1@sha256:b009735abafca871ae8ed1e3c0b9ef237b351d96db99ec5a7581e9f4f79a114c
             env:
               CALIBRE_OVERRIDE_DATABASE_PATH: /config/metadata.db
               TZ: America/Chicago
