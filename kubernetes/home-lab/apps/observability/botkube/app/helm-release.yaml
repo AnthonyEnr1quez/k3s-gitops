@@ -78,12 +78,12 @@ spec:
             - delete
             - error
           resources:
-            - name: helm.toolkit.fluxcd.io/v2beta2/helmreleases
-            - name: source.toolkit.fluxcd.io/v1beta2/helmcharts
-            - name: kustomize.toolkit.fluxcd.io/v1/kustomizations
-            - name: notification.toolkit.fluxcd.io/v1beta1/alerts
-            - name: monitoring.coreos.com/v1/podmonitors
-            - name: monitoring.coreos.com/v1/servicemonitors
+            - type: helm.toolkit.fluxcd.io/v2/helmreleases
+            - type: source.toolkit.fluxcd.io/v1/helmcharts
+            - type: kustomize.toolkit.fluxcd.io/v1/kustomizations
+            - type: notification.toolkit.fluxcd.io/v1beta3/alerts
+            - type: monitoring.coreos.com/v1/podmonitors
+            - type: monitoring.coreos.com/v1/servicemonitors
       k8s-recommendation-events:
         botkube/kubernetes:
           enabled: true
