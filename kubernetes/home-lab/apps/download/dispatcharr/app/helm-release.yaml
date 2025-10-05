@@ -53,6 +53,11 @@ spec:
               # limits:
               #   gpu.intel.com/i915: 1
               #   memory: 3Gi
+          gcs:
+            image:
+              repository: jesmann/global-channel-search
+              tag: 2.6.0
+            command: ["/bin/sh", "-c", "sleep infinity"]
     defaultPodOptions:
       annotations:
         setGateway: "true"
