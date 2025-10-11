@@ -33,7 +33,7 @@ spec:
           app:
             image:
               repository: ghcr.io/dispatcharr/dispatcharr
-              tag: 0.10.3@sha256:faced8c8586aa1076ec80d53b1a92212ea390ad5c866aa438efed65b50718b60
+              tag: 0.10.4@sha256:31242b53f369e82e92d8f5ef53f93d5686c2a8c7fbb486a1fc57d006def13401
             env:
               TZ: America/Chicago
               DISPATCHARR_LOG_LEVEL: info
