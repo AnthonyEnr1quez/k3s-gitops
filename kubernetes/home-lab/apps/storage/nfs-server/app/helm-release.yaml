@@ -34,7 +34,7 @@ spec:
           server:
             image:
               repository: quay.io/aminvakil/alpine-nfs-server
-              tag: latest@sha256:91dde931104528cf344a1f55ec8dbb5325bbde14ce89b077ee9227c79475f679
+              tag: latest@sha256:d71774cc9d8e62cb6807551abdb938ca4bbabdd8395af8fa10cf905cb2e803a8
             env:
               TZ: America/Chicago
               SHARED_DIRECTORY: &path /nfsshare
