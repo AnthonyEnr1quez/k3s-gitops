@@ -23,4 +23,4 @@ spec:
       envoyGateway:
         image:
           repository: docker.io/envoyproxy/gateway
-          tag: v1.5.2@sha256:9aefe77f566f20ac962e908aa0859f26f4ea08e759fa6f6264c39693d3ce82ef
+          tag: v1.5.3@sha256:96ce3e4b7cc6bfd8666e31ed74266ecba708e1c74f29a561aeb650bbc76e1b03
