@@ -1,0 +1,33 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: production-external
+  annotations:
+    cert-manager.io/cluster-issuer: lets-encrypt-production
+spec:
+  gatewayClassName: envoy-gateway
+  # infrastructure:
+    # annotations:
+    #   metallb.io/loadBalancerIPs: ${ENVOY_IP_ADDRESS}
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: https
+      protocol: HTTPS
+      hostname: "*.${EXTERNAL_HOSTNAME}"
+      port: 443
+      allowedRoutes:
+        kinds:
+          - kind: HTTPRoute
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: lets-encrypt-production-tls-e
+            kind: Secret
