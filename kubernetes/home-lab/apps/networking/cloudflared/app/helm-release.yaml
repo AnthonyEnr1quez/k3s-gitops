@@ -78,21 +78,21 @@ spec:
       app:
         endpoints:
           - port: http
-    # configMaps:
-    #   config:
-    #     data:
-    #       config.yaml: |-
-    #         ingress:
-    #           - hostname: "*.turbo.ac"
-    #             originRequest:
-    #               http2Origin: true
-    #               originServerName: external.turbo.ac
-    #             service: https://envoy-external.{{ .Release.Namespace }}.svc.cluster.local:443
-    #           - service: http_status:404
-    # persistence:
-    #   config-file:
-    #     type: configMap
-    #     identifier: config
-    #     globalMounts:
-    #       - path: /etc/cloudflared/config.yaml
-    #         subPath: config.yaml
+    configMaps:
+      config:
+        data:
+          config.yaml: |-
+            ingress:
+              - hostname: "*.${EXTERNAL_HOSTNAME}"
+                originRequest:
+                  http2Origin: true
+                  # originServerName: external.turbo.ac
+                service: https://envoy-external.{{ .Release.Namespace }}.svc.cluster.local:443
+              - service: http_status:404
+    persistence:
+      config-file:
+        type: configMap
+        identifier: config
+        globalMounts:
+          - path: /etc/cloudflared/config.yaml
+            subPath: config.yaml
