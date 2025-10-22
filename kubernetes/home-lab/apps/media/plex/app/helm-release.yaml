@@ -75,6 +75,19 @@ spec:
           - backendRefs:
             - name: *app
               port: *port
+      main2:
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: envoy-external
+            namespace: networking
+            sectionName: https
+        hostnames:
+          - "{{ .Release.Name }}.${EXTERNAL_HOSTNAME}"
+        rules:
+          - backendRefs:
+            - name: *app
+              port: *port
       http:
         enabled: true
         kind: HTTPRoute
