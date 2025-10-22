@@ -7,7 +7,7 @@ spec:
   hostnames:
     - "flux-webhook.${INTERNAL_HOSTNAME}"
   parentRefs:
-    - name: production
+    - name: envoy-internal
       namespace: networking
   rules:
     - matches:

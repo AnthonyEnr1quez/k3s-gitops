@@ -19,6 +19,15 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    # global:
+    #   imageRegistry: mirror.gcr.io
+    config:
+      envoyGateway:
+        provider:
+          type: Kubernetes
+          kubernetes:
+            deploy:
+              type: GatewayNamespace
     deployment:
       envoyGateway:
         image:

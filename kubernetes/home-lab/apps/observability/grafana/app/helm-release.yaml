@@ -113,7 +113,7 @@ spec:
         enabled: true
         hostnames: ["{{ .Release.Name }}.${INTERNAL_HOSTNAME}"]
         parentRefs:
-          - name: production
+          - name: envoy-internal
             namespace: networking
             sectionName: https
     persistence:
