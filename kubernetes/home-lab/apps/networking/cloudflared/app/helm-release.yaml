@@ -86,7 +86,7 @@ spec:
               - hostname: "*.${EXTERNAL_HOSTNAME}"
                 originRequest:
                   http2Origin: true
-                  # originServerName: external.turbo.ac
+                  originServerName: ${EXTERNAL_HOSTNAME}
                 service: https://envoy-external.{{ .Release.Namespace }}.svc.cluster.local:443
               - service: http_status:404
     persistence:
