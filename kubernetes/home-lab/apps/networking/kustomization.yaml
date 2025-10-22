@@ -10,4 +10,5 @@ resources:
   - cert-manager/ks.yaml
   - blocky/ks.yaml
   - envoy-gateway/ks.yaml
+  - cloudflared/ks.yaml
   - omada-controller/ks.yaml
