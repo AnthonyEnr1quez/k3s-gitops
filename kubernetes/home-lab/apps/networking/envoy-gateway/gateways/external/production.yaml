@@ -29,5 +29,5 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: lets-encrypt-production-tls
+          - name: lets-encrypt-production-tls-e
             kind: Secret
