@@ -38,7 +38,7 @@ spec:
           enabled: true
           hostnames: ["prometheus.${INTERNAL_HOSTNAME}"]
           parentRefs:
-            - name: production
+            - name: envoy-internal
               namespace: networking
               sectionName: https
       prometheusSpec:

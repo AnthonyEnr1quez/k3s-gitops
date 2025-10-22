@@ -121,7 +121,7 @@ spec:
     #     enabled: true
     #     kind: HTTPRoute
     #     parentRefs:
-    #       - name: production
+    #       - name: envoy-internal
     #         namespace: networking
     #     hostnames:
     #       - "{{ .Release.Name }}.${INTERNAL_HOSTNAME}"

@@ -56,7 +56,7 @@ spec:
         enabled: true
         kind: HTTPRoute
         parentRefs:
-          - name: production
+          - name: envoy-internal
             namespace: networking
             sectionName: https
         hostnames:
@@ -69,7 +69,7 @@ spec:
         enabled: true
         kind: HTTPRoute
         parentRefs:
-          - name: production
+          - name: envoy-internal
             namespace: networking
             sectionName: http
         hostnames:
@@ -84,7 +84,7 @@ spec:
         enabled: true
         kind: HTTPRoute
         parentRefs:
-          - name: production
+          - name: envoy-internal
             namespace: networking
             sectionName: https
         hostnames:
@@ -97,7 +97,7 @@ spec:
         enabled: true
         kind: HTTPRoute
         parentRefs:
-          - name: production
+          - name: envoy-internal
             namespace: networking
             sectionName: http
         hostnames:
