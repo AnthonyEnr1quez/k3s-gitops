@@ -84,9 +84,9 @@ spec:
           config.yaml: |-
             ingress:
               - hostname: "*.${EXTERNAL_HOSTNAME}"
-                #originRequest:
-                  #http2Origin: true
-                  #originServerName: ${EXTERNAL_HOSTNAME}
+                originRequest:
+                  http2Origin: true
+                  originServerName: plex.${EXTERNAL_HOSTNAME}
                 service: https://envoy-external.{{ .Release.Namespace }}.svc.cluster.local
               - service: http_status:404
     persistence:
