@@ -82,13 +82,13 @@ spec:
       config:
         data:
           config.yaml: |-
-            originRequest:
-              originServerName: ${EXTERNAL_HOSTNAME}
-
             ingress:
-              - hostname: ${EXTERNAL_HOSTNAME}
-                service: https://envoy-external.{{ .Release.Namespace }}.svc.cluster.local
               - hostname: "*.${EXTERNAL_HOSTNAME}"
+                originRequest:
+                  http2Origin: true
+                  originServerName: ${EXTERNAL_HOSTNAME}
+                service: https://envoy-external.{{ .Release.Namespace }}.svc.cluster.local
+              - hostname: ${EXTERNAL_HOSTNAME}
                 service: https://envoy-external.{{ .Release.Namespace }}.svc.cluster.local
               - service: http_status:404
     persistence:
