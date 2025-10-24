@@ -43,7 +43,7 @@ spec:
           http:
             port: &port 4545
     route:
-      main:
+      internal:
         enabled: true
         kind: HTTPRoute
         parentRefs:
@@ -56,21 +56,6 @@ spec:
           - backendRefs:
             - name: *app
               port: *port
-      http:
-        enabled: true
-        kind: HTTPRoute
-        parentRefs:
-          - name: envoy-internal
-            namespace: networking
-            sectionName: http
-        hostnames:
-          - "{{ .Release.Name }}.${INTERNAL_HOSTNAME}"
-        rules:
-          - filters:
-            - type: RequestRedirect
-              requestRedirect:
-                scheme: https
-                statusCode: 301
     persistence:
       config:
         suffix: config

@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - internal
   - external
+  - http-route.yaml

@@ -16,7 +16,7 @@ spec:
       port: 80
       allowedRoutes:
         namespaces:
-          from: All
+          from: Same
     - name: https
       protocol: HTTPS
       hostname: "*.${EXTERNAL_HOSTNAME}"

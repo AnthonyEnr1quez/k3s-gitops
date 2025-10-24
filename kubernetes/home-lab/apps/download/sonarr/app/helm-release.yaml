@@ -68,21 +68,6 @@ spec:
               port: *port
             timeouts:
               request: 10m
-      http:
-        enabled: true
-        kind: HTTPRoute
-        parentRefs:
-          - name: envoy-internal
-            namespace: networking
-            sectionName: http
-        hostnames:
-          - "{{ .Release.Name }}.${INTERNAL_HOSTNAME}"
-        rules:
-          - filters:
-            - type: RequestRedirect
-              requestRedirect:
-                scheme: https
-                statusCode: 301
     persistence:
       config:
         suffix: config

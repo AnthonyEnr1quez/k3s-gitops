@@ -52,7 +52,7 @@ spec:
             enabled: true
             port: &ws-port 8081
     route:
-      main:
+      internal:
         enabled: true
         kind: HTTPRoute
         parentRefs:
@@ -65,22 +65,7 @@ spec:
           - backendRefs:
             - name: *app
               port: *http-port
-      main-http:
-        enabled: true
-        kind: HTTPRoute
-        parentRefs:
-          - name: envoy-internal
-            namespace: networking
-            sectionName: http
-        hostnames:
-          - "{{ .Release.Name }}.${INTERNAL_HOSTNAME}"
-        rules:
-          - filters:
-            - type: RequestRedirect
-              requestRedirect:
-                scheme: https
-                statusCode: 301
-      webserver:
+      webserver-internal:
         enabled: true
         kind: HTTPRoute
         parentRefs:
@@ -93,21 +78,6 @@ spec:
           - backendRefs:
             - name: *app
               port: *ws-port
-      webserver-http:
-        enabled: true
-        kind: HTTPRoute
-        parentRefs:
-          - name: envoy-internal
-            namespace: networking
-            sectionName: http
-        hostnames:
-          - "{{ .Release.Name }}-webserver.${INTERNAL_HOSTNAME}"
-        rules:
-          - filters:
-            - type: RequestRedirect
-              requestRedirect:
-                scheme: https
-                statusCode: 301
     persistence:
       config:
         suffix: config
