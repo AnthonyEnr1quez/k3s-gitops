@@ -86,7 +86,7 @@ spec:
               - hostname: "*.${EXTERNAL_HOSTNAME}"
                 originRequest:
                   http2Origin: true
-                  originServerName: plex.${EXTERNAL_HOSTNAME}
+                  originServerName: ${EXTERNAL_HOSTNAME}
                 service: https://envoy-external.{{ .Release.Namespace }}.svc.cluster.local
               - service: http_status:404
     persistence:
