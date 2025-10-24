@@ -26,5 +26,5 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: lets-encrypt-staging-tls
+          - name: lets-encrypt-staging-internal-tls
             kind: Secret
