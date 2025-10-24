@@ -6,7 +6,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: lets-encrypt-production
 spec:
-  gatewayClassName: envoy-gateway
+  gatewayClassName: envoy
   # infrastructure:
     # annotations:
     #   metallb.io/loadBalancerIPs: ${ENVOY_IP_ADDRESS}

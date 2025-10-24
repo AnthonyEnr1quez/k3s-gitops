@@ -6,7 +6,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: selfsigned
 spec:
-  gatewayClassName: envoy-gateway
+  gatewayClassName: envoy
   listeners:
     - name: http
       protocol: HTTP

@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - oci-repository.yaml
   - helm-release.yaml
+  - envoy-proxy.yaml
   - gateway-class.yaml
