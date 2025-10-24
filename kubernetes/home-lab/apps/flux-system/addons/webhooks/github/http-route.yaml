@@ -5,9 +5,9 @@ metadata:
   name: github-webhook
 spec:
   hostnames:
-    - "flux-webhook.${INTERNAL_HOSTNAME}"
+    - "flux-webhook.${EXTERNAL_HOSTNAME}"
   parentRefs:
-    - name: envoy-internal
+    - name: envoy-external
       namespace: networking
   rules:
     - matches:
