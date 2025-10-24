@@ -73,10 +73,23 @@ spec:
             sectionName: https
         hostnames:
           - "{{ .Release.Name }}.${INTERNAL_HOSTNAME}"
-        rules:
+        rules: &rules
+          - # Ref: https://forums.plex.tv/t/external-srt-subtitles-are-not-working-w-reverse-proxy/886540
+            backendRefs:
+              - name: *app
+                port: *port
+            filters:
+              - type: RequestHeaderModifier
+                requestHeaderModifier:
+                  remove:
+                    - Range
+            matches:
+              - path:
+                  type: PathPrefix
+                  value: /library/streams
           - backendRefs:
-            - name: *app
-              port: *port
+              - name: *app
+                port: *port
       external:
         enabled: true
         kind: HTTPRoute
@@ -86,10 +99,7 @@ spec:
             sectionName: https
         hostnames:
           - "{{ .Release.Name }}.${EXTERNAL_HOSTNAME}"
-        rules:
-          - backendRefs:
-            - name: *app
-              port: *port
+        rules: *rules
     persistence:
       config:
         suffix: config
