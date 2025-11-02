@@ -8,3 +8,4 @@ resources:
   - jellyfin/ks.yaml
   - plex/ks.yaml
   - calibre/ks.yaml
+  - watchstate/ks.yaml
