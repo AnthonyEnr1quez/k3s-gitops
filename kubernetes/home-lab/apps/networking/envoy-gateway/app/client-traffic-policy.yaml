@@ -9,13 +9,13 @@ spec:
     xForwardedFor:
       numTrustedHops: 1
   connection:
-    bufferLimit: 4Mi
+    bufferLimit: 4Mi #64Mi
     maxAcceptPerSocketEvent: 0
   http2:
-    initialStreamWindowSize: 512Ki
-    initialConnectionWindowSize: 8Mi
+    initialStreamWindowSize: 512Ki #1Mi
+    initialConnectionWindowSize: 8Mi #16Mi
     onInvalidMessage: TerminateStream
-  http3: {}
+  # http3: {} # breaking appletv jellyfin client
   targetSelectors:
     - group: gateway.networking.k8s.io
       kind: Gateway
