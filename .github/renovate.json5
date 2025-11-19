@@ -3,7 +3,7 @@
   extends: [
     'config:recommended',
     'docker:enableMajor',
-    'helpers:pinGitHubActionDigests',
+    'helpers:pinGitHubActionDigestsToSemver',
     ':configMigration',
     ':disableRateLimiting',
     ':semanticCommits',
