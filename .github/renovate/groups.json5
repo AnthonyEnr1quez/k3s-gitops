@@ -35,7 +35,11 @@
       groupName: "home-assistant",
       matchPackagePatterns: ["home-assistant"],
       matchDatasources: ["docker", "github-tags"],
-      separateMinorPatch: false
+      separateMinorPatch: false,
+      automerge: true,
+      automergeType: "pr",
+      matchUpdateTypes: ["digest", "minor", "patch"],
+      ignoreTests: true,
     },
     {
       groupName: "democratic-csi",
@@ -57,7 +61,11 @@
         "salt-rim"
       ],
       matchDatasources: ["docker", "github-tags"],
-      separateMinorPatch: false
+      separateMinorPatch: false,
+      automerge: true,
+      automergeType: "pr",
+      matchUpdateTypes: ["digest", "minor", "patch"],
+      ignoreTests: true,
     },
     {
       groupName: "metallb",
@@ -66,13 +74,21 @@
         "frrouting/frr"
       ],
       matchDatasources: ["docker", "github-tags"],
-      separateMinorPatch: false
+      separateMinorPatch: false,
+      automerge: true,
+      automergeType: "pr",
+      matchUpdateTypes: ["digest", "minor", "patch"],
+      ignoreTests: true,
     },
     {
       groupName: "metrics-server",
       matchPackagePatterns: ["metrics-server"],
       matchDatasources: ["docker", "github-tags"],
-      separateMinorPatch: false
+      separateMinorPatch: false,
+      automerge: true,
+      automergeType: "pr",
+      matchUpdateTypes: ["digest", "minor", "patch"],
+      ignoreTests: true,
     },
     {
       groupName: "volsync",
@@ -84,7 +100,11 @@
       groupName: "snapshot-controller",
       matchPackagePatterns: ["snapshot-controller"],
       matchDatasources: ["docker", "github-tags"],
-      separateMinorPatch: false
+      separateMinorPatch: false,
+      automerge: true,
+      automergeType: "pr",
+      matchUpdateTypes: ["digest", "minor", "patch"],
+      ignoreTests: true,
     },
   ]
 }
