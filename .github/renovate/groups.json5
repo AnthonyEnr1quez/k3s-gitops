@@ -80,5 +80,11 @@
       matchDatasources: ["docker", "github-tags"],
       separateMinorPatch: false
     },
+    {
+      groupName: "snapshot-controller",
+      matchPackagePatterns: ["snapshot-controller"],
+      matchDatasources: ["docker", "github-tags"],
+      separateMinorPatch: false
+    },
   ]
 }
