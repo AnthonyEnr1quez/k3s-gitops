@@ -43,5 +43,11 @@
         "ghcr.io/arabcoders/watchstate",
         ],
     },
+    {
+      groupName: "home-assistant",
+      automerge: true,
+      automergeType: "pr",
+      ignoreTests: true,
+    },
   ],
 }
