@@ -46,6 +46,8 @@ spec:
             value: &if wg0
           - name: DOT
             value: "off"
+          - name: UPDATER_PERIOD
+            value: 24h
         envFrom:
           - secretRef:
               name: wireguard-config
