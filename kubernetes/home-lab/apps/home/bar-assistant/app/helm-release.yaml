@@ -60,7 +60,7 @@ spec:
           search:
             image:
               repository: docker.io/getmeili/meilisearch
-              tag: v1.26.0@sha256:773759814f59214a0971dc8810ae1d85002e92166d99760cd546d5ee8ac37c14
+              tag: v1.27.0@sha256:22e82938463a532286bd6b2b902a5a3fa7a5017d46cc6a3cc3b4c6fc365e49f0
             env:
               MEILI_ENV: production
               MEILI_MASTER_KEY:
@@ -75,7 +75,7 @@ spec:
           salt-rim:
             image:
               repository: ghcr.io/karlomikus/salt-rim
-              tag: 4.11.0@sha256:46b1e42b3dfe23c65e282b4188cb3c3b8aa6e14403c445ec74280638b06c661a
+              tag: 4.11.1@sha256:797e5291575656f4bcad1bdd69d25d105f0ab5d230312fcda02e7a15c8074543
             env:
               API_URL: *api-url
               MEILISEARCH_URL: "https://{{ .Release.Name }}.${INTERNAL_HOSTNAME}/search"
