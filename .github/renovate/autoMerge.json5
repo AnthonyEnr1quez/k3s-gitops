@@ -30,7 +30,7 @@
         "mirror.gcr.io/cloudflare/cloudflared",
         "ghcr.io/dispatcharr/dispatcharr",
         "registry.k8s.io/git-sync/git-sync",
-        "ghcr.io/qdm12/gluetun",
+        // "ghcr.io/qdm12/gluetun",
         "ghcr.io/jellyfin/jellyfin",
         "ghcr.io/mealie-recipes/mealie",
         "ghcr.io/home-operations/plex",
