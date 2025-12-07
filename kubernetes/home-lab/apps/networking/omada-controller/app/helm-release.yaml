@@ -29,7 +29,7 @@ spec:
           app:
             image:
               repository: docker.io/mbentley/omada-controller
-              tag: 5.15.24.19@sha256:8b40df5d85ad2d40b44912cb5f9d1b22f348b59cb622199239fa2e7d20eac40e
+              tag: 5.15.24.19@sha256:ae62254960b46db2e5aaee2ad545b59ada0052fa0587ad8cb0d683d6487a7f9a
             env:
               TZ: America/Chicago
               SHOW_SERVER_LOGS: true
