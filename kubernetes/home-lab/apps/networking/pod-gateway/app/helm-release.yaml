@@ -50,7 +50,16 @@ spec:
             value: 24h
         envFrom:
           - secretRef:
-              name: wireguard-config
+              name: gluetun
+        livenessProbe:
+          exec:
+            command:
+              - /bin/sh
+              - -c
+              - 'eval "$LIVENESS_PROBE"'
+          initialDelaySeconds: 30
+          periodSeconds: 60
+          failureThreshold: 3
         securityContext:
           privileged: true
         networkPolicy:
