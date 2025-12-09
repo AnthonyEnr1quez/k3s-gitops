@@ -60,15 +60,19 @@ spec:
                   periodSeconds: 10
                   failureThreshold: 30
             resources:
+              claims:
+                - name: gpu
               requests:
                 cpu: 100m
                 memory: 1Gi
-            #   limits:
-            #     memory: 8Gi
-            #     gpu.intel.com/i915: 1
+              limits:
+                memory: 8Gi
     defaultPodOptions:
       nodeSelector:
         kubernetes.io/hostname: ${node}
+      resourceClaims:
+        - name: gpu
+          resourceClaimName: jellyfin
       securityContext:
         runAsNonRoot: true
         runAsUser: 568
