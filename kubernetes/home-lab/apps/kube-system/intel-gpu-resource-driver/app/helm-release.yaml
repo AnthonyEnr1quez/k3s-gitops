@@ -1,0 +1,40 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: intel-gpu-resource-driver
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: intel-gpu-resource-driver
+  interval: 1h
+  maxHistory: 3
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    # Use standard CDI paths that containerd/k3s expects
+    cdi:
+      staticPath: /etc/cdi
+      dynamicPath: /var/run/cdi
+    
+    # NFD is not installed, so keep it disabled
+    nfd:
+      enabled: false
+    
+    nodeFeatureRules:
+      enabled: false
+    
+    # Optional: Target specific nodes with Intel GPUs
+    # Uncomment and adjust if you want to target specific nodes
+    # kubeletPlugin:
+    #   nodeSelector:
+    #     kubernetes.io/hostname: gulsun  # or whichever node has the GPU
