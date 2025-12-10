@@ -124,14 +124,14 @@ spec:
       config:
         suffix: config
         enabled: true
-        # retain: true
+        retain: true
         storageClass: local-hostpath
         accessMode: ReadWriteOnce
         size: 50Gi
       config-cache:
         suffix: config-cache
         enabled: true
-        # retain: true
+        retain: true
         storageClass: local-hostpath
         accessMode: ReadWriteOnce
         size: 10Gi
