@@ -60,6 +60,7 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 60
           failureThreshold: 3
+          timeoutSeconds: 5
         securityContext:
           privileged: true
         networkPolicy:
