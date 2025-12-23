@@ -37,6 +37,7 @@ spec:
             env:
               TZ: America/Chicago
               DISPATCHARR_LOG_LEVEL: info
+              LIBVA_DRIVER_NAME: iHD
             probes:
               liveness:
                 enabled: true
