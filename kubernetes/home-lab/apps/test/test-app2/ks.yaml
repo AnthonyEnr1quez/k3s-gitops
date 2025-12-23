@@ -1,0 +1,28 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app test-app2
+  namespace: flux-system
+spec:
+  targetNamespace: test
+  dependsOn:
+    - name: cluster-secrets
+    - name: cluster-variables
+    - name: sops-secrets-operator
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  path: ./kubernetes/home-lab/apps/test/test-app2/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  wait: false
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+  postBuild:
+    substitute:
+      node: loreto
