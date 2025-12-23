@@ -7,6 +7,8 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: test
+  components:
+    - ../../../../components/volsync
   dependsOn:
     - name: cluster-secrets
     - name: cluster-variables
@@ -26,4 +28,8 @@ spec:
   timeout: 5m
   postBuild:
     substitute:
+      APP: test-app2-config
       node: loreto
+      VOLSYNC_SCHEDULE: "0 * * * *"
+      VOLSYNC_CAPACITY: 1Gi
+      VOLSYNC_RETAIN_DAILY: "7"

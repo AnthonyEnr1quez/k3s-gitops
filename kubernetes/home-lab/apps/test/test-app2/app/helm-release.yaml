@@ -59,12 +59,8 @@ spec:
             port: 80
     persistence:
       config:
-        suffix: config
         enabled: true
-        retain: true
-        storageClass: local-hostpath
-        accessMode: ReadWriteOnce
-        size: 1Gi
+        existingClaim: ${APP}
         advancedMounts:
           test-app2:
             app:
