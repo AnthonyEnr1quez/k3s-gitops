@@ -50,3 +50,11 @@ tasks:
       echo "opensuse_url=https://doc.opensuse.org/release-notes/x86_64/openSUSE/Leap/$leap_version/" >> $GITHUB_OUTPUT
       echo "kairos_url=https://github.com/kairos-io/kairos/releases/tag/$kairos_version" >> $GITHUB_OUTPUT
       echo "k3s_url=https://github.com/k3s-io/k3s/releases/tag/$k3s_version+k3s1" >> $GITHUB_OUTPUT
+
+  volsync-snapshot:
+    desc: Trigger manual backup for all VolSync ReplicationSources
+    cmd: |
+      kubectl get replicationsources --no-headers -A | while read -r ns name _; do
+        echo "Triggering backup for $name in namespace $ns"
+        kubectl -n "$ns" patch replicationsources "$name" --type merge -p '{"spec":{"trigger":{"manual":"'$(date +%s)'"}}}'
+      done

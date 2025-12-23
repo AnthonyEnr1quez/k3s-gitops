@@ -1,0 +1,33 @@
+---
+# yaml-language-server: disable-all
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: ${APP}
+spec:
+  sourcePVC: ${APP}
+  trigger:
+    schedule: ${VOLSYNC_SCHEDULE:=0 9 * * *}
+  restic:
+    repository: restic-${APP}
+    copyMethod: ${VOLSYNC_COPYMETHOD:=Snapshot}
+    pruneIntervalDays: ${VOLSYNC_PRUNE_INTERVAL:=14}
+    retain:
+      daily: ${VOLSYNC_RETAIN_DAILY:=14}
+      within: ${VOLSYNC_RETAIN_WITHIN:=14d}
+    capacity: ${VOLSYNC_CAPACITY:=5Gi}
+    storageClassName: ${VOLSYNC_STORAGECLASS:=local-hostpath}
+    accessModes:
+      - ${VOLSYNC_ACCESSMODES:=ReadWriteOnce}
+    moverSecurityContext:
+      runAsUser: ${VOLSYNC_PUID:=1000}
+      runAsGroup: ${VOLSYNC_PGID:=1000}
+      fsGroup: ${VOLSYNC_PGID:=1000}
+    moverAffinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values: ["${node}"]

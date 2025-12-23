@@ -1,0 +1,65 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app test-volsync
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+    namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: democratic-csi-local-hostpath
+      namespace: storage
+  values:
+    controllers:
+      test-volsync:
+        type: statefulset
+        containers:
+          app:
+            image:
+              repository: busybox
+              tag: latest
+            command:
+              - sh
+              - -c
+              - |
+                echo "Test app using Volsync component - $(date)" > /data/index.html
+                echo "Data directory contents:" >> /data/index.html
+                ls -la /data >> /data/index.html
+                echo "=== Sleeping forever ===" >> /data/index.html
+                tail -f /data/index.html
+    defaultPodOptions:
+      nodeSelector:
+        kubernetes.io/hostname: ${node}
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: 80
+    persistence:
+      config:
+        # Use the PVC created by the volsync component
+        enabled: true
+        existingClaim: ${APP}
+        advancedMounts:
+          test-volsync:
+            app:
+              - path: /data
