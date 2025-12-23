@@ -84,6 +84,7 @@ spec:
                     cidr: 10.42.0.0/16
     routed_namespaces: 
       - download
+      - media
     settings:
       VPN_INTERFACE: *if
       VPN_TRAFFIC_PORT: *port
