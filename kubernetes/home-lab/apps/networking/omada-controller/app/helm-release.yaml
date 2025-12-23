@@ -47,7 +47,7 @@ spec:
                 memory: 2000Mi
     defaultPodOptions:
       nodeSelector:
-        kubernetes.io/hostname: ${node}
+        kubernetes.io/hostname: ${NODE}
       hostNetwork: true #TODO
     service:
       app:
@@ -144,6 +144,6 @@ spec:
         globalMounts:
           - path: /opt/tplink/EAPController/logs
       backup:
-        <<: *persist
+        existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /opt/tplink/EAPController/data/autobackup
