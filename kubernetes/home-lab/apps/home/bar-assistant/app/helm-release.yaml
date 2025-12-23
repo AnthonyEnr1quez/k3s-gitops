@@ -81,7 +81,7 @@ spec:
               MEILISEARCH_URL: "https://{{ .Release.Name }}.${INTERNAL_HOSTNAME}/search"
     defaultPodOptions:
       nodeSelector:
-        kubernetes.io/hostname: ${node}
+        kubernetes.io/hostname: ${NODE}
     service:
       backend:
         controller: *app
@@ -135,16 +135,13 @@ spec:
               port: *port
     persistence:
       data:
-        enabled: true
-        retain: true
-        storageClass: local-hostpath
-        accessMode: ReadWriteOnce
-        size: 1Gi
+        existingClaim: "{{ .Release.Name }}"
         advancedMounts:
           bar-assistant:
             api:
               - path: /var/www/cocktails/storage/bar-assistant
       search:
+        suffix: search
         enabled: true
         retain: true
         storageClass: local-hostpath
