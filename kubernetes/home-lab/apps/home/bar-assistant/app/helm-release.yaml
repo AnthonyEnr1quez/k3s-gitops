@@ -70,6 +70,9 @@ spec:
                     key: MEILISEARCH_KEY
               MEILI_NO_ANALYTICS: true
               MEILI_EXPERIMENTAL_DUMPLESS_UPGRADE: true
+        pod:
+          nodeSelector:
+            kubernetes.io/hostname: ${NODE}
       frontend:
         containers:
           salt-rim:
@@ -79,9 +82,6 @@ spec:
             env:
               API_URL: *api-url
               MEILISEARCH_URL: "https://{{ .Release.Name }}.${INTERNAL_HOSTNAME}/search"
-    defaultPodOptions:
-      nodeSelector:
-        kubernetes.io/hostname: ${NODE}
     service:
       backend:
         controller: *app
