@@ -45,7 +45,7 @@ spec:
                 memory: 512Mi
     defaultPodOptions:
       nodeSelector:
-        kubernetes.io/hostname: ${node}
+        kubernetes.io/hostname: ${NODE}
       securityContext:
         # runAsNonRoot: true
         runAsUser: 568
@@ -76,12 +76,7 @@ spec:
               port: *port
     persistence:
       data:
-        suffix: data
-        enabled: true
-        retain: true
-        storageClass: local-hostpath
-        accessMode: ReadWriteOnce
-        size: 10Gi
+        existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /app/data
       nltk:
