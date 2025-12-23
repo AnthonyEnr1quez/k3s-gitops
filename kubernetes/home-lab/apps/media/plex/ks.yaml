@@ -30,7 +30,7 @@ spec:
     - ../../../../components/volsync
   postBuild:
     substitute:
-      APP: plex
+      APP: *app
       NODE: mina
       VOLSYNC_CAPACITY: 50Gi
       VOLSYNC_PUID: "568"
