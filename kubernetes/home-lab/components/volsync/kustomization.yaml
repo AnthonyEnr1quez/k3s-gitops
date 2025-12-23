@@ -3,7 +3,6 @@
 apiVersion: kustomize.config.k8s.io/v1alpha1
 kind: Component
 resources:
-  # - ./secret.yaml
-  - ./pvc.yaml
-  - ./replicationdestination.yaml
-  - ./replicationsource.yaml
+  - persistent-volume-claim.yaml
+  - replication-destination.yaml
+  - replication-source.yaml

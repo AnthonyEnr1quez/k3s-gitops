@@ -28,8 +28,6 @@ spec:
   timeout: 5m
   postBuild:
     substitute:
-      APP: test-app2-config
-      node: loreto
-      VOLSYNC_SCHEDULE: "0 * * * *"
+      APP: *app
+      NODE: loreto
       VOLSYNC_CAPACITY: 1Gi
-      VOLSYNC_RETAIN_DAILY: "7"

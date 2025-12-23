@@ -1,0 +1,42 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/volsync.backube/replicationsource_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: ${APP}
+spec:
+  sourcePVC: ${APP}
+  trigger:
+    # every day at 9 UTC (4 am CDT)
+    schedule: ${VOLSYNC_SCHEDULE:=0 9 * * *}
+  restic:
+    accessModes:
+      - ${VOLSYNC_ACCESSMODES:=ReadWriteOnce}
+    cacheAccessModes:
+      - ${VOLSYNC_CACHE_ACCESSMODES:=ReadWriteOnce}
+    cacheCapacity: ${VOLSYNC_CAPACITY:=1Gi}
+    cacheStorageClassName: ${VOLSYNC_CACHE_STORAGECLASS:=local-hostpath}
+    capacity: ${VOLSYNC_CAPACITY:=1Gi}
+    copyMethod: ${VOLSYNC_COPYMETHOD:=Snapshot}
+    moverAffinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values: ["${NODE}"]
+    moverSecurityContext:
+      runAsUser: ${VOLSYNC_PUID:=1000}
+      runAsGroup: ${VOLSYNC_PGID:=1000}
+      fsGroup: ${VOLSYNC_PGID:=1000}
+      fsGroupChangePolicy: OnRootMismatch
+      # supplementalGroups: [100]
+    # Prune the repository (repack to free space) every 2 weeks
+    pruneIntervalDays: ${VOLSYNC_PRUNE_INTERVAL:=14}
+    repository: restic-${APP}
+    retain:
+      daily: ${VOLSYNC_RETAIN_DAILY:=14}
+      within: ${VOLSYNC_RETAIN_WITHIN:=14d}
+    storageClassName: ${VOLSYNC_STORAGECLASS:=local-hostpath}
+    volumeSnapshotClassName: ${VOLSYNC_SNAPSHOTCLASS:=local-hostpath}

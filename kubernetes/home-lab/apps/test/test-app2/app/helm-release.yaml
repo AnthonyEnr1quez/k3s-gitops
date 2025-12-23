@@ -45,22 +45,15 @@ spec:
                 done
     defaultPodOptions:
       nodeSelector:
-        kubernetes.io/hostname: ${node}
+        kubernetes.io/hostname: ${NODE}
       securityContext:
         runAsUser: 1000
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-    service:
-      app:
-        controller: *app
-        ports:
-          http:
-            port: 80
     persistence:
       config:
-        enabled: true
-        existingClaim: ${APP}
+        existingClaim: "{{ .Release.Name }}"
         advancedMounts:
           test-app2:
             app:
