@@ -26,10 +26,6 @@ spec:
         repository: registry.k8s.io/sig-storage/snapshot-controller
         tag: v8.4.0@sha256:b845f4bbc34d70bd84e92f8021f47704df1de3dbabbd8289969651360b39d605
       replicaCount: 3
-      tolerations:
-        - key: plex
-          operator: Exists
-          effect: PreferNoSchedule
       args:
         leaderElection: true
         leaderElectionNamespace: "$(NAMESPACE)"
@@ -37,10 +33,6 @@ spec:
         enableDistributedSnapshotting: true
     webhook:
       replicaCount: 3
-      tolerations:
-        - key: plex
-          operator: Exists
-          effect: PreferNoSchedule
     # serviceMonitor:
     #   create: true
     # volumeSnapshotClasses:

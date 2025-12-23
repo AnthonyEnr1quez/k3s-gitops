@@ -14,10 +14,6 @@ spec:
   nodeSelector:
     matchLabels:
       kubernetes.io/arch: amd64
-  tolerations:
-    - key: plex
-      operator: Exists
-      effect: PreferNoSchedule
   upgrade:
     image: quay.io/kairos/opensuse
     command:
