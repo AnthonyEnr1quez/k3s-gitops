@@ -67,6 +67,10 @@ spec:
       resourceClaims:
         - name: gpu
           resourceClaimName: *app
+      securityContext:
+        supplementalGroups:
+          - 44  # video
+          - 109 # render
     service:
       app:
         controller: *app
