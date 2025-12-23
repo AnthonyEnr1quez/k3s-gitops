@@ -26,9 +26,13 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
+  components:
+    - ../../../../components/volsync
   postBuild:
     substitute:
-      node: mina
+      APP: *app
+      NODE: loreto
+      VOLSYNC_CAPACITY: 5Gi
     substituteFrom:
       - kind: Secret
         name: hostnames
