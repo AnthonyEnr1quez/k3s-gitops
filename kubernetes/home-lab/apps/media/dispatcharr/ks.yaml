@@ -6,7 +6,7 @@ metadata:
   name: &app dispatcharr
   namespace: flux-system
 spec:
-  targetNamespace: download
+  targetNamespace: media
   dependsOn:
     - name: cluster-secrets
     - name: cluster-variables
@@ -17,7 +17,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/home-lab/apps/download/dispatcharr/app
+  path: ./kubernetes/home-lab/apps/media/dispatcharr/app
   prune: true
   sourceRef:
     kind: GitRepository
