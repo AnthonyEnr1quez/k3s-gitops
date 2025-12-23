@@ -48,10 +48,11 @@ spec:
                   failureThreshold: 30
                   periodSeconds: 5
             resources:
+              claims:
+                - name: gpu
               requests:
                 cpu: 25m
               # limits:
-              #   gpu.intel.com/i915: 1
               #   memory: 3Gi
           gcs:
             image:
@@ -63,6 +64,9 @@ spec:
         setGateway: "true"
       nodeSelector:
         kubernetes.io/hostname: ${NODE}
+      resourceClaims:
+        - name: gpu
+          resourceClaimName: *app
     service:
       app:
         controller: *app
