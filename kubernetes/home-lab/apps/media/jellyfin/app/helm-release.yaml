@@ -69,7 +69,7 @@ spec:
                 memory: 8Gi
     defaultPodOptions:
       nodeSelector:
-        kubernetes.io/hostname: ${node}
+        kubernetes.io/hostname: ${NODE}
       resourceClaims:
         - name: gpu
           resourceClaimName: jellyfin
@@ -122,12 +122,7 @@ spec:
               port: *port
     persistence:
       config:
-        suffix: config
-        enabled: true
-        retain: true
-        storageClass: local-hostpath
-        accessMode: ReadWriteOnce
-        size: 50Gi
+        existingClaim: "{{ .Release.Name }}"
       config-cache:
         suffix: config-cache
         enabled: true
