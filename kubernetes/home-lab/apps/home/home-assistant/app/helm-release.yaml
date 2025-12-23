@@ -100,6 +100,7 @@ spec:
           home-assistant:
             app:
               - path: /config
+                subPath: home-assistant
             matter-server:
               - path: /data
                 subPath: matter-server
