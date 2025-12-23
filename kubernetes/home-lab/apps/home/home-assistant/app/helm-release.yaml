@@ -100,10 +100,6 @@ spec:
           home-assistant:
             app:
               - path: /config
-      matter-server-config:
-        enabled: true
-        existingClaim: matter-server-config
-        advancedMounts:
-          home-assistant:
             matter-server:
               - path: /data
+                subPath: matter-server
