@@ -11,6 +11,7 @@ spec:
     - name: cluster-secrets
     - name: cluster-variables
     - name: sops-secrets-operator
+    - name: volsync
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
