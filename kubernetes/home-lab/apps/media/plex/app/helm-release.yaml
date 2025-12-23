@@ -45,7 +45,7 @@ spec:
                 memory: 1Gi
     defaultPodOptions:
       nodeSelector:
-        kubernetes.io/hostname: ${node}
+        kubernetes.io/hostname: ${NODE}
       securityContext:
         # runAsNonRoot: true
         runAsUser: 568
@@ -102,12 +102,7 @@ spec:
         rules: *rules
     persistence:
       config:
-        suffix: config
-        enabled: true
-        retain: true
-        storageClass: local-hostpath
-        accessMode: ReadWriteOnce
-        size: 50Gi
+        existingClaim: "{{ .Release.Name }}"
       data:
         enabled: true
         existingClaim: nfs-data
