@@ -28,7 +28,7 @@ spec:
           app:
             image:
               repository: ghcr.io/arabcoders/watchstate
-              tag: v1.0.4@sha256:95e6b5e39ebd584d81a6ea375e19727143589359e1cfe60aca9c4a10990b8c8d
+              tag: v1.0.5@sha256:7ada8ad8ef87566e1fef7d91855553ba6bef95b372b22076d332582bdda866a7
             probes:
               liveness: &probes
                 enabled: true
