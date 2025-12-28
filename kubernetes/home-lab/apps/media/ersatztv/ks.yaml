@@ -1,0 +1,40 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app ersatztv
+  namespace: flux-system
+spec:
+  targetNamespace: media
+  dependsOn:
+    - name: cluster-secrets
+    - name: cluster-variables
+    - name: envoy-gateway-gateways
+    - name: metallb-pools
+    - name: sops-secrets-operator
+    - name: volsync
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  path: ./kubernetes/home-lab/apps/media/ersatztv/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  wait: false
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+  # components:
+  #   - ../../../../components/volsync
+  postBuild:
+    # substitute:
+    #   APP: *app
+    #   NODE: gulsun
+    #   VOLSYNC_CAPACITY: 1Gi
+    substituteFrom:
+      - kind: Secret
+        name: hostnames
+      - kind: ConfigMap
+        name: ip-addresses
