@@ -6,6 +6,7 @@ resources:
   - nfs-data/ks.yaml
   
   - qbittorrent/ks.yaml
+  - flaresolverr/ks.yaml
   - prowlarr/ks.yaml
   - sonarr/ks.yaml
   - radarr/ks.yaml
