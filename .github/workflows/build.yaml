@@ -8,8 +8,6 @@ on:
       - "flake.nix"
       - "flake.lock"
   push:
-    branches:
-      - main
     paths:
       - ".github/workflows/build.yaml"
       - "flake.nix"
