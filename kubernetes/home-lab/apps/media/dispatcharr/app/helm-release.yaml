@@ -52,9 +52,11 @@ spec:
               claims:
                 - name: gpu
               requests:
-                cpu: 25m
-              # limits:
-              #   memory: 3Gi
+                cpu: 500m
+                memory: 2Gi
+              limits:
+                cpu: 2000m
+                memory: 4Gi
           gcs:
             image:
               repository: jesmann/global-channel-search
