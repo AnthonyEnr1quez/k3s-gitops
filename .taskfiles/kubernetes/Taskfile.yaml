@@ -53,3 +53,71 @@ tasks:
         echo "Triggering backup for $name in namespace $ns"
         kubectl -n "$ns" patch replicationsources "$name" --type merge -p '{"spec":{"trigger":{"manual":"'$(date +%s)'"}}}'
       done
+
+  new-app:
+    desc: "Template out files for a new app. Usage: task kubernetes:new-app NAMESPACE=<namespace> APP=<app-name> [USE_APP_TEMPLATE=true|false] [USE_VOLSYNC=true|false]"
+    vars:
+      NAMESPACE: '{{.NAMESPACE | default ""}}'
+      APP: '{{.APP | default ""}}'
+      USE_APP_TEMPLATE: '{{.USE_APP_TEMPLATE | default "true"}}'
+      USE_VOLSYNC: '{{.USE_VOLSYNC | default "false"}}'
+    preconditions:
+      - sh: '[ -n "{{.NAMESPACE}}" ]'
+        msg: "NAMESPACE is required. Use: task kubernetes:new-app NAMESPACE=<namespace> APP=<app-name>"
+      - sh: '[ -n "{{.APP}}" ]'
+        msg: "APP is required. Use: task kubernetes:new-app NAMESPACE=<namespace> APP=<app-name>"
+      - sh: '[ -d "./kubernetes/home-lab/apps/{{.NAMESPACE}}" ]'
+        msg: "Namespace directory ./kubernetes/home-lab/apps/{{.NAMESPACE}} does not exist"
+      - sh: '[ ! -d "./kubernetes/home-lab/apps/{{.NAMESPACE}}/{{.APP}}" ]'
+        msg: "App directory ./kubernetes/home-lab/apps/{{.NAMESPACE}}/{{.APP}} already exists"
+    cmds:
+      - mkdir -p ./kubernetes/home-lab/apps/{{.NAMESPACE}}/{{.APP}}/app
+      - |
+        {{if eq .USE_VOLSYNC "true"}}
+        sed 's/APP_NAME/{{.APP}}/g; s/NAMESPACE/{{.NAMESPACE}}/g' \
+          .taskfiles/kubernetes/templates/ks-volsync.yaml \
+          > ./kubernetes/home-lab/apps/{{.NAMESPACE}}/{{.APP}}/ks.yaml
+        {{else}}
+        sed 's/APP_NAME/{{.APP}}/g; s/NAMESPACE/{{.NAMESPACE}}/g' \
+          .taskfiles/kubernetes/templates/ks.yaml \
+          > ./kubernetes/home-lab/apps/{{.NAMESPACE}}/{{.APP}}/ks.yaml
+        {{end}}
+      - |
+        {{if eq .USE_APP_TEMPLATE "true"}}
+        {{if eq .USE_VOLSYNC "true"}}
+        sed 's/APP_NAME/{{.APP}}/g' \
+          .taskfiles/kubernetes/templates/helm-release-volsync.yaml \
+          > ./kubernetes/home-lab/apps/{{.NAMESPACE}}/{{.APP}}/app/helm-release.yaml
+        {{else}}
+        sed 's/APP_NAME/{{.APP}}/g' \
+          .taskfiles/kubernetes/templates/helm-release-app-template.yaml \
+          > ./kubernetes/home-lab/apps/{{.NAMESPACE}}/{{.APP}}/app/helm-release.yaml
+        {{end}}
+        {{else}}
+        sed 's/APP_NAME/{{.APP}}/g' \
+          .taskfiles/kubernetes/templates/helm-release-custom.yaml \
+          > ./kubernetes/home-lab/apps/{{.NAMESPACE}}/{{.APP}}/app/helm-release.yaml
+        sed 's/APP_NAME/{{.APP}}/g' \
+          .taskfiles/kubernetes/templates/oci-repository.yaml \
+          > ./kubernetes/home-lab/apps/{{.NAMESPACE}}/{{.APP}}/app/oci-repository.yaml
+        {{end}}
+      - |
+        {{if eq .USE_APP_TEMPLATE "true"}}
+        {{if eq .USE_VOLSYNC "true"}}
+        cp .taskfiles/kubernetes/templates/kustomization-volsync.yaml \
+          ./kubernetes/home-lab/apps/{{.NAMESPACE}}/{{.APP}}/app/kustomization.yaml
+        {{else}}
+        cp .taskfiles/kubernetes/templates/kustomization-app-template.yaml \
+          ./kubernetes/home-lab/apps/{{.NAMESPACE}}/{{.APP}}/app/kustomization.yaml
+        {{end}}
+        {{else}}
+        cp .taskfiles/kubernetes/templates/kustomization-custom.yaml \
+          ./kubernetes/home-lab/apps/{{.NAMESPACE}}/{{.APP}}/app/kustomization.yaml
+        {{end}}
+      - |
+        {{if eq .USE_VOLSYNC "true"}}
+        sed 's/APP_NAME/{{.APP}}/g' \
+          .taskfiles/kubernetes/templates/sops-secret.yaml \
+          > ./kubernetes/home-lab/apps/{{.NAMESPACE}}/{{.APP}}/app/sops-secret.yaml
+        {{end}}
+      - echo "✓ Created app structure at ./kubernetes/home-lab/apps/{{.NAMESPACE}}/{{.APP}}"
