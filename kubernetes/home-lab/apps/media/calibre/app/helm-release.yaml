@@ -31,26 +31,74 @@ spec:
         containers:
           app:
             image:
-              repository: lscr.io/linuxserver/calibre
-              tag: 8.16.2@sha256:6bdf9c42b5223f8c5722896808f33bd725eba84df220c6615ed173b7255451a0
+              repository: ghcr.io/crocodilestick/calibre-web-automated
+              tag: V3.1.4@sha256:577e846f104fd21453ef306eefb4a95dd95b3b9ddd2463a150944494284da0fd
             env:
-              CALIBRE_OVERRIDE_DATABASE_PATH: /config/metadata.db
+              # CALIBRE_OVERRIDE_DATABASE_PATH: /config/metadata.db
               TZ: America/Chicago
-              PUID: 568
-              PGID: 568
+              PUID: 1000
+              PGID: 1000
+              CACHE_DIR: /cache
+              # NETWORK_SHARE_MODE: "true"
+              # S6_YES_I_WANT_A_WORLD_WRITABLE_RUN_BECAUSE_KUBERNETES: "1"
+              S6_READ_ONLY_ROOT: "1"
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    port: &port 8083
+                    path: /login
+                  initialDelaySeconds: 30
+                  periodSeconds: 10
+                  timeoutSeconds: 5
+                  failureThreshold: 6
+              readiness: *probes
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    port: *port
+                    path: /
+                  failureThreshold: 90
+                  periodSeconds: 5
+            resources:
+              requests:
+                cpu: 100m
+                memory: 512Mi
+              limits:
+                memory: 2Gi
+            securityContext:
+              allowPrivilegeEscalation: true
+              readOnlyRootFilesystem: false
+              capabilities:
+                drop: [ ALL ]
+                add:
+                  # S6
+                  - CHOWN
+                  - SETUID
+                  - SETGID
+                  - FOWNER
+                  - DAC_OVERRIDE
     defaultPodOptions:
       nodeSelector:
         kubernetes.io/hostname: ${NODE}
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile:
+          type: RuntimeDefault
     service:
       app:
         controller: *app
         ports:
           http:
-            primary: true
-            port: &http-port 8080
-          webserver:
-            enabled: true
-            port: &ws-port 8081
+            port: *port
     route:
       internal:
         enabled: true
@@ -64,20 +112,7 @@ spec:
         rules:
           - backendRefs:
             - name: *app
-              port: *http-port
-      webserver-internal:
-        enabled: true
-        kind: HTTPRoute
-        parentRefs:
-          - name: envoy-internal
-            namespace: networking
-            sectionName: https
-        hostnames:
-          - "{{ .Release.Name }}-webserver.${INTERNAL_HOSTNAME}"
-        rules:
-          - backendRefs:
-            - name: *app
-              port: *ws-port
+              port: *port
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
@@ -89,3 +124,7 @@ spec:
             app:
               - path: /books
                 subPath: media/books
+      tmpfs:
+        type: emptyDir
+        globalMounts:
+          - path: /cache
