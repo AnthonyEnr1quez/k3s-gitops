@@ -60,7 +60,7 @@ spec:
           search:
             image:
               repository: docker.io/getmeili/meilisearch
-              tag: v1.34.0@sha256:6678efe4552753de8ed0309baff26acf364a592de6d92516da6ef09c284baab7
+              tag: v1.34.2@sha256:7cd29dc6886cb97475137471668033affb3442bdf9bdad5eedbbfb5189dbf5bc
             env:
               MEILI_ENV: production
               MEILI_MASTER_KEY:
