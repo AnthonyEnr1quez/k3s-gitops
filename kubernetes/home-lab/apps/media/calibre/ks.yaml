@@ -31,8 +31,8 @@ spec:
       APP: *app
       NODE: gulsun
       VOLSYNC_CAPACITY: 1Gi
-      VOLSYNC_PUID: "568"
-      VOLSYNC_PGID: "568"
+      VOLSYNC_PUID: "1000"
+      VOLSYNC_PGID: "1000"
     substituteFrom:
       - kind: Secret
         name: hostnames

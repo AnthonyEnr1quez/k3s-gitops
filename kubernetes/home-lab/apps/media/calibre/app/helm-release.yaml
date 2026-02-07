@@ -36,11 +36,12 @@ spec:
             env:
               # CALIBRE_OVERRIDE_DATABASE_PATH: /config/metadata.db
               TZ: America/Chicago
-              PUID: 1000
-              PGID: 1000
+              PUID: ${VOLSYNC_PUID}
+              PGID: ${VOLSYNC_PGID}
               CACHE_DIR: /cache
+              CWA_WATCH_MODE: poll
               # NETWORK_SHARE_MODE: "true"
-              # S6_YES_I_WANT_A_WORLD_WRITABLE_RUN_BECAUSE_KUBERNETES: "1"
+              S6_YES_I_WANT_A_WORLD_WRITABLE_RUN_BECAUSE_KUBERNETES: "1"
               S6_READ_ONLY_ROOT: "1"
             probes:
               liveness: &probes
@@ -88,11 +89,10 @@ spec:
       securityContext:
         runAsNonRoot: false
         runAsUser: 0
-        runAsGroup: 1000
-        fsGroup: 1000
+        runAsGroup: ${VOLSYNC_PUID}
+        fsGroup: ${VOLSYNC_PGID}
         fsGroupChangePolicy: OnRootMismatch
-        seccompProfile:
-          type: RuntimeDefault
+        seccompProfile: { type: RuntimeDefault }
     service:
       app:
         controller: *app
@@ -116,7 +116,15 @@ spec:
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
-      books:
+        advancedMounts:
+          calibre:
+            app:
+              - path: /config
+                subPath: config
+            matter-server:
+              - path: /calibre-library
+                subPath: library
+      data:
         enabled: true
         existingClaim: nfs-data
         advancedMounts:
