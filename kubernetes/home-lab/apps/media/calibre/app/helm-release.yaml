@@ -121,7 +121,6 @@ spec:
             app:
               - path: /config
                 subPath: config
-            matter-server:
               - path: /calibre-library
                 subPath: library
       data:
