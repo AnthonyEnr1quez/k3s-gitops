@@ -122,8 +122,8 @@ spec:
         advancedMounts:
           calibre:
             app:
-              - path: /books
-                subPath: media/books
+              - path: /cwa-book-ingest
+                subPath: media/books/import
       tmpfs:
         type: emptyDir
         globalMounts:
