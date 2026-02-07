@@ -132,6 +132,10 @@ spec:
             app:
               - path: /cwa-book-ingest
                 subPath: media/books/import
+              - path: /books
+                subPath: media/books/library
+              - path: /temp-in
+                subPath: media/books/Library
       tmpfs:
         type: emptyDir
         globalMounts:
