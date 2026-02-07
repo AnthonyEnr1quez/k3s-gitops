@@ -34,13 +34,11 @@ spec:
               repository: ghcr.io/crocodilestick/calibre-web-automated
               tag: v4.6.0@sha256:c31a738b6d5ec6982c050063dd3f063b6943eb1051fc81144789f840d9093a8d
             env:
-              # CALIBRE_OVERRIDE_DATABASE_PATH: /config/metadata.db
               TZ: America/Chicago
               PUID: ${VOLSYNC_PUID}
               PGID: ${VOLSYNC_PGID}
               CACHE_DIR: /cache
               CWA_WATCH_MODE: poll
-              # NETWORK_SHARE_MODE: "true"
               S6_YES_I_WANT_A_WORLD_WRITABLE_RUN_BECAUSE_KUBERNETES: "1"
               S6_READ_ONLY_ROOT: "1"
             probes:
@@ -133,8 +131,6 @@ spec:
                 subPath: media/books/import
               - path: /books
                 subPath: media/books/library
-              - path: /temp-in
-                subPath: media/books/Library
       tmpfs:
         type: emptyDir
         globalMounts:
