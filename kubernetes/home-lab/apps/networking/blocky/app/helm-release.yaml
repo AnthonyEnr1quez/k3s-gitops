@@ -26,6 +26,13 @@ spec:
       blocky:
         replicas: 2
         strategy: RollingUpdate
+        pod:
+          hostUsers: false
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            seccompProfile: { type: RuntimeDefault }
         containers:
           app:
             image:
@@ -39,6 +46,12 @@ spec:
             #     memory: 50Mi
             #   limits:
             #     memory: 750Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                add: ["NET_BIND_SERVICE"]
+                drop: ["ALL"]
       cache:
         containers:
           server:
@@ -54,6 +67,33 @@ spec:
                 memory: 10Mi
               limits:
                 memory: 100Mi
+      frontend:
+        strategy: RollingUpdate
+        pod:
+          hostUsers: false
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            seccompProfile: { type: RuntimeDefault }
+        containers:
+          main:
+            image:
+              repository: ghcr.io/gabeduartem/blocky-ui
+              tag: 1.6.1@sha256:35e67a68a6ef15ad43d3b9913ab7e667deaddcb022e414eacc8070a1450b4441
+            env:
+              BLOCKY_API_URL: "http://{{ .Release.Name }}-app:4000"
+            probes:
+              liveness:
+                enabled: true
+                type: HTTP
+              readiness:
+                enabled: true
+                type: HTTP
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
     defaultPodOptions:
       nodeSelector:
         kubernetes.io/arch: amd64
@@ -62,7 +102,7 @@ spec:
         controller: *app
         ports:
           http:
-            port: 4000
+            port: &port 4000
       dns:
         controller: *app
         type: LoadBalancer
@@ -71,7 +111,7 @@ spec:
           metallb.io/loadBalancerIPs: ${BLOCKY_IP_ADDRESS}
         ports:
           http:
-            port: 4000
+            port: *port
             protocol: TCP
           tcp:
             port: 53
@@ -84,6 +124,25 @@ spec:
         ports:
           http:
             port: 6379
+      frontend:
+        controller: frontend
+        ports:
+          http:
+            port: &fe-port 3000
+    route:
+      internal:
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
+        hostnames:
+          - "{{ .Release.Name }}.${INTERNAL_HOSTNAME}"
+        rules:
+          - backendRefs:
+            - name: blocky-frontend
+              port: *fe-port
     serviceMonitor:
       main:
         enabled: true
