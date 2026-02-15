@@ -49,11 +49,13 @@ spec:
               - shelfmark.main:app
             env:
               TZ: America/Chicago
-              # CALIBRE_WEB_URL:
+              CALIBRE_WEB_URL: https://calibre.${INTERNAL_HOSTNAME}
               SEARCH_MODE: universal
-              METADATA_PROVIDER: openlibrary
+              HARDCOVER_ENABLED: true
+              METADATA_PROVIDER: hardcover
               INGEST_DIR: /data/media/books/import
               MAX_CONCURRENT_DOWNLOADS: 5
+              AUTO_OPEN_DOWNLOADS_SIDEBAR: true
               OPENLIBRARY_ENABLED: true
               PROWLARR_ENABLED: true
               PROWLARR_URL: http://prowlarr:9696
@@ -62,6 +64,7 @@ spec:
               PROWLARR_TORRENT_CLIENT: qbittorrent
               QBITTORRENT_URL: http://qbittorrent:8080
               QBITTORRENT_CATEGORY: books
+              HARDLINK_TORRENTS: true
             envFrom:
               - secretRef:
                   name: *app
