@@ -83,6 +83,8 @@ spec:
               tag: 1.6.1@sha256:35e67a68a6ef15ad43d3b9913ab7e667deaddcb022e414eacc8070a1450b4441
             env:
               BLOCKY_API_URL: "http://{{ .Release.Name }}-app:4000"
+              QUERY_LOG_TYPE: csv-client
+              QUERY_LOG_TARGET: /logs
             probes:
               liveness:
                 enabled: true
@@ -167,3 +169,7 @@ spec:
             app:
               - path: /app/config.yml
                 subPath: config.yaml
+      logs:
+        type: emptyDir
+        globalMounts:
+          - path: /logs

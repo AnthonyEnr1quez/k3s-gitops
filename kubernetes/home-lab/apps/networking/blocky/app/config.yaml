@@ -62,3 +62,10 @@ ports:
   http: 4000
 log:
   level: info
+queryLog:
+  type: csv-client
+  target: /logs
+  logRetentionDays: 14
+  creationAttempts: 5
+  creationCooldown: 60s
+  flushInterval: 30s
