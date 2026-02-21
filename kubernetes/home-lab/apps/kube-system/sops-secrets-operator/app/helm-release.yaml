@@ -23,8 +23,8 @@ spec:
     keepHistory: false
   values:
     image:
-      repository: docker.io/isindir/sops-secrets-operator
-      tag: 0.17.1@sha256:e5a7efd636e833f6e9e546fa4544d650dc3492e08af2f7fef3862728ab2cf9c8
+      repository: quay.io/isindir/sops-secrets-operator
+      tag: 0.18.0@sha256:65d146832d9b1bdbefd03a44fce9fbb7a6472edadc7c82c2e62510e28981a451
     secretsAsFiles:
       - name: age
         mountPath: /etc/age
