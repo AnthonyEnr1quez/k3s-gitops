@@ -35,7 +35,7 @@ spec:
           app:
             image:
               repository: ghcr.io/ersatztv/ersatztv
-              tag: v25.9.0@sha256:abeaae053c58ab3dce5e4771a1fe61f84b49d58360a110824698aa88402d055f
+              tag: v26.2.0@sha256:b46b2344c11bc67bdd39f320acf1c3bd36bfd77b9ddf250a3884ede9cb1090d5
             env:
               TZ: America/Chicago
               XDG_DATA_HOME: /config ## https://features.ersatztv.org/posts/4/allow-docker-to-run-as-non-root-user
