@@ -13,4 +13,5 @@ resources:
   - bazarr/ks.yaml
   - shelfmark/ks.yaml
   - requestrr/ks.yaml
+  - seerr/ks.yaml
   - cleanuparr/ks.yaml
