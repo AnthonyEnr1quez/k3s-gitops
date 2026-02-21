@@ -29,6 +29,7 @@ spec:
     controllers:
       dispatcharr:
         type: statefulset
+        replicas: 0
         containers:
           app:
             image:
