@@ -26,13 +26,13 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
-  # components:
-  #   - ../../../../components/volsync
+  components:
+    - ../../../../components/volsync
   postBuild:
-    # substitute:
-    #   APP: *app
-    #   NODE: gulsun
-    #   VOLSYNC_CAPACITY: 1Gi
+    substitute:
+      APP: *app
+      NODE: loreto
+      VOLSYNC_CAPACITY: 1Gi
     substituteFrom:
       - kind: Secret
         name: hostnames

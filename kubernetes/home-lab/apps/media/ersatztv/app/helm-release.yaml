@@ -51,18 +51,18 @@ spec:
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
             resources:
-              # claims:
-              #   - name: gpu
+              claims:
+                - name: gpu
               requests:
                 cpu: 10m
               # limits:
               #   memory: 4G
     defaultPodOptions:
-      # nodeSelector:
-      #   kubernetes.io/hostname: ${NODE}
-      # resourceClaims:
-      #   - name: gpu
-      #     resourceClaimName: ersatztv
+      nodeSelector:
+        kubernetes.io/hostname: ${NODE}
+      resourceClaims:
+        - name: gpu
+          resourceClaimName: ersatztv
       automountServiceAccountToken: false
       securityContext:
         runAsNonRoot: true
@@ -92,9 +92,7 @@ spec:
               port: *port
     persistence:
       config:
-        type: emptyDir
-      # config:
-      #   existingClaim: "{{ .Release.Name }}"
+        existingClaim: "{{ .Release.Name }}"
       data:
         enabled: true
         existingClaim: nfs-data
