@@ -6,7 +6,7 @@ spec:
   chart:
     spec:
       chart: sops-secrets-operator
-      version: 0.25.0
+      version: 0.25.1
       sourceRef:
         kind: HelmRepository
         name: sops-secrets-operator
@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: quay.io/isindir/sops-secrets-operator
-      tag: 0.18.0@sha256:65d146832d9b1bdbefd03a44fce9fbb7a6472edadc7c82c2e62510e28981a451
+      tag: 0.19.0@sha256:01721de250b571ea65a8cb1305b9ee79a27dc9a37b343ae6bda757a7ff096979
     secretsAsFiles:
       - name: age
         mountPath: /etc/age
