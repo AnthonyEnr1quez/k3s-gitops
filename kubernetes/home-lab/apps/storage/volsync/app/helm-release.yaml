@@ -21,7 +21,7 @@ spec:
   values:
     image: &image
       repository: quay.io/backube/volsync
-      tag: 0.14.0@sha256:c674dcebb2f9458b75c803623801916b64098a1a490ac255da467ef4f0f0dfdd
+      tag: 0.15.0@sha256:4fedd41b3101dde090542009c4177f703d241bf4760d1767bd9df08fd8fd93a4
     restic:
       <<: *image
     kube-rbac-proxy:
