@@ -41,4 +41,4 @@ spec:
       frr:
         image:
           repository: quay.io/frrouting/frr
-          tag: 10.6.0@sha256:eae3340ca578bb588d92ab3d1e77deb806f80d1da2bc0053cb1dfcfef2aa236f
+          tag: 10.6.1@sha256:813497af103e972600f6161012b3bf2a2a1c5ea10d09cd1eacd74f1dc510a57b
