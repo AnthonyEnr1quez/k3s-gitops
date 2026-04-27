@@ -30,7 +30,7 @@ spec:
           api:
             image:
               repository: ghcr.io/karlomikus/barassistant
-              tag: 5.14.0@sha256:ad2bc905d157a7439f569b1e702a22b5f0518d7b23ffae73dd5f281fee0e65c8
+              tag: 5.15.0@sha256:d48ba2aba91c25851228e650996489adf66049e7668dfebb9a0ee033656447ee
             env:
               TZ: America/Chicago
               APP_URL: &api-url "https://{{ .Release.Name }}.${INTERNAL_HOSTNAME}/bar"
@@ -78,7 +78,7 @@ spec:
           salt-rim:
             image:
               repository: ghcr.io/karlomikus/salt-rim
-              tag: 4.14.1@sha256:c5d8ab7c0119176361e40907e5162fec0e666244a86294d7d3974e7ad85c332e
+              tag: 4.15.0@sha256:2a764abf8bd1717257ec65db9cb4034406fc77968d46570a776004ca5ae2d192
             env:
               API_URL: *api-url
               MEILISEARCH_URL: "https://{{ .Release.Name }}.${INTERNAL_HOSTNAME}/search"
