@@ -65,6 +65,7 @@ spec:
               QBITTORRENT_URL: http://qbittorrent:8080
               QBITTORRENT_CATEGORY: books
               HARDLINK_TORRENTS: true
+              AUTH_METHOD: builtin # local
             envFrom:
               - secretRef:
                   name: *app
