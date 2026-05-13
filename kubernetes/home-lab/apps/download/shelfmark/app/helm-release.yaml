@@ -111,6 +111,19 @@ spec:
           - backendRefs:
             - name: *app
               port: *port
+      external:
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: envoy-external
+            namespace: networking
+            sectionName: https
+        hostnames:
+          - "{{ .Release.Name }}.${EXTERNAL_HOSTNAME}"
+        rules:
+          - backendRefs:
+            - name: *app
+              port: *port
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
