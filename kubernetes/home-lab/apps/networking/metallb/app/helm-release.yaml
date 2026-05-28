@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: metallb
-      version: 0.16.0
+      version: 0.16.1
       sourceRef:
         kind: HelmRepository
         name: metallb
@@ -26,11 +26,11 @@ spec:
     controller:
       image:
         repository: quay.io/metallb/controller
-        tag: v0.16.0@sha256:615b454c45e424e61d1f82c916ad7ab8c11ef2ba09d3ec4b0b64458e4058ff2b
+        tag: v0.16.1@sha256:f51ab515de9ccd20dc3dccb093e48df8adddac019326c456f449e55ba91b6420
     speaker:
       image:
         repository: quay.io/metallb/speaker
-        tag: v0.16.0@sha256:70e7f83255af2e96acfd574ac9f049745639deb2746d35e988008afcc0b80dbd
+        tag: v0.16.1@sha256:16561e96531e1852d5c229ad7fae6e994dcfa983ff7f4de6b6208b34a4e2ddbc
       livenessProbe:
         enabled: true
         failureThreshold: 3
