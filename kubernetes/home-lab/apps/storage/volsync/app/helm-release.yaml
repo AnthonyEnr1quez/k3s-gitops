@@ -21,7 +21,7 @@ spec:
   values:
     image: &image
       repository: quay.io/backube/volsync
-      tag: 0.15.0@sha256:4fedd41b3101dde090542009c4177f703d241bf4760d1767bd9df08fd8fd93a4
+      tag: 0.16.0@sha256:0d03a6aad57569eba2c0eaa0848cf4a908d9744b372ff2224bb291a320f36d76
     restic:
       <<: *image
     manageCRDs: true
