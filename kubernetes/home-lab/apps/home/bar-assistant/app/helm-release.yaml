@@ -30,7 +30,7 @@ spec:
           api:
             image:
               repository: ghcr.io/karlomikus/barassistant
-              tag: 5.15.3@sha256:2b2d228d1f1ad7cfec0aba4e5e7d0ab84c867847709917017f20a792a3012021
+              tag: 5.15.4@sha256:f7a444e45999f901bd85df3c52bbe531af9c5ebc3b41786db40aa3134273f1f1
             env:
               TZ: America/Chicago
               APP_URL: &api-url "https://{{ .Release.Name }}.${INTERNAL_HOSTNAME}/bar"
