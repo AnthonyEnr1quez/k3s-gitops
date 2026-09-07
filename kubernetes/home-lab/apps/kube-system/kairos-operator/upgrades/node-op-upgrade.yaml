@@ -2,9 +2,9 @@
 apiVersion: operator.kairos.io/v1alpha1
 kind: NodeOpUpgrade
 metadata:
-  name: hadron-v0-5-1-kairos-v4-2-0-k3s-v1-36-3-noop
+  name: hadron-v0-4-0-kairos-v4-1-2-k3s-v1-36-1-noop
 spec:
-  image: quay.io/kairos/hadron:v0.5.1-standard-amd64-generic-v4.2.0-k3s-v1.36.3-k3s1
+  image: quay.io/kairos/hadron:v0.4.0-standard-amd64-generic-v4.1.2-k3s-v1.36.1-k3s1
   nodeSelector:
     matchLabels:
       kairos.io/managed: "true"
