@@ -18,7 +18,7 @@
   ignorePaths: [
     '**/*.sops.*',
   ],
-  allowedCommands: ['^sh \\.github/renovate/kairos/update-k3s-badge\\.sh$'],
+  allowedCommands: ['^sh \\.github/renovate/kairos/update-kairos-upgrade\\.sh$'],
   flux: {
     managerFilePatterns: ['/(^|/)kubernetes/.+\\.ya?ml$/'],
   },

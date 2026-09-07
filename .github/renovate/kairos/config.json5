@@ -23,8 +23,11 @@
       automerge: false,
       recreateWhen: 'always',
       postUpgradeTasks: {
-        commands: ['sh .github/renovate/kairos/update-k3s-badge.sh'],
-        fileFilters: ['README.md'],
+        commands: ['sh .github/renovate/kairos/update-kairos-upgrade.sh'],
+        fileFilters: [
+          'README.md',
+          'kubernetes/home-lab/apps/kube-system/kairos-operator/upgrades/node-op-upgrade.yaml',
+        ],
         executionMode: 'update',
       },
     },
