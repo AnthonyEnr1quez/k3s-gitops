@@ -1,0 +1,15 @@
+---
+apiVersion: operator.kairos.io/v1alpha1
+kind: NodeOpUpgrade
+metadata:
+  name: hadron-v0-5-1-kairos-v4-2-0-k3s-v1-36-3-noop
+spec:
+  image: quay.io/kairos/hadron:v0.5.1-standard-amd64-generic-v4.2.0-k3s-v1.36.3-k3s1
+  nodeSelector:
+    matchLabels:
+      kairos.io/managed: "true"
+  concurrency: 1
+  stopOnFailure: true
+  uncordonOnFailure: true
+  upgradeActive: true
+  upgradeRecovery: false
