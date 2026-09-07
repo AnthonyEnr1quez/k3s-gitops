@@ -1,6 +1,7 @@
 {
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   // source: https://kairos.io/operator-docs/nodeop-upgrade/#gitops-alternative-static-name-bump-with-a-versioned-suffix
+  allowedCommands: ['^sh \\.github/renovate/kairos/update-k3s-badge\\.sh$'],
   customManagers: [
     {
       customType: 'regex',
@@ -8,6 +9,7 @@
       matchStrings: [
         'image:\\s+quay\\.io/kairos/hadron:(?<currentValue>v\\d+\\.\\d+\\.\\d+-standard-amd64-generic-v\\d+\\.\\d+\\.\\d+-k3s-v\\d+\\.\\d+\\.\\d+-k3s1)',
       ],
+      autoReplaceStringTemplate: 'image: quay.io/kairos/hadron:{{{newValue}}}',
       datasourceTemplate: 'docker',
       depNameTemplate: 'quay.io/kairos/hadron',
       versioningTemplate: 'regex:^v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-standard-amd64-generic-v\\d+\\.\\d+\\.\\d+-k3s-v\\d+\\.\\d+\\.\\d+-k3s1$',
@@ -16,10 +18,10 @@
       customType: 'regex',
       managerFilePatterns: ['/^kubernetes/home-lab/apps/kube-system/kairos-operator/upgrades/.*\\.ya?ml$/'],
       matchStrings: [
-        'name:\\s+hadron-v(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)-kairos-v\\d+-\\d+-\\d+-k3s-v\\d+-\\d+-\\d+-noop',
+        'name:\\s+hadron-v(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)-kairos-v(?<kairosMajor>\\d+)-(?<kairosMinor>\\d+)-(?<kairosPatch>\\d+)-k3s-v(?<k3sMajor>\\d+)-(?<k3sMinor>\\d+)-(?<k3sPatch>\\d+)',
       ],
-      currentValueTemplate: 'v{{{major}}}.{{{minor}}}.{{{patch}}}',
-      autoReplaceStringTemplate: 'name: hadron-v{{{newMajor}}}-{{{newMinor}}}-{{{newPatch}}}-kairos-v4-2-0-k3s-v1-36-3-noop',
+      currentValueTemplate: 'v{{{major}}}.{{{minor}}}.{{{patch}}}-standard-amd64-generic-v{{{kairosMajor}}}.{{{kairosMinor}}}.{{{kairosPatch}}}-k3s-v{{{k3sMajor}}}.{{{k3sMinor}}}.{{{k3sPatch}}}-k3s1',
+      autoReplaceStringTemplate: 'name: hadron-v{{{newMajor}}}-{{{newMinor}}}-{{{newPatch}}}-kairos-v{{{kairosMajor}}}-{{{kairosMinor}}}-{{{kairosPatch}}}-k3s-v{{{k3sMajor}}}-{{{k3sMinor}}}-{{{k3sPatch}}}',
       datasourceTemplate: 'docker',
       depNameTemplate: 'quay.io/kairos/hadron',
       versioningTemplate: 'regex:^v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-standard-amd64-generic-v\\d+\\.\\d+\\.\\d+-k3s-v\\d+\\.\\d+\\.\\d+-k3s1$',
@@ -30,6 +32,7 @@
       matchPackageNames: ['quay.io/kairos/hadron'],
       allowedVersions: '/.*-k3s-v1\\.36\\.\\d+-k3s1$/',
       minimumReleaseAge: '24 hours',
+      minimumReleaseAgeBehaviour: 'timestamp-optional',
       automerge: false,
       postUpgradeTasks: {
         commands: ['sh .github/renovate/kairos/update-k3s-badge.sh'],
