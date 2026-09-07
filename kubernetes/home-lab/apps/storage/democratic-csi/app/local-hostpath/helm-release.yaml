@@ -75,6 +75,8 @@ spec:
           registry: public.ecr.aws/docker/library/busybox
           tag: 1.37.0@sha256:768e5c6f5cb6db0794eec98dc7a967f40631746c32232b78a3105fb946f3ab83
       driver:
+        # Hadron exposes /etc/localtime as a directory, not a zoneinfo file.
+        localtimeHostPath: null
         image:
           registry: ghcr.io/democratic-csi/democratic-csi
           tag: v1.9.3@sha256:8ce65ce5bd9b9cdd79ace0e94b6652a233cfbfb26af177fb7912c1217a3f2c19
