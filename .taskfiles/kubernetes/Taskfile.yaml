@@ -9,43 +9,6 @@ tasks:
       - kubectl label nodes mina node-role.kubernetes.io/agent=true
       - kubectl label nodes loreto node-role.kubernetes.io/agent=true
 
-  get-latest-kairos-tag:
-    desc: save latest kairos image tag to vars
-    vars:
-      LATEST_KAIROS_IMAGE_TAG:
-        sh: >
-          regctl tag ls quay.io/kairos/opensuse \
-            --include 'leap-\d+.\d+-standard-amd64-generic.*' \
-            --exclude '.*(master|alpha|beta|rc).*' \
-            | tail -1
-    cmd: >
-      echo {{.LATEST_KAIROS_IMAGE_TAG}}
-
-  ci-kairos-update:
-    desc: ci task to update kairos and k3s
-    vars:
-      LATEST_KAIROS_IMAGE_TAG:
-        sh: >
-          regctl tag ls quay.io/kairos/opensuse \
-            --include 'leap-\d+.\d+-standard-amd64-generic.*' \
-            --exclude '.*(master|alpha|beta|rc).*' \
-            | tail -1
-    cmd: |
-      replacement_pattern='s|version: "[^"]*"|version: "'"{{ .LATEST_KAIROS_IMAGE_TAG }}"'"|g'
-
-      sed -i "$replacement_pattern" ./kubernetes/home-lab/apps/system-upgrade/system-upgrade-controller/plans/amd.yaml
-
-      # outputs
-      leap_version="$(cut -d'-' -f2 <<< {{ .LATEST_KAIROS_IMAGE_TAG }})"
-      kairos_version="$(cut -d'-' -f6 <<< {{ .LATEST_KAIROS_IMAGE_TAG }})"
-      k3s_version="$(cut -d'-' -f8 <<< {{ .LATEST_KAIROS_IMAGE_TAG }})"
-
-      sed -i "s|k3s-.*-blue|k3s-$k3s_version-blue|g" README.md
-
-      echo "opensuse_url=https://doc.opensuse.org/release-notes/x86_64/openSUSE/Leap/$leap_version/" >> $GITHUB_OUTPUT
-      echo "kairos_url=https://github.com/kairos-io/kairos/releases/tag/$kairos_version" >> $GITHUB_OUTPUT
-      echo "k3s_url=https://github.com/k3s-io/k3s/releases/tag/$k3s_version+k3s1" >> $GITHUB_OUTPUT
-
   volsync-snapshot:
     desc: Trigger manual backup for all VolSync ReplicationSources
     cmd: |

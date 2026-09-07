@@ -2,12 +2,6 @@
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   packageRules: [
     {
-      groupName: "kairos-opensuse-leap",
-      matchPackagePatterns: ["kairos"],
-      matchDatasources: ["docker"],
-      separateMinorPatch: false
-    },
-    {
       groupName: "cert-manager",
       matchPackagePatterns: ["cert-manager"],
       matchDatasources: ["docker", "helm"],
