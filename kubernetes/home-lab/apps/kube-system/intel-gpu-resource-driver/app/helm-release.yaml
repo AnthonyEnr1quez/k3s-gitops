@@ -21,6 +21,12 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    # XPUMD is not deployed on these nodes; query the GPU directly instead.
+    kubeletPlugin:
+      healthMonitoring:
+        enabled: false
+      privileged: true
+
     # Use standard CDI paths that containerd/k3s expects
     cdi:
       staticPath: /etc/cdi
