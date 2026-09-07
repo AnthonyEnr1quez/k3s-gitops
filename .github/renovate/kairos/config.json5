@@ -1,0 +1,41 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  // source: https://kairos.io/operator-docs/nodeop-upgrade/#gitops-alternative-static-name-bump-with-a-versioned-suffix
+  customManagers: [
+    {
+      customType: 'regex',
+      managerFilePatterns: ['/^kubernetes/home-lab/apps/kube-system/kairos-operator/upgrades/.*\\.ya?ml$/'],
+      matchStrings: [
+        'image:\\s+quay\\.io/kairos/hadron:(?<currentValue>v\\d+\\.\\d+\\.\\d+-standard-amd64-generic-v\\d+\\.\\d+\\.\\d+-k3s-v\\d+\\.\\d+\\.\\d+-k3s1)',
+      ],
+      datasourceTemplate: 'docker',
+      depNameTemplate: 'quay.io/kairos/hadron',
+      versioningTemplate: 'regex:^v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-standard-amd64-generic-v\\d+\\.\\d+\\.\\d+-k3s-v\\d+\\.\\d+\\.\\d+-k3s1$',
+    },
+    {
+      customType: 'regex',
+      managerFilePatterns: ['/^kubernetes/home-lab/apps/kube-system/kairos-operator/upgrades/.*\\.ya?ml$/'],
+      matchStrings: [
+        'name:\\s+hadron-v(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)-kairos-v\\d+-\\d+-\\d+-k3s-v\\d+-\\d+-\\d+-noop',
+      ],
+      currentValueTemplate: 'v{{{major}}}.{{{minor}}}.{{{patch}}}',
+      autoReplaceStringTemplate: 'name: hadron-v{{{newMajor}}}-{{{newMinor}}}-{{{newPatch}}}-kairos-v4-2-0-k3s-v1-36-3-noop',
+      datasourceTemplate: 'docker',
+      depNameTemplate: 'quay.io/kairos/hadron',
+      versioningTemplate: 'regex:^v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-standard-amd64-generic-v\\d+\\.\\d+\\.\\d+-k3s-v\\d+\\.\\d+\\.\\d+-k3s1$',
+    },
+  ],
+  packageRules: [
+    {
+      matchPackageNames: ['quay.io/kairos/hadron'],
+      allowedVersions: '/.*-k3s-v1\\.36\\.\\d+-k3s1$/',
+      minimumReleaseAge: '24 hours',
+      automerge: false,
+      postUpgradeTasks: {
+        commands: ['sh .github/renovate/kairos/update-k3s-badge.sh'],
+        fileFilters: ['README.md'],
+        executionMode: 'update',
+      },
+    },
+  ],
+}
