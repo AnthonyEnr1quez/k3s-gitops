@@ -58,6 +58,8 @@ blocking:
 prometheus:
   enable: true
   path: /metrics
+statistics:
+  enable: true
 ports:
   http: 4000
 log:
