@@ -80,7 +80,7 @@ spec:
           main:
             image:
               repository: ghcr.io/gabeduartem/blocky-ui
-              tag: 2.0.0@sha256:fb614982e1a28674e242dba14b804a4e19cec54034b9c5f36ef35a245a1758cf
+              tag: 2.1.1@sha256:7edeaddee3963e59248b0dd0900234912982c86ea867c544fe2ee084bd479274
             env:
               BLOCKY_API_URL: "http://{{ .Release.Name }}-app:4000"
             probes:
