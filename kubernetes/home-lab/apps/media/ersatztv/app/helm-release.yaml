@@ -31,6 +31,7 @@ spec:
     controllers:
       ersatztv:
         type: statefulset
+        replicas: 0
         containers:
           app:
             image:
