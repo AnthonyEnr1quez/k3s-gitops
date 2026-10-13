@@ -7,6 +7,7 @@ resources:
 
   - dispatcharr/ks.yaml
   - ersatztv/ks.yaml
+  - tunarr/ks.yaml 
   - jellyfin/ks.yaml
   - plex/ks.yaml
   - calibre/ks.yaml
