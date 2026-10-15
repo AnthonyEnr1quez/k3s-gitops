@@ -78,7 +78,7 @@ spec:
           salt-rim:
             image:
               repository: ghcr.io/karlomikus/salt-rim
-              tag: 4.15.0@sha256:2a764abf8bd1717257ec65db9cb4034406fc77968d46570a776004ca5ae2d192
+              tag: 5.8.0@sha256:fcb3496d26390bb31019fc768c1bb36c8d4cedf1e95d1609d94500e2eccf7bb5
             env:
               API_URL: *api-url
               MEILISEARCH_URL: "https://{{ .Release.Name }}.${INTERNAL_HOSTNAME}/search"
